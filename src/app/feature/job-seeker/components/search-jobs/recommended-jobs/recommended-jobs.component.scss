@@ -1,0 +1,36 @@
+
+.recommended-jobs-title{
+    font-size: 20px;
+    color: #004475;
+    font-weight: 500;
+}
+.recommended-jobs{
+    .job-title{
+        font-size: 18px;
+        color: #004475;
+        font-weight:600;
+    }
+    .company-name{
+        font-size: 12px;
+        color: #8D4524;
+    }
+    .experience{
+        font-size: 12px;
+        color: #333333;
+    }
+    .last-update-btn{
+        width: 90px;
+                font-size: 10px;
+                height: 22px;
+                border-radius: 4px;
+                background: #1F7800;
+                border: none;
+                color: #fff;
+                display: flex;
+                align-items: center;
+    }
+    .apply-btn{
+        width: 145px;
+        height: 32px;
+    }
+}

@@ -1,0 +1,52 @@
+.mat-expansion-panel{
+  margin-bottom: 15px;
+  .mat-expansion-panel-header, .mat-expansion-panel-header:hover{
+    background: transparent linear-gradient(
+      94deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+      border-radius: 8px 8px 0 0;
+      height: 48px;
+  }
+  .mat-expansion-panel-header-title, .mat-expansion-indicator::after{
+    color: #fff !important;
+  }
+}
+.quickaccess-icon{
+  width: 15px;
+    height: 15px;
+    align-self: center;
+}
+.quick-access-active{
+  background: #DEA01E;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 8px;
+  margin: 0 -15px;
+}
+.form-group{
+  margin-bottom: 15px;
+}
+
+
+.btn-bg{
+  background: transparent linear-gradient(180deg, #FFFFFF00 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 0px 0px 8px 8px;
+  padding: 1rem 0rem;
+  .btn-cancel{
+    padding: .5rem 2rem;
+    margin-left: 50px;
+  }
+  .btn-save{
+    background: transparent linear-gradient(101deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+    color: white;
+  }
+  .btn-cancel, .btn-save{
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    padding: .5rem 3rem;
+    font-size: 14px;
+  }
+}

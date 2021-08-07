@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="80" viewBox="0 0 108 80">
+  <g id="error_icon" transform="translate(-952.75 -392)">
+    <g id="Verified" transform="translate(712.75 -137)">
+      <circle id="Ellipse_2038" data-name="Ellipse 2038" cx="32.5" cy="32.5" r="32.5" transform="translate(260 534)" fill="#c40000"/>
+      <g id="close_2_" data-name="close (2)" transform="translate(281.391 555.392)">
+        <path id="Path_143" data-name="Path 143" d="M13.074,11.11,21.81,2.373A1.389,1.389,0,0,0,19.846.408L11.109,9.145,2.372.408A1.389,1.389,0,0,0,.407,2.373L9.144,11.11.407,19.846a1.389,1.389,0,1,0,1.965,1.964l8.737-8.737,8.737,8.737a1.389,1.389,0,0,0,1.965-1.965Z" transform="translate(0 -0.001)" fill="#fff"/>
+      </g>
+    </g>
+    <circle id="Ellipse_2039" data-name="Ellipse 2039" cx="10" cy="10" r="10" transform="translate(952.75 392)" fill="#c40000"/>
+    <circle id="Ellipse_2040" data-name="Ellipse 2040" cx="5" cy="5" r="5" transform="translate(972.75 462)" fill="#c40000"/>
+    <circle id="Ellipse_2041" data-name="Ellipse 2041" cx="7.5" cy="7.5" r="7.5" transform="translate(1045.75 412)" fill="#c40000"/>
+  </g>
+</svg>

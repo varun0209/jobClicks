@@ -1,0 +1,21 @@
+<div class="container aling-item-center p-relative">
+    <span class="close-button" (click)="dialogRef.close()"><img src="assets/images/close.png" class="close-popup"
+        alt="logo"></span>
+    <div class="col-lg-12 text-center mb=-2">
+        <img class="mt-3" src="{{ data?.image ? data.image : 'assets/images/alert-popup-icon-status-change.svg' }}" />
+    </div>
+    <div class="row text-center">
+        <div class="col-lg-12 mb-2 confirm-title">{{ data?.header ? data.header : 'Are you sure?' }} </div>
+        <div class="col-lg-12 mb-2 confirm-text" *ngIf="data?.description">
+            <div [innerHtml]="data?.description"></div>
+        </div>
+        <div class="col-lg-12 mt-2 mb-2">
+            <button (click)="yes()" class="{{ data?.buttonClass ? data.buttonClass : 'actie-btn' }}"> {{ data?.yes ? data.yes : 'Yes' }} </button>
+        </div>
+        <div class="col-lg-12 mb-2" *ngIf="!data?.showNoButton">
+            <button class="jc-btn-cancel" (click)="dialogRef.close(false)"> {{ data?.no ? data.no : 'Cancel' }} </button>
+        </div>
+    </div>
+    
+   
+</div>

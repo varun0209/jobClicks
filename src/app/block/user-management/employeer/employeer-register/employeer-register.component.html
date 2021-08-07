@@ -1,0 +1,212 @@
+<div class="container-fluid tech-news p-relative">
+    <span class="close-button" (click)="dialogRef.close()"><img src="assets/images/close.png" class="close-popup"
+            alt="logo"></span>
+    <div class="row">
+        <div class="col">
+            <div class="register-page">
+                <div class="logo text-center">
+                    <img src="assets/images/logo.png" class="mb-3" alt="...">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has
+                        been the industry's</p>
+                </div>
+
+                <form class="" [formGroup]="registerForm" *ngIf="!showVerificationCode">
+
+                    <div class="login-title text-center">
+                        Register Now
+                    </div>
+
+                    <div class="forms mt-2">
+                        <div class="form-group popup-controls mb-2">
+                            <label> Company Name<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" style="text-transform: capitalize"
+                                formControlName="companyName" placeholder="Company Name" name="companyName"
+                                [ngClass]="{ 'is-invalid': 
+                                (registerForm.controls.companyName.dirty && registerForm.controls.companyName.touched && registerForm.controls.companyName.errors) ||
+                                (submitted && registerForm.controls.companyName.errors)
+                            }">
+                            <div class="error_text mt-0" *ngIf="(registerForm.controls.companyName.dirty && registerForm.controls.companyName.touched && registerForm.controls.companyName.errors) ||
+                            (submitted && registerForm.controls.companyName.errors)">
+                                <div class="error_text mt-0" *ngIf="registerForm.controls.companyName.errors.required">
+                                    Company Name
+                                    required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group popup-controls mb-2">
+                            <label> Contact Person Name<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" style="text-transform: capitalize"
+                                formControlName="contactPersonName" placeholder="Jack" name="contactPersonName" maxlength="50"
+                                [ngClass]="{ 'is-invalid': 
+                                (registerForm.controls.contactPersonName.dirty && registerForm.controls.contactPersonName.touched && registerForm.controls.contactPersonName.errors) ||
+                                (submitted && registerForm.controls.contactPersonName.errors)
+                            }">
+                            <div class="error_text mt-0"
+                                *ngIf="(registerForm.controls.contactPersonName.dirty && registerForm.controls.contactPersonName.touched && registerForm.controls.contactPersonName.errors) ||
+                                (submitted && registerForm.controls.contactPersonName.errors)">
+                                <div class="error_text mt-0"
+                                    *ngIf="registerForm.controls.contactPersonName.errors.pattern">
+                                    Please enter
+                                    valid Contact Person name</div>
+                                <div class="error_text mt-0"
+                                    *ngIf="registerForm.controls.contactPersonName.errors.required">
+                                    Contact Person Name
+                                    required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group popup-controls mb-2">
+                            <label>Company Email ID<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="sample@sample.com" formControlName="email" name="email"
+                                [ngClass]="{ 'is-invalid': 
+                                (registerForm.controls.email.dirty && registerForm.controls.email.touched && registerForm.controls.email.errors) ||
+                                (submitted && registerForm.controls.email.errors) ||
+                                (showServerErrors && showServerErrors?.email)
+                             }">
+                            <div class="error_text mt-0" *ngIf="(registerForm.controls.email.dirty && registerForm.controls.email.touched && registerForm.controls.email.errors) ||
+                            (submitted && registerForm.controls.email.errors)">
+                                <div class="error_text mt-0" *ngIf="registerForm.controls.email.errors && registerForm.controls.email.errors.pattern">
+                                    Please enter a valid Email. </div>
+                                <div class="error_text mt-0" *ngIf="registerForm.controls.email.errors && registerForm.controls.email.errors.required">
+                                    Email is required.
+                                </div>
+                            </div>
+                            <div class="error_text mt-0" *ngIf="showServerErrors && showServerErrors?.email">{{ showServerErrors.email }} </div>
+
+                        </div>
+
+                        <div class="form-group popup-controls mb-2">
+                            <label> Mobile<span class="text-danger">*</span></label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input type="text" formControlName="countryCode" class="form-control" [attr.disabled]="true">
+                                </div>
+                                <div class="col-md-10 pl-0">
+                                    <input type="text" class="form-control"
+                                        [ngClass]="{ 'is-invalid': 
+                                        (registerForm.controls.mobileNo.dirty && registerForm.controls.mobileNo.touched && registerForm.controls.mobileNo.errors) ||
+                                        (submitted && registerForm.controls.mobileNo.errors)
+                                     }"
+                                        (keypress)="commonService.numberOnly($event)" placeholder="999 999 9999"
+                                        minlength="10" maxlength="10" formControlName="mobileNo">
+                                    <div class="error_text mt-0"
+                                        *ngIf="(registerForm.controls.mobileNo.dirty && registerForm.controls.mobileNo.touched && registerForm.controls.mobileNo.errors) ||
+                                        (submitted && registerForm.controls.mobileNo.errors)">
+                                        <div class="error_text mt-0"
+                                            *ngIf="registerForm.controls.mobileNo.errors.pattern">
+                                            Please
+                                            enter a 10 digit mobile number.</div>
+                                            <div class="error_text mt-0" *ngIf="registerForm.controls.mobileNo.errors.required">
+                                                Mobile No is required.
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group popup-controls mb-2 position-relative">
+                            <label> Password<span class="text-danger">*</span><img src="assets/images/information.svg"
+                                matTooltip="Password must be a minimum of 8 characters with at least 1 special character($,@,!,&,%,#), 1 number(0-9), 1 uppercase(A-Z) and 1 lowercase character(a-z)."
+                                    matTooltipPosition="right" class="ml-1 password-info" alt="logo"></label>
+                            <input [type]="hide ? 'password' : 'text'" placeholder="********" class="form-control bg-img-none" minlength="8"
+                                [ngClass]="{ 'is-invalid': 
+                                (registerForm.controls.password.dirty && registerForm.controls.password.touched && registerForm.controls.password.errors) ||
+                                (submitted && registerForm.controls.password.errors)
+                            }"
+                                maxlength="16" formControlName="password">
+                            <i class="eye-icon" (click)="hide = !hide" [ngClass]="(hide)?'fa fa-eye-slash':'fa fa-eye'"
+                                aria-hidden="true"></i>
+                            <div class="error_text mt-0" *ngIf="(registerForm.controls.password.dirty && registerForm.controls.password.touched && registerForm.controls.password.errors) ||
+                            (submitted && registerForm.controls.password.errors) 
+                            ">
+                                <div class="error_text mt-0" *ngIf="registerForm.controls.password.errors.pattern">
+                                    <small>Password must be minimum 8 characters and maximum 16 characters with at
+                                        least
+                                        1 special
+                                        character, 1 number, 1 uppercase and 1 lowercase character.</small>
+                                </div>
+                                <div class="error_text mt-0" *ngIf="registerForm.controls.password.errors.maxlength">
+                                    Password
+                                    must be
+                                    max 16 characters.</div>
+                                <div class="error_text mt-0" *ngIf="registerForm.controls.password.errors.required">
+                                    Password is
+                                    required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group popup-controls mb-2">
+                            <label> Confirm Password<span class="text-danger">*</span></label>
+                            <input type="password" class="form-control" placeholder="********" minlength="8"
+                                [ngClass]="{ 'is-invalid': 
+                                (registerForm.controls.confirmPassword.dirty && registerForm.controls.confirmPassword.touched && registerForm.controls.confirmPassword.errors) ||
+                                (submitted && registerForm.controls.confirmPassword.errors)
+                            }"
+                                maxlength="16" formControlName="confirmPassword">
+                            <div class="error_text mt-0"
+                                *ngIf="(registerForm.controls.confirmPassword.dirty && registerForm.controls.confirmPassword.touched && registerForm.controls.confirmPassword.errors) ||
+                                (submitted && registerForm.controls.confirmPassword.errors)">
+                                <div class="error_text mt-0" *ngIf="registerForm.controls.confirmPassword.errors">
+                                    Password and
+                                    Confirm Password doesn’t match.</div>
+                            </div>
+                        </div>
+                        <div class="register-footer-text mt-3">
+                            <span class="d-block mt-3">By clicking Agree & Join, you agree to the Job Clicks <br><a
+                                    href="#" class="link">User Agreement</a>, <a href="#" class="link">Privacy</a>,
+                                and <a href="#" class="link">Cookies Policy</a>.</span>
+                        </div>
+                        <div class="login-button mt-3 text-center">
+                            <button class="jc-button " (click)="submitForm()">Register</button>
+                        </div>
+                        <div class="register-footer-text mt-3">
+                            <span class="d-block mt-3 cursor-p">Do have an account? <span class="register cursor-p"
+                                    (click)="loginModel()">Login</span></span>
+                        </div>
+                    </div>
+
+                </form>
+
+
+                <div class="loginform" *ngIf="showVerificationCode">
+
+                    <div class="login-title text-center mb-2">
+                        Verification Code
+                    </div>
+
+                    <form class="" [formGroup]="verificationForm">
+                        <div class="form-group popup-controls">
+                            <label> Enter the code that is sent to your Email ID <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" (keypress)="commonService.numberOnly($event)"
+                                [ngClass]="{ 'is-invalid': 
+                                (verificationForm.controls.Verificationcode.dirty && verificationForm.controls.Verificationcode.touched && verificationForm.controls.Verificationcode.errors) ||
+                                        (submitted && verificationForm.controls.Verificationcode.errors) ||
+                                        (showServerErrors && showServerErrors?.otp)
+                            }"
+                                placeholder="******" minlength="6" maxlength="6"
+                                formControlName="Verificationcode">
+                            <div class="error_text mt-0" *ngIf="(verificationForm.controls.Verificationcode.dirty && verificationForm.controls.Verificationcode.touched && verificationForm.controls.Verificationcode.errors) ||
+                            (submitted && verificationForm.controls.Verificationcode.errors) ||
+                            (showServerErrors && showServerErrors?.otp)">
+                                <div class="error_text mt-0"
+                                    *ngIf="verificationForm.controls.Verificationcode.errors && verificationForm.controls.Verificationcode.errors.required">
+                                    Please enter a 6 digit verification number.</div>
+                                    <div class="error_text mt-0" *ngIf="showServerErrors && showServerErrors?.otp">{{ showServerErrors.otp }} </div>
+
+                            </div>
+                        </div>
+                        <div class="login-button mt-3 text-center">
+                            <button type="submit" class="jc-button" (click)="submitVerficationCode()">Submit</button>
+                        </div>
+                        <div class="register-footer-text mt-3">
+                            <span class="d-block mt-3">Didn't receive the code? <span class="register cursor-p" (click)="resendVerification()">
+                                     Resend </span></span>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

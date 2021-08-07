@@ -1,0 +1,323 @@
+<div class="container" *ngIf="employeeData">
+  <div class="row py-4 mt-3">
+    <div class="col-12 text-center">
+      <div class="title">My Profile <span>(Need Content)</span></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="company-overview-logo-section">
+                <div class="profile-photo ">
+                  <div class="company-logo">
+                    <img
+                      src="{{ employeeData?.profilePicPath ? appService.domain + employeeData?.profilePicPath : 'assets/images/Employee_1.png' }}"
+                      class="profile-one" alt="...">
+                  </div>
+                  <span class="d-block"><img src="assets/images/Contact _number_circle.png" class="phone-icons"
+                      alt=""></span>
+                  <p class="pt-1">{{ employeeData?.countryCode }} {{ employeeData?.mobileNo }}</p>
+                  <span class="d-block mt-n1"><a class="cursor-p" (click)="editMobile()">Edit</a></span>
+                  <span class="d-block"><img src="assets/images/email_circle_icon.png" alt=""></span>
+                  <p class="pt-1">{{ employeeData?.email }}</p>
+                  <span class="d-block mt-n1"><a class="cursor-p" (click)="editEmail()">Edit</a></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-9">
+              <div class="company-details-cotent my-3">
+                <div class="company-details-cotent-body">
+                  <div class="row m-0">
+                    <div class="job-detailes">
+                      <h5 class="jack-title">{{ employeeData?.firstName }} {{ employeeData?.lastName }}</h5>
+                      <span class="currentCo">Current Company: </span><span>{{currentlyworkingdata?.clientName}}</span>
+                      <div class="row profile-icons mb-2">
+                        <div class="col">
+                          <img src="assets/images/nationality.svg" alt=""><span>{{ employeeData?.preferredLocation }}</span>
+                        </div>
+                        <div class="col">
+                          <img src="assets/images/salary.svg" alt=""><span>{{
+                            employeeData?.salary}}</span>
+                        </div>
+                      </div>
+                      <div class="row profile-icons mb-2">
+                        <div class="col">
+                          <img src="assets/images/designation_icon.svg"
+                            alt=""><span>{{currentlyworkingdata?.jobTittle}}</span>
+                        </div>
+                        <div class="col">
+                          <img src="assets/images/graduation-cap.svg"
+                            alt=""><span>{{higereducationdata?.qualificationName}}</span>
+
+                        </div>
+                      </div>
+                      <div class="row profile-icons mb-2">
+                        <div class="col">
+                          <img src="assets/images/company_name_icon.svg" alt=""><span>
+                            {{currentlyworkingdata?.clientName}}</span>
+                        </div>
+                        <div class="col">
+                          <img src="assets/images/employment_type.svg" alt=""><span>{{
+                            employeeData?.employeementType}}</span>
+                        </div>
+                      </div>
+                      <div class="row profile-icons mb-2">
+                        <div class="col">
+                          <img src="assets/images/experience_icon.svg"
+                            alt=""><span>{{employeeData?.totalExperience}}</span>
+                        </div>
+                        <div class="col">
+                          <img src="assets/images/location.svg" alt=""><span>{{employeeData?.address}},
+                            {{employeeData?.address2}}</span>
+                        </div>
+                      </div>
+                      <div class="row updates-time mt-3 mr-3 ">
+                        <p><i class="fa fa-circle circle " aria-hidden="true"></i>Last Update: {{
+                          employeeData?.updatedOn | date: 'dd MMMM, yyyy' }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Job Information</div>
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-lg-6 job-info">
+              <p>Employment Type : <span>{{ employeeData?.employeementType}}</span></p>
+              <p>Position : <span>{{currentlyworkingdata?.jobTittle}}</span></p>
+              <p>Salary : <span>{{ employeeData?.salary}}</span></p>
+            </div>
+            <div class="col-lg-6 job-info">
+              <p>Willing to Relocate : <span>{{ employeeData?.willingToRelocate}}</span></p>
+              <p>Willing to Travel : <span>{{ employeeData?.willingToTravel}}</span></p>
+              <p>Work Authorization : <span>{{ employeeData?.workAuthorization}}</span></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Work Experience</div>
+        <div class="card-body">
+          <div class="row m-0">
+            <div class="col-lg-12">
+              <div class="col-lg-12 company-overview-icons-content">
+                <img src="assets/images/experience_icon.svg" class="company-overview-icons mr-3" alt="..."><span>Total
+                  Work
+                  Experience - {{employeeData?.totalExperience}} years</span>
+              </div>
+
+              <div class="company-details-cotent"
+                *ngIf="employeeData?.employeeWorkExperiences && employeeData?.employeeWorkExperiences.length">
+
+                <div class="company-details-cotent-body" *ngFor="let data of employeeData.employeeWorkExperiences">
+
+                  <!-- <div class="col-lg-6 company-overview-icons-content">
+                          <img src="assets/images/designation_icon.png" class="company-overview-icons mr-3" alt="...">
+                          {{ employeeData?.contactPerson[0]?.contactPersonName }}
+                        </div> -->
+
+
+                  <div class="col-lg-12 company-overview-icons-content">
+                    <img src="assets/images/company_name_icon.svg" class="company-overview-icons mr-3" alt="...">
+                    <span class="title"> {{data.clientName}} </span> <span>({{data.startDate | date: 'MM/dd/YYYY' }}
+                      <span *ngIf="data.endDate"> -
+                        {{data.endDate | date: 'MM/dd/YYYY' }} </span> )</span>
+                    <div class="row">
+                      <div class="col job-title">
+                        <p>Job Title (Designation): <span>{{data.jobTittle}}</span></p>
+                        <p>Project Description:</p>
+                      </div>
+                      <p class="para"> <span>{{data.projectDescription}}</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Education</div>
+        <div class="card-body p-0">
+          <div class="row m-0" *ngIf="employeeData?.employeeEducations && employeeData?.employeeEducations.length">
+            <div class="col-lg-9" *ngFor="let data of employeeData.employeeEducations">
+              <div class="company-details-cotent my-3">
+
+                <div class="company-details-cotent-body">
+                  <div class="row m-0">
+                    <!-- <div class="col-lg-6 company-overview-icons-content">
+                          <img src="assets/images/designation_icon.png" class="company-overview-icons mr-3" alt="...">
+                          {{ employeeData?.contactPerson[0]?.contactPersonName }}
+                        </div> -->
+                    <div class="col-lg-12 company-overview-icons-content">
+                      <img src="assets/images/graduation-cap.svg" class="company-overview-icons mr-3" alt="...">
+                      <span class="title"> {{data.universityName}}</span> <span>({{data.yearOfPassing}})</span>
+                      <div class="row">
+                        <div class="col job-title">
+                          <p>Qualification: <span>{{data.qualificationName}}</span></p>
+                          <p>Specialization: <span>{{data.specialization}}</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Skills</div>
+        <div class="card-body p-0">
+          <div class="row m-0" *ngIf="employeeData?.employeeSkills && employeeData?.employeeSkills.length">
+            <div class="col-lg-6" *ngFor="let data of employeeData.employeeSkills">
+              <ul class="list-items">
+                <li>{{data.skillName}} ({{data.lastUsedYear}}) <span>{{data.experience}} years experience</span></li>
+              </ul>
+            </div>
+            <!-- <div class="col-lg-6">
+              <ul class="list-items">
+                <li>Adobe XD (2021) <span>8 years experience</span></li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Certifications</div>
+        <div class="card-body p-0">
+          <div class="row m-0"
+            *ngIf="employeeData?.employeeCertifications && employeeData?.employeeCertifications.length">
+            <div class="col-lg-9" *ngFor="let data of employeeData.employeeCertifications">
+              <div class="company-details-cotent my-3">
+                <div class="company-details-cotent-body">
+                  <div>
+                    <img src="assets/images/certification_icon.svg" class="company-overview-icons mr-3" alt="...">
+                    <span class="title"> {{data.certificationName}}</span>
+                    <div class="row">
+                      <div class="col job-title">
+                        <p>Issued Date: <span>{{data.issuedDate | date: 'MM/dd/YYYY'}}</span></p>
+                        <p>Issued By: <span>{{data.issuedBy}}</span></p>
+                        <p>Valid Upto: <span>{{data.validUpTo}}</span></p>
+                      </div>
+                    </div>
+                    <div class="row m-0 mt-2">
+                      <!-- <div class="col-lg-6 company-overview-icons-content">
+                         <img src="assets/images/designation_icon.png" class="company-overview-icons mr-3" alt="...">
+                         {{ employeeData?.contactPerson[0]?.contactPersonName }}
+                       </div> -->
+                      <div class="col-md-8">
+                        <div class="upload-certificate ml-3" *ngIf="data?.certificationImagePath">
+                          <div class="row ml-2">
+                            <div class="col-md-2">
+                              <img src="assets/images/Certificate_Image_icon.png" alt="">
+                            </div>
+                            <div class="col-md-6 align-self-center">
+                              <span>{{ data.certificationName }}</span>
+                              <!-- <span>PNG - 3.3 MB</span> -->
+                            </div>
+                            <div class="col py-3 text-right mr-3 align-self-center">
+                              <a href="{{ appService.domain + data?.certificationImagePath }}" target="_blank">View</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Resume/Cover Letter</div>
+        <div class="card-body p-0">
+          <div class="row m-0">
+            <div class="col-lg-9">
+              <div class="company-details-cotent my-3">
+                <div class="company-details-cotent-body">
+                  <div class="row m-0">
+                    <!-- <div class="col-lg-6 company-overview-icons-content">
+                          <img src="assets/images/designation_icon.png" class="company-overview-icons mr-3" alt="...">
+                          {{ employeeData?.contactPerson[0]?.contactPersonName }}
+                        </div> -->
+                    <div class="col-md-3 py-3">Resume:</div>
+                    <div class="col-md-8" *ngIf="employeeData?.resumePath">
+                      <div class="resume-uplod">
+                        <div class="row">
+                          <div class="col-md-2">
+                            <img src="assets/images/{{ commonService.getFileExtension(employeeData?.resumePath) }}.svg"
+                              alt="">
+                          </div>
+                          <div class="col-md-6 ">
+                            <a style="color: black;" href="{{IUrl}}{{ employeeData?.resumePath }}" target="_blank"
+                              class="get-started-btn">
+                              <p> {{ commonService.getFileName(employeeData?.resumePath) }}</p>
+                            </a>
+                            <!-- <p>John Mickel_Resume</p>
+                            <span>PDF - 128 Kb</span> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row m-0 mt-3">
+                    <!-- <div class="col-lg-6 company-overview-icons-content">
+                           <img src="assets/images/designation_icon.png" class="company-overview-icons mr-3" alt="...">
+                           {{ employeeData?.contactPerson[0]?.contactPersonName }}
+                         </div> -->
+                    <div class="col-md-3 py-3">Cover Letter:</div>
+                    <div class="col-md-8" *ngIf="employeeData?.coverLaterPath">
+                      <div class="resume-uplod">
+                        <div class="row">
+                          <div class="col-md-2">
+                            <img
+                              src="assets/images/{{ commonService.getFileExtension(employeeData?.coverLaterPath) }}.svg"
+                              alt="">
+                          </div>
+                          <div class="col-md-6 ">
+                            <a style="color: black;" href="{{IUrl}}{{ employeeData?.coverLaterPath }}" target="_blank"
+                              class="get-started-btn">
+                              <p> {{ commonService.getFileName(employeeData?.coverLaterPath) }}</p>
+                            </a>
+                            <!-- <p>John Mickel_Cover Letter</p>
+                            <span>PDF - 128 Kb</span> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="find-job">
+        <input type="text" class="form-control" placeholder="Search for jobs, skills">
+        <input type="text" class="form-control" placeholder="Location">
+        <button class="jc-button">Find Jobs</button>
+      </div>
+
+      <div>
+        <app-jobclicks-adds></app-jobclicks-adds>
+      </div>
+    </div>
+  </div>
+  

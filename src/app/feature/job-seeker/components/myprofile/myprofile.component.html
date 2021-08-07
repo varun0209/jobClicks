@@ -1,0 +1,1041 @@
+<div class="container" *ngIf="showControls">
+    <div class="row py-4 mt-3">
+      <div class="col-12 text-center">
+        <div class="title">
+            Profile Form <span class="text-danger tagline">(Need content)</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9">
+
+        <!-- Pesronal information -->
+        <mat-accordion>
+          <mat-expansion-panel
+            class="mat-expanded" [expanded]="step === 0" (opened)="setStep(0)" #target>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="min-title">
+                {{ updateProfile ? "Update" : "" }} Personal Information <span> </span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="col">
+              <form class="py-3" [formGroup]="employeePersonalinformationForm">
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                    First Name<span class="text-danger">*</span> </label
+                  >
+                  <div class="col-md-5">
+                    <input type="text" id="firstName" class="form-control"
+                      formControlName="firstName" placeholder="Enter First Name"
+                      [ngClass]="{'is-invalid': 
+                      (employeePersonalinformationForm.controls.firstName.dirty && employeePersonalinformationForm.controls.firstName.touched && employeePersonalinformationForm.controls.firstName.errors) ||
+                                (submitted && employeePersonalinformationForm.controls.firstName.errors)
+                    }"/>
+
+                    <div class="error_text mt-0"
+                      *ngIf="(employeePersonalinformationForm.controls.firstName.dirty && employeePersonalinformationForm.controls.firstName.touched && employeePersonalinformationForm.controls.firstName.errors) ||
+                      (submitted && employeePersonalinformationForm.controls.firstName.errors)">
+                      <div class="error_text mt-0"
+                        *ngIf="employeePersonalinformationForm.controls.firstName.errors.required">
+                        Please Enter Valid first Name
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                    Last Name <span class="text-danger">*</span></label>
+                  <div class="col-sm-5">
+                    <div class="mb-2">
+                      <input type="text" id="lastName" class="form-control" placeholder="Enter Last Name" formControlName="lastName"
+                       [ngClass]="{'is-invalid':
+                       (employeePersonalinformationForm.controls.lastName.dirty && employeePersonalinformationForm.controls.lastName.touched && employeePersonalinformationForm.controls.lastName.errors) ||
+                       (submitted && employeePersonalinformationForm.controls.lastName.errors)
+                        }"/>
+                      <div class="error_text mt-0" *ngIf="(employeePersonalinformationForm.controls.lastName.dirty && employeePersonalinformationForm.controls.lastName.touched && employeePersonalinformationForm.controls.lastName.errors) ||
+                      (submitted && employeePersonalinformationForm.controls.lastName.errors)">
+                        <div class="error_text mt-0" *ngIf="employeePersonalinformationForm.controls.lastName.errors.required" >
+                          Please Enter Last Name
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Contact Number<span class="text-danger">*</span> </label>
+                    <div class="col-1 pr-0">
+                      <input type="text" formControlName="countryCode" class="form-control" [attr.disabled]="true" >
+                    </div>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control"  (keypress)="commonService.numberOnly($event)"
+                        [ngClass]="{ 'is-invalid': 
+                        (employeePersonalinformationForm.controls.mobileNo.dirty && employeePersonalinformationForm.controls.mobileNo.touched && employeePersonalinformationForm.controls.mobileNo.errors) ||
+                        (submitted && employeePersonalinformationForm.controls.mobileNo.errors)
+                       }"
+                        placeholder="Contact Number" minlength="10" maxlength="10" formControlName="mobileNo"/>
+                      <div class="error_text mt-0" *ngIf="
+                      (employeePersonalinformationForm.controls.mobileNo.dirty && employeePersonalinformationForm.controls.mobileNo.touched && employeePersonalinformationForm.controls.mobileNo.errors) ||
+                        (submitted && employeePersonalinformationForm.controls.mobileNo.errors)
+                        ">
+                        <div class="error_text mt-0" *ngIf="employeePersonalinformationForm.controls.mobileNo.errors.pattern">
+                          Please Enter a Valid 10 digit Contact Number”.
+                        </div>
+                        <div class="error_text mt-0" *ngIf="employeePersonalinformationForm.controls.mobileNo.errors.required">
+                          Contact Number is required.
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Alternate Number</label>
+                    <div class="col-1 pr-0">
+                      <input type="text" formControlName="alternatecountryCode" class="form-control" [attr.disabled]="true">
+                    </div>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" (keypress)="commonService.numberOnly($event)"
+                        placeholder="Alternate Number" minlength="10" maxlength="10" formControlName="alternateMobileNo" [ngClass]="{ 'is-invalid': 
+                        (employeePersonalinformationForm.controls.alternateMobileNo.dirty && employeePersonalinformationForm.controls.alternateMobileNo.touched && employeePersonalinformationForm.controls.alternateMobileNo.errors) ||
+                        (submitted && employeePersonalinformationForm.controls.alternateMobileNo.errors)
+                       }"/>
+                       <div class="error_text mt-0" *ngIf="
+                       (employeePersonalinformationForm.controls.alternateMobileNo.dirty && employeePersonalinformationForm.controls.alternateMobileNo.touched && employeePersonalinformationForm.controls.alternateMobileNo.errors) ||
+                         (submitted && employeePersonalinformationForm.controls.alternateMobileNo.errors)
+                         ">
+                         <div class="error_text mt-0" *ngIf="employeePersonalinformationForm.controls.alternateMobileNo.errors.pattern">
+                           Please Enter a Valid 10 digit Contact Number”.
+                         </div>
+                       </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Email ID<span class="text-danger">*</span> </label>
+                    <div class="col-sm-5">
+                      <div class="mb-2">
+                        <input type="text" id="email" [attr.disabled]="true" class="form-control" placeholder="Enter Email ID" formControlName="email"
+                        [ngClass]="{'is-invalid': 
+                        (employeePersonalinformationForm.controls.email.touched && employeePersonalinformationForm.controls.email.errors) ||
+                        (submitted && employeePersonalinformationForm.controls.email.errors)
+                      }"/>
+                        <div class="error_text mt-0" *ngIf="(employeePersonalinformationForm.controls.email.touched && employeePersonalinformationForm.controls.email.errors) ||
+                        (submitted && employeePersonalinformationForm.controls.email.errors)">
+                          <div class="error_text mt-0" *ngIf="employeePersonalinformationForm.controls.email.errors.pattern">
+                            Please enter a valid Email. </div>
+                        <div class="error_text mt-0" *ngIf="employeePersonalinformationForm.controls.email.errors.required">
+                            Email is required.
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label"> Nationality </label>
+                  <div class="col-sm-4">
+                    <div class="mb-2">
+                      <select class="form-control select-placeholder form-select" id="Nationality" formControlName="nationality" >
+                        <option value="" disabled>Select Nationality</option>
+                        <option *ngFor="let nationalitys of getalldropdownlistData.nationality" [value]="nationalitys.name">{{ nationalitys.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"> Work Authorization </label>
+                    <div class="col-sm-4">
+                      <div class="mb-2">
+                        <select class="form-control select-placeholder form-select"  id="workAuthorizationId"  formControlName="workAuthorizationId">
+                          <option value="" disabled>Select Work Authorization</option>
+                          <option *ngFor="let work of getalldropdownlistData.workAuthorization" [value]="work.workAuthorizationId">{{ work.workAuthorizationName }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">
+                        Gender </label>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  formControlName="gender" id="inlineRadio1" value="Male" >
+                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"  formControlName="gender" id="inlineRadio2" value="Female">
+                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="gender" id="inlineRadio3" value="Other">
+                            <label class="form-check-label" for="inlineRadio3"> Other</label>
+                          </div>
+                    </div>
+                  </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Country </label>
+                  <div class="col-sm-4">
+                    <div class="mb-2">
+                      <!-- <select class="form-control form-select" id="country" formControlName="country" (change)="stateSelected()" >
+                        <option value="" disabled>Select Country</option>
+                        <option *ngFor="let country of countryList" [value]="country.id">{{ country.name }}
+                        </option>
+                      </select> -->
+                      <app-autocomplete 
+                      [placeholder]="'Select Country'"  
+                      [id]="'name'" [text]="'name'"
+                      [value]="employeePersonalinformationForm.get('country').value"
+                      [options]="countryList"
+                      (valueSelectedEmit)="stateSelected($event)"></app-autocomplete>
+                    </div>
+                  </div>
+
+                  <label class="col-sm-2 col-form-label text-center"> Zip Code </label>
+                  <div class="col-sm-3">
+                    <div class="mb-2">
+                      <!-- (keypress)="commonService.numberOnly($event)"  maxlength="100" -->
+                      <!-- [ngClass]="{ 'is-invalid': submitted && employeePersonalinformationForm.controls.zipCode.errors }" -->
+
+                      <input type="number" class="form-control" placeholder="Enter zipcode" formControlName="zipCode" 
+                      >
+                      <!-- <div class="error_text mt-0" *ngIf="submitted && employeePersonalinformationForm.controls.zipCode.invalid">
+                        <div class="error_text mt-0"
+                        *ngIf="employeePersonalinformationForm.controls.zipCode.errors.pattern">
+                        Please
+                        enter a 5 digit zipcode.</div>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">State </label>
+                  <div class="col-sm-4">
+                    <div class="mb-2">
+                      <!-- <select class="form-control select-placeholder form-select"  id="state"   formControlName="state" (change)="citySelected()"  >
+                        <option value="" disabled>Select State</option>
+                        <option *ngFor="let state of stateList" [value]="state.id">
+                          {{ state.name }}
+                        </option>
+                      </select> -->
+                      <app-autocomplete 
+                      [placeholder]="'Select State'"  
+                      [id]="'name'" [text]="'name'"
+                      [value]="employeePersonalinformationForm.get('state').value"
+                      [options]="stateList"
+                      (valueSelectedEmit)="citySelected($event)"></app-autocomplete>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">City </label>
+                  <div class="col-sm-4">
+                    <div class="mb-2">
+                      <!-- <select class="form-control select-placeholder form-select" id="city" formControlName="city" >
+                        <option value="" disabled>Select City</option>
+                        <option *ngFor="let city of cityList" [value]="city.id">
+                          {{ city.name }}
+                        </option>
+                      </select> -->
+                      <app-autocomplete 
+                      [placeholder]="'Select City'"
+                      [id]="'name'" [text]="'name'"
+                      [value]="employeePersonalinformationForm.get('city').value"
+                      [options]="cityList"
+                      (valueSelectedEmit)="setAutoCompleteValues('employeePersonalinformationForm', 'city', 'name', $event)"></app-autocomplete>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 pr-0 col-form-label"> Address 1 </label>
+                  <div class="col-sm-9">
+                    <input class="form-control" placeholder="Enter address line one"
+                      formControlName="address"/>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 pr-0 col-form-label">Address 2 </label>
+                  <div class="col-sm-9">
+                    <input class="form-control" placeholder="Enter address line two" id="address2" formControlName="address2"/>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline" >
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="veterans" formControlName="veterans" >
+                            <label class="form-check-label" for="inlineCheckbox1">Veterans</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="differentlyabled" formControlName="differentlyAbled">
+                            <label class="form-check-label" for="inlineCheckbox2">Differently Abled</label>
+                          </div>
+
+                    </div>
+                  </div>
+
+                <div class="col text-right" *ngIf="updateProfile">
+                  <button
+                    class="jc-button ml-3" (click)="updateItem('employeePersonalinformationForm', employeePersonalinformationForm.value)">
+                    Update
+                  </button>
+                </div>
+              </form>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- Job information -->
+        <mat-accordion>
+            <mat-expansion-panel class="mat-expanded" [expanded]="step === 1" (opened)="setStep(1)" #target1>
+              <mat-expansion-panel-header>
+                <mat-panel-title class="min-title">
+                  {{ updateProfile ? "Update" : "" }} Job Information <span> </span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <form class="col" [formGroup]="employeeJobinformationForm" *ngIf="step === 1">
+              <div class="py-3">
+                <div class="form-group row" >
+                        <label class="col-sm-3 col-form-label"> Employment Type</label>
+                        <div class="col-sm-4">
+                          <div class="mb-2">
+                            <select class="form-control select-placeholder form-select"  id="employeeTypeId"  formControlName="employeeTypeId">
+                              <option value="" disabled >Select Employment Type</option>
+                              <option *ngFor="let emloyement of getalldropdownlistData.employementType" [value]="emloyement.id">{{ emloyement.employeementTypeName }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label"
+                          >Job Title (Designation)
+                        </label>
+                        <div class="col-sm-7">
+                          <!-- <select class="form-control select-placeholder form-select"  id="jobTitle"  formControlName="jobTitle">
+                            <option value="" disabled>Select jobTitle</option>
+                            <option *ngFor="let jobsTitle of getalldropdownlistData.jobTitles" [value]="jobsTitle.jobTitleId">{{ jobsTitle.jobTitle }}
+                            </option>
+                          </select> -->
+                          <app-autocomplete
+                          [placeholder]="'Select jobTitle'"  
+                          [id]="'jobTitle'" [text]="'jobTitle'"
+                          [value]="employeeJobinformationForm.get('jobTitle').value"
+                          [options]="getalldropdownlistData.jobTitles"
+                          (valueSelectedEmit)="setAutoCompleteValues('employeeJobinformationForm', 'jobTitle', 'jobTitle', $event)"
+                          ></app-autocomplete>
+                        </div>
+                      </div>
+                      <!-- [setValue]="employeeJobinformationForm.get('jobTitle').value" -->
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Salary </label>
+                    <div class="col-sm-4">
+                      <div class="mb-2">
+                        <select class="form-control select-placeholder form-select" id="salaryId" formControlName="salaryId">
+                            <option value="" disabled>Select Salary Range</option>
+                            <option *ngFor="let salary of getalldropdownlistData.salaryRange" [value]="salary.salaryId">{{ salary.salaryRange }}
+                            </option>
+                          </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">
+                        Willing to Relocate </label>
+                    <div class="col-sm-4">
+                      <div class="mb-2">
+                        <select class="form-control select-placeholder form-select" id="willingToRelocate" formControlName="willingToRelocate">
+                          <option value="" disabled >Select to Relocate</option>
+                          <option value="YES">YES</option>
+                          <option value="NO">NO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">
+                        Willing to Travel</label>
+                      <div class="col-sm-4">
+                        <div class="mb-2">
+                          <select
+                            class="form-control select-placeholder form-select" id="willingToTravel" formControlName="willingToTravel">
+                            <option value="" disabled >Select to Travel</option>
+                            <option value="YES">YES</option>
+                            <option value="NO">NO</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Preferred Location</label>
+                    <div class="col-sm-4">
+                      <div class="mb-2">
+                        <!-- <select class="form-control select-placeholder form-select"  id="preferredLocation"  formControlName="preferredLocation">
+                          <option value="" disabled >Select Preferred Location</option>
+                          <option *ngFor="let plocation of getalldropdownlistData.preferedLocation" [value]="plocation.name">{{ plocation.name }}
+                          </option>
+                        </select> -->
+                        <app-autocomplete 
+                        [placeholder]="'Select Preferred Location'"  
+                        [id]="'name'" [text]="'name'"
+                        [value]="employeeJobinformationForm.get('preferredLocation').value"
+                        [options]="getalldropdownlistData.preferedLocation"
+                        (valueSelectedEmit)="setAutoCompleteValues('employeeJobinformationForm', 'preferredLocation', 'name', $event)"></app-autocomplete>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Notice Period</label>
+                    <div class="col-sm-4">
+                      <div class="mb-2">
+                        <select class="form-control select-placeholder form-select"  id="noticePeriodId"  formControlName="noticePeriodId">
+                          <option value="" disabled >Select Notice Period</option>
+                          <option *ngFor="let nperiod of getalldropdownlistData.noticePeriod" [value]="nperiod.noticePeriodId">{{ nperiod.noticePeriod }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline" >
+                            <input class="form-check-input" formControlName="lookingForJob" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">Currently looking for job</label>
+                          </div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+                    <div class="col text-right" *ngIf="updateProfile">
+                      <button class="jc-button ml-3" (click)="updateItem('employeeJobinformationForm', employeeJobinformationForm.value)">
+                        Update </button>
+                    </div>
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        <!-- work deatils -->
+        <mat-accordion>
+          <mat-expansion-panel class="mat-expanded" [expanded]="step === 2" (opened)="setStep(2)" #target2>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="min-title">
+                {{ updateProfile ? "Update" : "" }} Work Experience <span> </span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+                <form class=" col" [formGroup]="employeeworkexperienceForm">
+
+                  <div class="py-3" formArrayName="employeeInfomation" *ngFor="let time of employeeworkexperienceForm.controls.employeeInfomation?.value; let i = index;trackBy:trackByFn">
+                      <div  [formGroupName]="i">
+                        <div class="row">
+                          <div class="col-md-8">
+                           <div class="col-12 mt-2">
+                            Work Experience {{i + 1}}
+                           </div>
+                          </div>
+                          <div class="col-md-4">
+                           <div class="" >
+                             <span class="removebutton cursor-p" (click)="removeItem('employeeworkexperienceForm', 'employeeInfomation', i, time, 'experienceId')">remove</span>
+                         </div>
+                          </div>
+                          <hr>
+                       </div>
+
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label"
+                        >Job Title (Designation)
+                      </label>
+                      <div class="col-md-7">
+                        
+                        <!-- <select class="form-control select-placeholder form-select"  id="jobTittle"  formControlName="jobTittle">
+                          <option value="" disabled >Select jobTitle</option>
+                          <option *ngFor="let jobsTitle of getalldropdoxwnlistData.jobTitles" [value]="jobsTitle.jobTitle">{{ jobsTitle.jobTitle }}
+                          </option>
+                        </select> -->
+
+                        <app-autocomplete 
+                        [id]="'jobTitle'" [text]="'jobTitle'"
+                        [value]="time.jobTittle"
+                        [options]="getalldropdownlistData.jobTitles"
+                        (valueSelectedEmit)="updateJobTitleAutoComplete($event, i)"
+                        ></app-autocomplete>
+
+                      </div>
+                    </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label"> Client Name </label>
+                  <div class="col-md-7">
+                    <input type="text" id="clientName" class="form-control" formControlName="clientName" placeholder="Enter client Name"/>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">Project Description </label>
+                  <div class="col-sm-9">
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  formControlName="projectDescription"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="inputEmail3" class=" col-form-label">
+                              Start Date <span class="text-danger"></span></label>
+                        </div>
+                        <div class="col-md-6">
+                          <div>
+                              <input type="date" id="companyName" class="form-control"
+                              formControlName="startDate" placeholder=""/>
+                            </div>
+                      </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6" *ngIf="!time.currentlyWorking">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="inputEmail3" class=" col-form-label" min="2021-07-20">
+                              End Date <span class="text-danger"></span></label>
+                        </div>
+                        <div class="col-md-6">
+                          <div>
+                              <input type="date" id="companyName" class="form-control" formControlName="endDate" placeholder=""/>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="form-group row" *ngIf="i == 0">
+                  <div class="col-md-8">
+                      <div class="form-check form-check-inline" >
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" formControlName="currentlyWorking" >
+                          <label class="form-check-label" for="inlineCheckbox1">Currently working here</label>
+                        </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col text-right" *ngIf="updateProfile">
+                <button class="jc-button ml-3" (click)="updateItem('employeeworkexperienceForm', time, 'Post')"> Update</button>
+              </div>
+             </div>
+                <div class="addtextview" >
+                  <span (click)="addItem('employeeworkexperienceForm', 'employeeInfomation', 'jobInformationModel')">Click to add other work information</span>
+               </div>
+              </form>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- education deatils -->
+        <mat-accordion>
+          <mat-expansion-panel class="mat-expanded" [expanded]="step === 3" (opened)="setStep(3)" #target3>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="min-title">
+                {{ updateProfile ? "Update" : "" }} Education <span> </span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+                <form class=" col" [formGroup]="employeeEducationinformationForm">
+                  
+                  <div class="py-1" formArrayName="employeeeducationInfomation" *ngFor="let time of employeeEducationinformationForm.controls.employeeeducationInfomation?.value; let i = index;trackBy:trackByFn">
+                      <div  [formGroupName]="i">
+                        <div class="row">
+                           <div class="col-md-8">
+                            <div class="col-12 mt-2">
+                              <span> {{ i == 0 ? 'Please start with your Higher Education' : 'Other Education' }}  </span>
+                            </div>
+                           </div>
+                           <div class="col-md-4">
+                            <div class="">
+                              <span class="removebutton cursor-p" (click)="removeItem('employeeEducationinformationForm', 'employeeeducationInfomation', i, time, 'educationId')">remove</span>
+                          </div>
+                           </div>
+                           <hr>
+                        </div>
+                <div class="form-group row">
+                  </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">
+                     Qualification</label
+                  >
+                  <div class="col-md-6">
+                    <select class="form-control select-placeholder form-select"  id="qualificationId"  formControlName="qualificationId">
+                      <option value="" disabled>Select Qualification</option>
+                      <option *ngFor="let eduqualification of getalldropdownlistData.qualification" [value]="eduqualification.qualificationId">{{ eduqualification.qualificationName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Specialization </label>
+                  <div class="col-sm-5">
+                    <div class="mb-2">
+                      <input type="text" class="form-control" formControlName="specialization" placeholder="Please Enter Specialization"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label"> University/College</label>
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" placeholder="Please Enter University" formControlName="universityName"/>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label"> Year of Passing </label>
+                  <div class="col-sm-5">
+                    <div class="mb-2">
+                      <select class="form-control select-placeholder form-select" formControlName="yearOfPassing" placeholder="Please Enter yearofpassing">
+                        <option Value="" disabled>Select Passing year</option>
+                        <option *ngFor="let year of commonService.getYears(1989)"> {{ year }} </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <div class="col text-right" *ngIf="updateProfile">
+                  <button class="jc-button ml-3" (click)="updateItem('employeeEducationinformationForm', time, 'Post', i)"> Update</button>
+                </div>
+                </div>
+                <div class="addtextview" >
+                  <span (click)="addItem('employeeEducationinformationForm', 'employeeeducationInfomation', 'EducationInformationModel')">Click to add other education</span>
+               </div>
+              </form>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- skills details  -->
+        <mat-accordion>
+          <mat-expansion-panel class="mat-expanded" [expanded]="step === 4" (opened)="setStep(4)" #target4>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="min-title">
+                {{ updateProfile ? "Update" : "" }} Skills <span> </span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="col">
+              <form  [formGroup]="employeeSkillsinformationForm">
+                <div class="py-3" formArrayName="employeeskillInfomation" *ngFor="let time of employeeSkillsinformationForm.controls.employeeskillInfomation?.value; let i = index;trackBy:trackByFn">
+                  <div  [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-md-8">
+                       <div class="col-12 mt-2">
+                        Skill {{i + 1}}
+                       </div>
+                      </div>
+                      <div class="col-md-4">
+                       <div class="">
+                         <span class="removebutton cursor-p" (click)="removeItem('employeeSkillsinformationForm', 'employeeskillInfomation', i, time, 'skillId')">remove</span>
+                     </div>
+                      </div>
+                      <hr>
+                   </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">
+                    Skill </label >
+                  <div class="col-md-6">
+                        <app-autocomplete-chip
+                        [id]="'skillName'"
+                        [text]="'skillName'"
+                        [valuesData]="time.skillName"
+                        [options]="getalldropdownlistData.skills"
+                        (valueSelectedEmit)="autocompleteIndexFormValue($event, i)"
+                        ></app-autocomplete-chip>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label"> Total Experience </label >
+                    <div class="col-md-3">
+                      <select class="form-control select-placeholder form-select" formControlName="totalexperienceyear">
+                        <option  value="" disabled>Select Year</option>
+                        <option *ngFor='let in of commonService.counter(30) ;let i = index' [value]="i" selected>{{i}}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control select-placeholder form-select" formControlName="totalexperiencemonth">
+                        <option  value="" disabled >Select Month</option>
+                        <option *ngFor='let in of commonService.counter(12) ;let i = index' [value]="i" selected>{{i}}</option>
+                        </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">  Last Used Year</label >
+                  <div class="col-sm-3">
+                      <select class="form-control select-placeholder form-select" formControlName="lastUsedYear">
+                        <option Value="" disabled>Select Last Used Year</option>
+                        <option *ngFor="let year of commonService.getYears(2000)"> {{ year }} </option>
+                        </select>
+                  </div>
+                </div>
+                </div>
+                <div class="col text-right" *ngIf="updateProfile">
+                  <button class="jc-button ml-3" (click)="updateItem('employeeSkillsinformationForm', time, 'Post')"> Update</button>
+                </div>
+              </div>
+            <div class="addtextview" >
+              <span (click)="addItem('employeeSkillsinformationForm', 'employeeskillInfomation', 'skillInformationModel')">Click to add other skill</span>
+           </div>
+              </form>
+              </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- Certificates detailes  -->
+        <mat-accordion>
+          <mat-expansion-panel class="mat-expanded"  [expanded]="step === 5"  (opened)="setStep(5)" #target5>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="min-title">
+                {{ updateProfile ? "Update" : "" }} Certification <span> </span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="col">
+              <form  [formGroup]="employeeCertificationinformationForm">
+                <div class="py-3" formArrayName="employeecertificatInfomation" *ngFor="let time of employeeCertificationinformationForm.controls.employeecertificatInfomation?.value; let i = index;trackBy:trackByFn">
+                  <div  [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-md-8">
+                       <div class="col-12 mt-2">
+                        Certification {{i + 1}}
+                       </div>
+                      </div>
+                      <div class="col-md-4">
+                       <div class="">
+                         <span class="removebutton cursor-p" (click)="removeItem('employeeCertificationinformationForm', 'employeecertificatInfomation', i, time, 'certificationId')">remove</span>
+                     </div>
+                      </div>
+                      <hr>
+                   </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                      Certificate Name </label >
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" formControlName="certificationName" placeholder="Enter certificate Name"/>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label"> Issued Date </label  >
+                  <div class="col-sm-5">
+                    <div class="mb-2">
+                      <input type="date"  class="form-control" placeholder="Select Issued Data"  formControlName="issuedDate"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label"> Issued By </label >
+                  <div class="col-md-6">
+                    <input type="text"  class="form-control" formControlName="issuedBy" placeholder="Enter issuedBy"/>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">  Valid Upto </label >
+                  <div class="col-sm-5">
+                    <div class="mb-2">
+                      <select class="form-control  select-placeholder form-select" formControlName="validUpTo">
+                        <option Value="" disabled>Select Valid Upto year</option>
+                        <option *ngFor="let year of commonService.getYears(2000, 10)"> {{ year }} </option>
+                        </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="form-group popup-controls mb-3">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <label class="d-block"> Upload Certificate</label>
+                        </div>
+                        <div class="col-md-9">
+                      <app-file-upload
+                      [fileUploadMessage]="'Click here to upload certificate now'"
+                      [fileExtension]="fileExtensionResuemCover"
+                      (emitFilesList)="onCertificateFileChange($event, i)"
+                      [type]="'card'"
+                      [oldFileList] = "time?.certificationImagePath"
+                    >
+                    </app-file-upload>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="col text-right" *ngIf="updateProfile">
+                  <button class="jc-button ml-3" (click)="saveEmployeeCertificationData(i)"> Update</button>
+                </div>
+
+                </div>
+                </div>
+                <div class="addtextview" >
+                  <span (click)="addItem('employeeCertificationinformationForm', 'employeecertificatInfomation', 'certificationInformationModel')">Click to add other Certification</span>
+               </div>
+              </form>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- Resume and cover letter for employee -->
+        <mat-accordion class="mt-3">
+          <mat-expansion-panel
+            class="mat-expanded"
+            [expanded]="step === 6"
+            (opened)="setStep(6)"
+            #target6
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title class="min-title">
+                Upload Resume/Cover Letter
+              </mat-panel-title>
+              <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form [formGroup]="resumeCoverForm">
+              <div class="form-group row">
+                <div class="col-12 mt-2">
+                  Resume <hr>
+                </div>
+                </div>
+                <div class="forms mt-3">
+
+                    <div class="form-group popup-controls mb-3" >
+                      <div class="row">
+                        <div class="col-md-3">
+                          <label class="d-block">Upload File</label>
+                        </div>
+                        <div class="col-md-9">
+                          <div class="form-group popup-controls mb-3" >
+                              <div class="row">
+                              <app-file-upload
+                              [fileUploadMessage]="'Click here to upload your resume now'"
+                              [fileExtension]="fileExtensionResuemCover"
+                              (emitFilesList)="onFileChange($event, 'resumeCoverForm', 'resume')"
+                              [type]="'card'"
+                              (clearUploadedFile)="clearUploadedFile($event, 'resumeCoverForm', 'resume')"
+                              [oldFileList] = "resumeCoverForm.get('resume').value"
+                            >
+                            </app-file-upload>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                     <div class="form-group row">
+                      <div class="col-12">
+                        Cover Letter <hr>
+                      </div>
+                      </div>
+
+                     <div class="form-group popup-controls mb-2" >
+                       <div class="row">
+                      <div class="col-md-3">
+                          <label class="d-block">Upload File</label>
+                        </div>
+                      <div class="col-md-9">
+                        <div class="form-group popup-controls mb-3" >
+                            <div class="row">
+                            <app-file-upload
+                            [fileUploadMessage]="'Click here to upload cover letter now'"
+                            [fileExtension]="fileExtensionResuemCover"
+                            (emitFilesList)="onFileChange($event, 'resumeCoverForm', 'coverlater')"
+                            [type]="'card'"
+                            (clearUploadedFile)="clearUploadedFile($event, 'resumeCoverForm', 'coverlater')"
+                            [oldFileList] = "resumeCoverForm.get('coverlater').value"
+                          >
+                          </app-file-upload>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </form>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <div class="card mb-3" *ngIf="!updateProfile">
+          <div class="row">
+            <div class="col text-right">
+              <button class="jc-btn-cancel">Cancel</button>
+              <button class="jc-button ml-3" (click)="submitForm()">
+                Save Profile Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="card">
+          <!-- <div class="card-title">
+            Upload logo <span class="text-danger">(Need Content)</span>
+          </div> -->
+          <div class="card-body p-2">
+            <div class="row">
+              <div class="col-md-6">
+                <!-- <p>Company Logo</p> -->
+                <div class="company-logo">
+                  <img *ngIf="!image" src="assets/images/Group-42556.png" class="d-block w-100" alt="..."/>
+                  <img
+                    *ngIf="image" [src]="image"  class="d-block w-100" alt="..."/>
+                </div>
+              </div>
+              <div class="col-md-6 text-center two-btns align-self-center mt-2">
+                <app-file-upload
+                  [fileExtension]="fileExtension"
+                  (emitFilesList)="onFileChange($event, 'profileForm', 'profile')"
+                  (emitImage)="imageUrl($event)"
+                >
+                </app-file-upload>
+                <button class="jc-btn-cancel" (click)="clearUploadedFile(null, 'profileForm', 'profile')">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card my-3">
+          <div class="card-title">Quick Access</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div [ngClass]="{ 'quick-access-active ': step === 0 }"
+                  class="d-flex justify-content-between text-jc cursor-p"
+                  (click)="setStep(0, target)">
+                  <span class="">Personal Information</span>
+                  <img
+                    *ngIf="employeePersonalinformationForm.valid && updateProfile"
+                    src="assets/images/completed_quickaccess.png"
+                    class="quickaccess-icon"
+                    alt="..."
+                  />
+                </div>
+
+                <div
+                  [ngClass]="{ 'quick-access-active ': step === 1 }"
+                  (click)="setStep(1, target1)"
+                  class="my-3 d-flex justify-content-between text-jc cursor-p"
+                >
+                  <span>Job Information</span>
+                  <img
+                    *ngIf="employeeJobinformationForm.valid && updateProfile"
+                    src="assets/images/completed_quickaccess.png"
+                    class="quickaccess-icon"
+                    alt="..."
+                  />
+                </div>
+
+                <div
+                  [ngClass]="{ 'quick-access-active ': step === 2 }"
+                  (click)="setStep(2, target2)"
+                  class="my-3 d-flex justify-content-between text-jc cursor-p"
+                >
+                  <span>Work Information</span>
+                  <img
+                    *ngIf="employeeworkexperienceForm.valid && updateProfile"
+                    src="assets/images/completed_quickaccess.png"
+                    class="quickaccess-icon"
+                    alt="..."
+                  />
+                </div>
+
+                <div
+                [ngClass]="{ 'quick-access-active ': step === 3 }"
+                (click)="setStep(3, target3)"
+                class="my-3 d-flex justify-content-between text-jc cursor-p"
+              >
+                <span>Education</span>
+                <img
+                  *ngIf="employeeEducationinformationForm.valid && updateProfile"
+                  src="assets/images/completed_quickaccess.png"
+                  class="quickaccess-icon"
+                  alt="..."
+                />
+              </div>
+
+              <div
+              [ngClass]="{ 'quick-access-active ': step === 4 }"
+              (click)="setStep(4, target4)"
+              class="my-3 d-flex justify-content-between text-jc cursor-p"
+            >
+              <span>Skills</span>
+              <img
+                *ngIf="employeeSkillsinformationForm.valid && updateProfile"
+                src="assets/images/completed_quickaccess.png"
+                class="quickaccess-icon"
+                alt="..."
+              />
+            </div>
+
+            <div
+            [ngClass]="{ 'quick-access-active ': step === 5 }"
+            (click)="setStep(5, target5)"
+            class="my-3 d-flex justify-content-between text-jc cursor-p"
+          >
+            <span>Certification</span>
+            <img
+              *ngIf="employeeCertificationinformationForm.valid && updateProfile"
+              src="assets/images/completed_quickaccess.png"
+              class="quickaccess-icon"
+              alt="..."
+            />
+          </div>
+
+          <div
+          [ngClass]="{ 'quick-access-active ': step === 6 }"
+          (click)="setStep(6, target6)"
+          class="my-3 d-flex justify-content-between text-jc cursor-p"
+        >
+          <span>Upload resume and cover letter</span>
+          <img
+            *ngIf="resumeCoverForm.valid && updateProfile"
+            src="assets/images/completed_quickaccess.png"
+            class="quickaccess-icon"
+            alt="..."
+          />
+        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div>
+          <app-jobclicks-adds></app-jobclicks-adds>
+        </div> -->
+      </div>
+    </div>
+  </div>

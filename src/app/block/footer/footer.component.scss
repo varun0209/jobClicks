@@ -1,0 +1,82 @@
+.footer{
+    background: transparent linear-gradient(101deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+    color: #FFFFFF;
+    .footer-content{
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        .footer-logo{
+         .logo{
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            font-weight: 600;
+            font-size: 22px;
+            span{
+                color:#a58c3e ;
+                font-size: 12px;
+            }
+         }
+         p{
+             font-size: 10px;
+         }
+         h5{
+            font-size: 10px;
+        }
+        .social-icon{
+           
+            img{
+               
+            }
+            span{
+                padding-left: 5px;
+                font-size: 10px;
+            }
+        }
+        .follow{
+            a{
+                img{
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+        }
+        }
+        .footer-menu{
+            h5{
+                font-size: 10px;
+
+            }
+            a{
+                display: block;
+                font-size: 11px;
+                text-decoration: none;
+                color: #F1F1F1;
+                padding-top: 10px;
+            }
+        }
+    }
+    .footer-bar{
+        --bs-gutter-x: 0rem !important;
+        opacity: .3;
+        background-color: #005C97;
+        p{
+            font-size: 8px;
+            padding: 8px 0px;
+            margin: 0px;
+           opacity: 100% !important;
+           color: #FFFFFF;
+        }
+    }
+
+}
+// ........Mobile Responsive.......... 
+@media screen and (min-width: 320px) and (max-width: 480px){
+
+}
+// ........Mobile Responsive.......... 
+@media screen and (min-width: 481px) and (max-width: 768px){
+    
+}
+// ........Mobile Responsive.......... 
+@media screen and (min-width: 769px) and (max-width: 1024px){
+    
+}

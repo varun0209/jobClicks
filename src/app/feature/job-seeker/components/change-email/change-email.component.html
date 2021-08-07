@@ -1,0 +1,77 @@
+<div class="container-fluid tech-news p-relative">
+    <span class="close-button" (click)="dialogRef.close()"><img src="assets/images/close.png" class="close-popup"
+            alt="logo"></span>
+    <div class="row">
+        <div class="col">
+            <div class="login-page mt-3">
+                <div class="logo text-center">
+                    <img src="assets/images/logo.png" class="mb-3" alt="...">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has
+                        been the industry's</p>
+                </div>
+                <form [formGroup]="emailForm" >
+
+                    <div class="login-title text-center">
+                        Email ID
+                    </div>
+
+                    <div class="forms mt-2">
+
+                        <div class="form-group popup-controls mb-3" >
+                            <label> New Email ID<span class="text-danger">*</span></label>
+                            <input type="text" id="email" class="form-control" formControlName="email"
+                                placeholder="Email Address"
+                                [ngClass]="{ 'is-invalid': submitted && emailForm.controls.email.errors }"  >
+                            <div class="error_text mt-0" *ngIf="submitted && emailForm.controls.email.invalid">
+                                <div class="error_text mt-0" *ngIf="emailForm.controls.email.errors.pattern">
+                                    Please enter a valid Email. </div>
+                                <div class="error_text mt-0 " *ngIf="emailForm.controls.email.errors.required">
+                                    Email is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="login-button mt-4 text-center" *ngIf="!showVerfifcationSection">
+                            <button class="jc-button " (click)="onVerfyEmail()">Verify</button>
+                        </div>
+
+                        <div *ngIf="showVerfifcationSection">
+
+                            <div class="login-title text-center mb-2">
+                                Verification Code
+                            </div>
+    
+                            <div class="form-group popup-controls mb-3">
+                                <label> Enter the code that was sent to your Email ID<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" id="otp" class="form-control"
+                                    formControlName="otp" placeholder="Verification Code"
+                                    [ngClass]="{ 'is-invalid': submitted && emailForm.controls.otp.errors }">
+                                <div class="error_text mt-0"
+                                    *ngIf="submitted && emailForm.controls.otp.invalid">
+                                    <div class="error_text mt-0"
+                                        *ngIf="emailForm.controls.otp.errors.required">
+                                        Enter valid code.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="login-button mt-4 text-center">
+                                <button class="jc-button " (click)="confirmCode()">Confirm Code</button>
+                            </div>
+                            <div class="login-footer-text mt-3">
+                                <span class="d-block mt-3">Don't receive the code?
+                                    <span class="register cursor-p" (click)="onVerfyEmail()">Resend</span>
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

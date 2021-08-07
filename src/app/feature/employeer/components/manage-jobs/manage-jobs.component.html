@@ -1,0 +1,29 @@
+
+ <div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <app-table [tableData]="tableData" (onDropdownClickEmit)="updateJobStatus($event)"
+        (onLinkClickEmit)="onLinkClickEmit($event)" (onEditRowEmit)="onEditRowEmit($event)"
+        (onCheckboxClickEmit)="onCheckboxClickEmit($event)">
+        <div class="dropdown navbar p-0" custom>
+            <button class="btn btn-secondary dropdown-toggle custom-dropdown" type="button"
+                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Status
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"  >
+                <li><a class="dropdown-item" (click)="statusChange(true)">Active</a></li>
+                <li><a class="dropdown-item" (click)="statusChange(false)">In-active</a></li>
+            </ul>
+        </div>
+        
+    <div button>
+        <button class="post-job-btn d-flex" (click)="postJob()">
+            <img src="assets/images/post-job.svg" class="d-block mr-2" alt="..."> Post Job
+        </button>
+    </div>
+    </app-table>
+    </div>
+</div>
+
+</div>
+

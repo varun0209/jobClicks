@@ -1,0 +1,56 @@
+<div class="container-fluid tech-news p-relative">
+    <span class="close-button" (click)="dialogRef.close()"><img src="assets/images/close.png" class="close-popup"
+            alt="logo"></span>
+    <div class="row">
+        <div class="col">
+            <div class="login-page mt-3">
+                <div class="logo text-center">
+                    <img src="assets/images/logo.png" class="mb-3" alt="...">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has
+                        been the industry's</p>
+                </div>
+                <form [formGroup]="phoneForm" >
+
+                    <div class="login-title text-center">
+                        Contact Number
+                    </div>
+
+                    <div class="forms mt-2">
+                        <div class="form-group popup-controls mb-3" >
+                            <label> Mobile<span class="text-danger">*</span></label>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <select class="form-control form-select" [disabled]="true">
+                                        <option value="+1">+1</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-9 pl-0">
+                                    <input type="text" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && phoneForm.controls.mobileNumber.errors }"
+                                        (keypress)="commonService.numberOnly($event)" placeholder="Mobile Number"
+                                        minlength="10" maxlength="10" formControlName="mobileNumber">
+                                    <div class="error_text mt-0"
+                                        *ngIf="submitted && phoneForm.controls.mobileNumber.dirty && phoneForm.controls.mobileNumber.invalid">
+                                        <div class="error_text mt-0"
+                                            *ngIf="phoneForm.controls.mobileNumber.errors.pattern">
+                                            Please
+                                            enter a 10 digit mobile number.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="login-button mt-4 text-center" >
+                            <button class="jc-button " (click)="submit()">Submit</button>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="example-container ">
+
+    <mat-form-field class="example-chip-list W-100" [floatLabel]="'never'">
+     <mat-chip-list #chipList aria-label="selection">
+       <mat-chip
+         *ngFor="let value of values"
+         [selectable]="selectable"
+         [removable]="removable"
+         (removed)="remove(value)">
+         {{value}}
+         <mat-icon matChipRemove *ngIf="removable"><img src="assets/images/close-small.svg" class="close-popup"
+            alt="logo"></mat-icon>
+       </mat-chip>
+       <input
+         #chipInput
+         [placeholder]="placeholder"
+         [formControl]="chipCtrl"
+         [matAutocomplete]="auto"
+         [matChipInputFor]="chipList"
+         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+         >
+         <!-- (matChipInputTokenEnd)="add($event)" -->
+
+     </mat-chip-list>
+     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" [displayWith]="displayFn.bind(this)">
+       <mat-option *ngFor="let value of filteredChip | async" [value]="value">
+         {{value[text]}}
+       </mat-option>
+     </mat-autocomplete>
+   </mat-form-field>
+
+   </div>
+   <span *ngIf="showNoDataFount()"> No Data Found!!  </span> 
+
+   

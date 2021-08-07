@@ -1,0 +1,49 @@
+@font-face {
+  font-family: " sofia";
+  src: url("../../assets/font/Sofia Pro Regular Az.otf");
+}
+.header {
+  background: transparent linear-gradient(93deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.header .menubar .logo {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-weight: 600;
+  font-size: 25px;
+}
+.header .menubar .logo span {
+  color: #a58c3e;
+  font-size: 12px;
+}
+.header .menubar .menu-items {
+  margin-left: 25rem !important;
+}
+.header .menubar .menu-items .navbar-nav .nav-item .nav-link {
+  color: white;
+  font-size: 14px;
+  font-family: " sofia";
+}
+.header .menubar .tucker h5 {
+  font-size: 14px;
+  color: #FFFFFF;
+  padding-left: 2rem !important;
+}
+.header .menubar .tucker p {
+  font-size: 10px;
+  color: #FFFFFF;
+}
+.header .menubar .tucker .mt-bg {
+  margin-left: 1rem;
+  background: transparent linear-gradient(141deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  padding: 0.5rem;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+}
+.header .menubar .tucker .mt-bg a {
+  color: #FFFFFF !important;
+  text-decoration: none;
+  font-size: 20px;
+}

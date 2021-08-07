@@ -1,0 +1,51 @@
+<div class="container" *ngIf="searchJobsService?.getJobSearchDropdownDataList">
+    
+    <div class="row pt-4 mt-3">
+        <div class="col-12 text-center">
+            <div class="title d-flex"><span class="text-jc back-button cursor-p" [hidden]="hideBack" (click)="back()"><img class="text-bottom mt-n1"  width="10" height="10" src="assets/images/back.svg" > Back</span> <span class="w-100">Search For Jobs</span></div>
+        </div>
+    </div>
+    <form class="py-3" [formGroup]="searchJob">
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <div class="card search-job-filter-panel">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <app-autocomplete 
+                        [invalid]="submitted && searchJob.controls.jobTitle.invalid"
+                        [id]="'name'" [text]="'name'"
+                        [placeholder]="'Search by Skills, Job Title'"
+                        [value]="searchJob.value.jobTitle"
+                        [options]="searchJobsService.getJobSearchDropdownDataList.jobtitlesandskills"
+                        (valueEmit)="clearValue('jobTitle')"
+                        (valueSelectedEmit)="setValues($event,'jobTitle', 'name')"></app-autocomplete>
+                        <div class="error_text mt-0"
+                        *ngIf="submitted && searchJob.controls.jobTitle.invalid">
+                        <div class="error_text mt-0"
+                            *ngIf="searchJob.controls.jobTitle.errors.required">
+                            Please enter your skills, job title 
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-3 p-0 p-relative">
+                        <app-autocomplete 
+                        [id]="'name'" [text]="'name'"
+                        [placeholder]="'Location'"
+                        [value]="searchJob.value.location"
+                        [options]="searchJobsService.getJobSearchDropdownDataList.location"
+                        (valueSelectedEmit)="setValues($event,'location', 'name')"
+                        ></app-autocomplete>
+                        <img src="assets/images/location_field.svg" class="location-field" alt="location">
+                    </div>
+                    <div class="col">
+                        <button class="jc-button" (click)="basicSearchJob()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+
+    <router-outlet></router-outlet>
+    
+</div>

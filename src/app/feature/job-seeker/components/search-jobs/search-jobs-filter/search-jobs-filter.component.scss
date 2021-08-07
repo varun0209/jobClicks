@@ -1,0 +1,46 @@
+.advanced-search{
+    .card-title{
+      background: transparent linear-gradient(
+      106deg
+      , #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+          color: #fff;
+          height: 49px;
+          border-radius: 8px 8px 0 0;
+          line-height: 49px;
+          padding: 0px 15px;
+          font-size: 16px;
+          margin-bottom: 0;
+      }
+    .company-details-cotent{
+      .title{
+        font-size: 22px;
+        color: #004475;
+      }
+      .about-company{
+        background: #FBFBFB;
+        padding: 10px;
+        font-size: 12px;
+        line-height: 25px;
+        border-radius: 8px;
+      }
+      
+    }
+}
+
+
+.skils-card{
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    height: 34px;
+    padding: 2px 10px;
+    .skils{
+        background: transparent linear-gradient(
+            109deg
+            , #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+                color: #fff;
+                font-size: 12px;
+                border-radius: 8px;
+                padding: 4px 10px;
+                line-height: 28px;
+    }
+}

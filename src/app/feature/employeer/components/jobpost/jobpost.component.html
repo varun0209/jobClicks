@@ -1,0 +1,10 @@
+
+<div [hidden]="!showpostjob">
+    <app-post-job (previewjobpost)="previewjobpost($event)"></app-post-job>
+</div>
+
+<div [hidden]="showpostjob">
+    <app-post-job-preview [previewjob]="previewjob"
+     (previewcancelpost)="previewcancelpost($event)" (previewjobpostcancel)="previewjobpostcancel($event)">
+    </app-post-job-preview>
+</div>

@@ -1,0 +1,469 @@
+<div class="container" *ngIf="showControls">
+  <div class="row py-4 mt-3">
+    <div class="col-12 text-center">
+      <div class="title">Company Profile <span class="text-danger tagline">(Need content)</span></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9">
+
+      <mat-accordion>
+        <mat-expansion-panel class="mat-expanded" [expanded]="step === 0" (opened)="setStep(0)">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="min-title">
+              {{ updateProfile ? 'Update' : '' }} Company Details <span>
+              </span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="col">
+
+            <form class="py-3" [formGroup]="profileForm">
+
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">
+                  Company Name <span class="text-danger">*</span></label>
+                <div class="col-md-6">
+                  <input type="text" id="companyName" class="form-control" formControlName="companyName" placeholder=""
+                    [ngClass]="{ 'is-invalid': submitted && profileForm.controls.companyName.errors }">
+                  <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.companyName.invalid">
+                    <div class="error_text mt-0" *ngIf="profileForm.controls.companyName.errors.required">
+                      Please Enter Company Name
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">
+                  Company Email ID <span class="text-danger">*</span></label>
+                <div class="col-sm-5">
+                  <div class="mb-2">
+                    <input type="text" id="email" class="form-control" placeholder="" formControlName="email" [attr.disabled]="true"
+                      placeholder="" [ngClass]="{ 'is-invalid': submitted && profileForm.controls.email.errors }">
+                    <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.email.invalid">
+                      <div class="error_text mt-0" *ngIf="profileForm.controls.email.errors.required">
+                        Please Enter Valid Email ID
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">
+                  Company Website <span class="text-danger">*</span></label>
+                <div class="col-sm-7">
+                  <input type="text" id="companyWebSite" class="form-control" placeholder=""
+                    formControlName="companyWebSite"
+                    [ngClass]="{ 'is-invalid': submitted && profileForm.controls.companyWebSite.errors }">
+                  <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.companyWebSite.invalid">
+                    <div class="error_text mt-0" *ngIf="profileForm.controls.companyWebSite.errors.required">
+                      Please Enter Company Website
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                  About Company <span class="text-danger">*</span></label>
+                <div class="col">
+                  <div class="editor"
+                    [ngClass]="{ 'is-invalid': submitted && profileForm.controls.description.errors }">
+                    <quill-editor [modules]="editorModules" formControlName="description">
+                    </quill-editor>
+                    <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.description.invalid">
+                      <div class="error_text mt-0" *ngIf="profileForm.controls.description.errors.required">
+                        Please Enter About Company
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row ">
+                <label class="col-sm-2 col-form-label">Contact Number <span class="text-danger">*</span></label>
+                <div class="col-1 pr-0">
+                  <input type="text" formControlName="countryCode" class="form-control" [attr.disabled]="true">
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" (keypress)="commonService.numberOnly($event)"
+                    [ngClass]="{ 'is-invalid': submitted && profileForm.controls.mobileNo.errors }"
+                    placeholder="Enter MobileNo" minlength="10" maxlength="10" formControlName="mobileNo">
+                  <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.mobileNo.invalid">
+                    <!-- <div class="error_text mt-0"
+                    *ngIf="profileForm.controls.mobileNo.errors.pattern">
+                    Please
+                    enter a 10 digit mobile number.</div> -->
+                    <div class="error_text mt-0" *ngIf="profileForm.controls.mobileNo.errors.required">
+                        Mobile No is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row ">
+                <label class="col-sm-2 col-form-label">Alternate Number</label>
+                <div class="col-1 pr-0">
+                  <input type="text" formControlName="alternateCountryCode" class="form-control" [attr.disabled]="true">
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" (keypress)="commonService.numberOnly($event)"
+                    placeholder="Enter alternateMobileNo" minlength="10" maxlength="10"
+                    formControlName="alternateMobileNo">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                  Industry Type <span class="text-danger">*</span></label>
+                <div class="col-sm-5">
+                  <div class="mb-2">
+                    <select class="form-control form-select" id="industryType"  formControlName="industryType"
+                      [ngClass]="{ 'is-invalid': submitted && profileForm.controls.industryType.errors }">
+                      <option value="Select Industry Type" >Select Industry Type</option>
+                      <option value="IT">IT</option>
+                      <option value="Others">Others</option>
+                    </select>
+                    <div class="error_text mt-0"
+                      *ngIf="submitted && profileForm.controls.industryType.invalid">
+                      <div class="error_text mt-0" *ngIf="profileForm.controls.industryType.errors.required">
+                        Please Select Industry Type
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row" *ngIf="profileForm.value.industryType == 'Others'">
+                <label class="col-sm-2 col-form-label">Others<span class="text-danger">*</span></label>
+                  <div class="col-sm-5">
+                    <div class="mb-2">
+                      <input type="text" class="form-control" formControlName="industryTypeName" name="industryTypeName"
+                      [ngClass]="{ 'is-invalid': submitted && profileForm.controls.industryTypeName.errors }">
+                      </div>
+
+                      <div class="error_text mt-0"
+                      *ngIf="submitted && profileForm.controls.industryTypeName.invalid">
+                      <div class="error_text mt-0" *ngIf="profileForm.controls.industryTypeName.errors.required">
+                        Please Select Industry Type
+                      </div>
+                    </div>
+                      </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                  Country <span class="text-danger">*</span></label>
+                <div class="col-sm-5">
+                  <div class="mb-2">
+                    <!-- <select class="form-control form-select" required id="countryId" formControlName="countryId"
+                      [ngClass]="{ 'is-invalid': submitted && profileForm.controls.countryId.errors }"
+                      (change)="stateSelected()">
+                      <option></option>
+                      <option *ngFor="let country of countryList" [value]="country.id">{{ country.name }} </option>
+                    </select> -->
+                    <app-autocomplete 
+                    [invalid]="submitted && profileForm.controls.countryId.invalid"
+                    [id]="'id'" [text]="'name'" 
+                    [value]="profileForm.get('countryId').value"
+                    [placeholder]="'Select Country'"  
+                    [options]="countryList"
+                    (valueSelectedEmit)="stateSelected($event)"></app-autocomplete>
+                    <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.countryId.invalid">
+                      <div class="error_text mt-0" *ngIf="profileForm.controls.countryId.errors.required">
+                        Please Enter Country
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <label class="col-sm-2 col-form-label text-center">
+                  Zip Code <span class="text-danger">*</span></label>
+                <div class="col-sm-2">
+                  <div class="mb-2">
+                    <input type="text" class="form-control" placeholder="Enter zipcode" id="zipCode" formControlName="zipCode"
+                    (keypress)="commonService.numberOnly($event)"  maxlength="100"
+                      [ngClass]="{ 'is-invalid': submitted && profileForm.controls.zipCode.errors }">
+                    <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.zipCode.invalid">
+                      <!-- <div class="error_text mt-0"
+                    *ngIf="profileForm.controls.zipCode.errors.pattern">
+                    Please
+                    enter a 5 digit zipcode.</div> -->
+                      <div class="error_text mt-0" *ngIf="profileForm.controls.zipCode.errors.required">
+                        Please Enter Zip Code
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">State <span class="text-danger">*</span></label>
+                <div class="col-sm-5">
+                  <div class="mb-2">
+                    <!-- <select class="form-control form-select" id="stateId" formControlName="stateId" (change)="citySelected()"
+                      [ngClass]="{ 'is-invalid': submitted && profileForm.controls.stateId.errors }">
+
+                      <option></option>
+                      <option *ngFor="let state of stateList" [value]="state.id">{{ state.name }}</option>
+                    </select> -->
+                    <app-autocomplete 
+                    [invalid]="submitted && profileForm.controls.stateId.invalid" 
+                      [placeholder]="'Select State'"  
+                      [id]="'id'" [text]="'name'"
+                      [value]="profileForm.get('stateId').value"
+                      [options]="stateList"
+                      (valueSelectedEmit)="citySelected($event)"></app-autocomplete>
+                    <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.stateId.invalid">
+                      <div class="error_text mt-0" *ngIf="profileForm.controls.stateId.errors.required">
+                        Please Enter state
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">City <span class="text-danger">*</span></label>
+                <div class="col-sm-5">
+                  <div class="mb-2">
+                    <!-- <select class="form-control form-select" id="cityId" formControlName="cityId"
+                      [ngClass]="{ 'is-invalid': submitted && profileForm.controls.cityId.errors }">
+                      <option></option>
+                      <option *ngFor="let city of cityList" [value]="city.id">{{ city.name }}</option>
+                    </select> -->
+                    <app-autocomplete 
+                    [invalid]="submitted && profileForm.controls.cityId.invalid" 
+                      [placeholder]="'Select City'"  
+                      [id]="'id'" [text]="'name'"
+                      [value]="profileForm.get('cityId').value"
+                      [options]="cityList"
+                      (valueSelectedEmit)="setAutoCompleteValues('profileForm', 'cityId', 'id', $event)"></app-autocomplete>
+                    <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.cityId.invalid">
+                      <div class="error_text mt-0" *ngIf="profileForm.controls.cityId.errors.required">
+                        Please Enter City
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 pr-0 col-form-label">
+                  Company Address 1 <span class="text-danger">*</span></label>
+                <div class="col-sm-10">
+                  <input class="form-control" placeholder="" id="address1" formControlName="address1"
+                    [ngClass]="{ 'is-invalid': submitted && profileForm.controls.address1.errors }">
+                  <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.address1.invalid">
+                    <div class="error_text mt-0" *ngIf="profileForm.controls.address1.errors.required">
+                      Please Enter Company Address 1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 pr-0 col-form-label">
+                  Company Address 2 <span class="text-danger">*</span></label>
+                <div class="col-sm-10">
+                  <input class="form-control" placeholder="" id="address2" formControlName="address2"
+                    [ngClass]="{ 'is-invalid': submitted && profileForm.controls.address2.errors }">
+                  <div class="error_text mt-0" *ngIf="submitted && profileForm.controls.address2.invalid">
+                    <div class="error_text mt-0" *ngIf="profileForm.controls.address2.errors.required">
+                      Please Enter Company Address 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">
+                  Map Location Link</label>
+                <div class="col-sm-5">
+                  <input class="form-control" placeholder="" formControlName="mapLocationLink" id="mapLocationLink">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">
+                  Facebook Link</label>
+                <div class="col-sm-5">
+                  <input class="form-control" placeholder="" formControlName="facebookLink" id="facebookLink">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">
+                  Twitter Link</label>
+                <div class="col-sm-5">
+                  <input class="form-control" placeholder="" formControlName="twitterLink" id="twitterLink">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                  LinkedIn Link</label>
+                <div class="col-sm-5">
+                  <input class="form-control" placeholder="" formControlName="linkedInLink" id="linkedInLink">
+                </div>
+              </div>
+
+              <div class="col text-right" *ngIf="updateProfile">
+                <button class="jc-button ml-3" (click)="updateEmployerDetails()">Update</button>
+              </div>
+
+            </form>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion class="mt-3">
+        <mat-expansion-panel class="mat-expanded" [expanded]="step === 1" (opened)="setStep(1)">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="min-title">
+              Contact Person Details
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <form class="py-3" [formGroup]="employerRecruitersForm">
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">
+                Contact Person Name <span class="text-danger">*</span></label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" placeholder="" id="contactPersonName"
+                  formControlName="contactPersonName"
+                  [ngClass]="{ 'is-invalid': submitted && employerRecruitersForm.controls.contactPersonName.errors }">
+                <div class="error_text mt-0"
+                  *ngIf="submitted && employerRecruitersForm.controls.contactPersonName.invalid">
+                  <div class="error_text mt-0"
+                    *ngIf="employerRecruitersForm.controls.contactPersonName.errors.required">
+                    Please Enter Contact Person Name
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Email for Communication <span class="text-danger">*</span>
+              </label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" placeholder="" id="email" formControlName="email"
+                  [ngClass]="{ 'is-invalid': submitted && employerRecruitersForm.controls.email.errors }">
+                <div class="error_text mt-0" *ngIf="submitted && employerRecruitersForm.controls.email.invalid">
+                  <div class="error_text mt-0" *ngIf="employerRecruitersForm.controls.email.errors.required">
+                    Please Enter Communication Email
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Contact Number</label>
+              <div class="col-1 pr-0">
+                <input type="text" formControlName="mountryCode" class="form-control" [attr.disabled]="true">
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="mobileNo" (keypress)="commonService.numberOnly($event)"
+                  [ngClass]="{ 'is-invalid': submitted && employerRecruitersForm.controls.mobileNo.errors }"
+                  placeholder="Enter mobileNo" minlength="10" maxlength="10" formControlName="mobileNo">
+                <div class="error_text mt-0" *ngIf="submitted && employerRecruitersForm.controls.mobileNo.invalid">
+                  <div class="error_text mt-0"
+                  *ngIf="employerRecruitersForm.controls.mobileNo.errors.pattern">
+                  Please
+                  enter a 10 digit mobile number.</div>
+                  <div class="error_text mt-0" *ngIf="employerRecruitersForm.controls.mobileNo.errors.required">
+                      Mobile No is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Job Title (Designation)
+              </label>
+              <div class="col-sm-7">
+                <!-- <input type="text" class="form-control" id="jobTitle" formControlName="jobTitle"
+                  [ngClass]="{ 'is-invalid': submitted && employerRecruitersForm.controls.jobTitle.errors }"> -->
+                  <app-autocomplete 
+                  [invalid]="submitted && employerRecruitersForm.controls.jobTitle.invalid" 
+                  [id]="'jobTitle'" [text]="'jobTitle'"
+                  [value]="employerRecruitersForm.get('jobTitle').value"
+                  [placeholder]="'Job Title (Designation)'"  
+                  [options]="getAllJobTitlesList"
+                  (valueEmit)="setAutoCompleteValues('employerRecruitersForm', 'jobTitle', 'jobTitle', '')"
+                  (valueSelectedEmit)="setAutoCompleteValues('employerRecruitersForm', 'jobTitle', 'jobTitle', $event)"
+                  ></app-autocomplete>
+                <div class="error_text mt-0" *ngIf="submitted && employerRecruitersForm.controls.jobTitle.invalid">
+                  <div class="error_text mt-0" *ngIf="employerRecruitersForm.controls.jobTitle.errors.required">
+                    Please Enter Job Title
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col text-right" *ngIf="updateProfile">
+              <button class="jc-button ml-3" (click)="saveAndUpdateEmployerRecruiter()">Update</button>
+            </div>
+
+          </form>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="card mb-3" *ngIf="!updateProfile">
+        <div class="row">
+          <div class="col text-right">
+            <button class="jc-btn-cancel" (click)="clrearForm()">Cancel</button>
+            <button class="jc-button ml-3" (click)="submitForm()">Save Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-3">
+      <div class="card">
+        <div class="card-title">
+          Upload logo <span class="text-danger">(Need Content)</span>
+        </div>
+        <div class="card-body p-2">
+          <div class="row">
+            <div class="col">
+              <p>Company Logo</p>
+              <div class="company-logo">
+                <img *ngIf="!image" src="assets/images/Group-42556.png" class="d-block w-100" alt="...">
+                <img *ngIf="image" [src]="image" class="d-block w-100" alt="...">
+
+              </div>
+            </div>
+            <div class="col text-center two-btns align-self-center mt-3">
+              <app-file-upload [fileExtension]="fileExtension"
+              (emitFilesList)="onFileChange($event)" (emitImage)="imageUrl($event)">
+              </app-file-upload>
+              <button class="jc-btn-cancel" (click)="clearLogo()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card my-3">
+        <div class="card-title">
+          Quick Access
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <div [ngClass]="{ 'quick-access-active ': step === 0 }"
+                class="d-flex justify-content-between text-jc cursor-p" (click)="setStep(0)">
+                <span class="">Company Details</span>
+                <img *ngIf="profileForm.valid && updateProfile" src="assets/images/completed_quickaccess.png"
+                  class="quickaccess-icon" alt="...">
+              </div>
+              <div [ngClass]="{ 'quick-access-active ': step === 1 }" (click)="setStep(1)"
+                class="my-3 d-flex justify-content-between text-jc cursor-p">
+                <span>Contact Person Details</span>
+                <img *ngIf="employerRecruitersForm.valid && updateProfile" src="assets/images/completed_quickaccess.png"
+                  class="quickaccess-icon" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <app-jobclicks-adds></app-jobclicks-adds>
+      </div>
+    </div>
+
+  </div>
+</div>

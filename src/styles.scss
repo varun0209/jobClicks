@@ -1,0 +1,759 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@font-face {
+  font-family: 'Sofia Pro';
+  src: url("../src/assets/font/Sofia\ Pro\ Regular\ Az.otf");
+}
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Sofia Pro'!important;
+  background-color: #F8F8F8;
+}
+.modal {
+    position: fixed;
+    top: 0%!important;
+    padding-top:0px;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+
+ .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px!important;
+    outline: 0;
+}
+.profile{
+    .dropdown-toggle::after {
+      display:none!important;
+  }
+  }
+
+// @font-face {
+//     font-family: "Sofia Pro Regular Az";
+//     src: url("//db.onlinewebfonts.com/c/9e00143409affcb46a1ae58634aa64be?family=Sofia+Pro") format("woff2"),
+//          url("//db.onlinewebfonts.com/c/9e00143409affcb46a1ae58634aa64be?family=Sofia+Pro") format("woff");
+//   }
+
+
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+    img{
+      position: absolute;
+      left: 8px;
+      top: 8px;
+    }
+  }
+
+  .search input {
+    height: 40px;
+    text-indent: 25px;
+    border-radius: 25px;
+    border: 1px solid #d6d4d4
+  }
+
+  .search input:focus {
+    box-shadow: none;
+    border: 2px solid blue
+  }
+
+  .search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px
+  }
+
+  .search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: blue
+  }
+  .text-center .btn_upload{
+    width: 158px;
+    height: 40px;
+    margin: -5px!important;
+    text-align: center;
+    background: transparent linear-gradient(
+106deg
+, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+    border-radius: 12px;
+    opacity: 1;
+}
+.error_text{
+  font-size: 12px;
+  color: #d70b0b; margin-top:15px ;
+}
+.jobpostsectiondropdown{
+  transform: translate3d(-130px, 45px, 0px)!important;
+}
+.login_modal-content{
+  top: 15% !important;
+  height: auto;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 9px #00000029;
+  border-radius:12px!important;
+  opacity: 1;
+}
+.colsebuttoncross{
+  margin-top:5px;
+  right: 10px;
+  position: absolute;
+}
+.loginlogo{
+  padding-top:15px;
+  text-align: center;
+  width: 100%;
+}
+.login_p{
+  text-align: center !important;
+  width: 100%;
+  width: 53%;
+  margin: 0 auto;
+  font-size: 14px;
+}
+.password-info{
+  width: 13px;
+  height: 13x;
+  margin-bottom: 5px;
+}
+.loginform{
+  h6{
+    text-align: center;
+    padding-top:20px;
+    letter-spacing: 0.16px;
+    color: #184B96;
+    opacity: 1;
+  }
+  .mainformsdesign{
+    margin: 10px 60px;
+  }
+    .form-control {
+      display: block;
+      width: 100%;
+      height: calc(1.5em + 0.75rem + 2px);
+      padding: 0.375rem 0.75rem;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      border-radius: 5px!important;
+      background-clip: padding-box;
+      /* border-radius: 0.25rem; */
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  }
+
+  h5{
+    text-align: center;
+    text-decoration: underline;
+    letter-spacing: 0.1px;
+     color: #333333;
+    opacity: 1;
+  }
+  p{
+    text-align: center;
+    letter-spacing: 0.13px;
+    color: #333333;
+    opacity: 1;
+  }
+}
+
+// pops css starts here
+
+
+.error_text{
+  font-size: 12px;
+  padding: 2px 0;
+  color: #dc3545;
+}
+.mt-0{
+  margin-top: 0px !important;
+}
+
+.logotext1{
+    text-align: right;
+    font: normal normal bold 24px/35px Montserrat;
+    letter-spacing: 0px;
+    color: #005C97;
+  }
+  .logotext2{
+    padding-left:5px;
+    text-align: right;
+    font: normal normal bold 24px/35px Montserrat;
+    letter-spacing: 0px;
+    color: #363795;
+  }
+  .logotext3{
+    padding-left:5px;
+    text-align: right;
+  font: normal normal normal 12px/15px Montserrat;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
+  }
+ // employee form
+ .myprofileemployee{
+  .form-group label{
+    font: normal normal normal 12px/17px Montserrat;
+    letter-spacing: 0.11px;
+    color: #333333d1;
+    font-weight: 400;
+    opacity: 1;
+  }
+  .form-control{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 0.6000000238418579px solid #DFDFDF;
+    border-radius: 12px;
+    opacity: 1;
+  }
+}
+
+.btn-update{
+  background: transparent linear-gradient(96deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 6px #00000029;
+border-radius: 12px;
+opacity: 1;
+a{
+  text-align: center;
+font: normal normal 600 16px/19px Montserrat;
+letter-spacing: 0px;
+color: #FFFFFF!important;
+opacity: 1;
+}
+}
+
+.btn-cancel{
+  background: #E6E6E6 0% 0% no-repeat padding-box;
+border-radius: 12px;
+opacity: 1;
+a{
+text-align: center;
+font: normal normal 600 16px/19px Montserrat;
+letter-spacing: 0px;
+color: #333333;
+opacity: 1;
+}
+}
+
+.mat-dialog-container{
+  max-height: calc(100vh - 100px) !important;
+  overflow-y: auto !important;
+}
+.form-control{
+  font-size: 14px !important;
+  border-radius: 8px !important;
+  font-family: 'Sofia Pro'!important;
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(126, 126, 126, 0.8);
+}
+// ::-webkit-scrollbar-thumb:window-inactive {
+// background: rgba(109, 109, 109, 0.4);
+// }
+
+.mat-progress-spinner svg{
+  width: 10% !important;
+  height: 10% !important;
+  left: 45% !important;
+  top: 45% !important;
+}
+.close-button{
+  position: absolute;
+  right: 0px;
+  top: -10px;
+  cursor: pointer;
+}
+.jc-button {
+  background: transparent linear-gradient(
+  106deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 8px;
+  border: none;
+  color: #FFFFFF;
+  width: 148px;
+  font-size: 14px;
+  height: 38px;
+}
+.jc-button-small {
+  background: transparent linear-gradient(
+    106deg
+    , #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 8px;
+        border: none;
+        color: #FFFFFF;
+        font-size: 14px;
+        height: 38px;
+        padding: 5px 20px;
+        width: 90px;
+}
+.jc-btn-cancel{
+  font-size: 14px;
+  height: 38px;
+  padding: 5px 20px;
+  color: #333333;
+  background: #E6E6E6;
+  border-radius: 8px;
+  border:none;
+  width: 90px;
+}
+.jc-btn-cancel:hover{
+  box-shadow: 0px 3px 6px #00000029;
+}
+.title{
+  font-size: 26px;
+  font-weight: 600;
+  color: #004475;
+  line-height: 37px;
+}
+.tagline{
+  font-size: 18px;
+}
+.mat-dialog-container{
+  border-radius: 12px !important;
+  width: 476px !important;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.text-left{
+  text-align: left;
+}
+.p-relative{
+  position: relative;
+}
+.popup-controls{
+  padding: 0 12px;
+}
+.mat-expansion-indicator::after{
+  color: #fff !important;
+}
+.mat-expansion-panel{
+  .mat-expansion-panel-header, .mat-expansion-panel-header:hover{
+    background: transparent linear-gradient(
+      94deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+      border-radius: 10px 10px 0 0;
+      height: 34px;
+  }
+  .mat-expansion-panel-header-title, .mat-expansion-indicator::after{
+    color: #303b95 !important;
+  }
+}
+mat-expansion-panel-header .mat-expansion-indicator::after {
+  content: "+";
+  border: 0;
+  transform: none;
+}
+
+.mat-expansion-panel-header.mat-expanded .mat-expansion-indicator::after {
+  content: "-";
+  color: #303b95 !important;
+  margin-top: -12px;
+}
+
+.mat-expanded{
+  .mat-expanded .mat-expansion-indicator{
+    font-size: 27px;
+    font-weight: 200;
+    background: #fff;
+    border-radius: 4px;
+    height: 18px;
+    line-height: 9px;
+  }
+}
+.mat-expanded{
+  .mat-expansion-indicator{
+    font-size: 25px;
+    font-weight: 200;
+    height: 18px;
+    line-height: 4px;
+    padding: 3px 0;
+    background: #fff;
+    border-radius: 4px;
+  }
+}
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  font-size: 14px !important;
+  border-radius: 8px !important;
+  font-family: "Sofia Pro" !important;
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  text-indent: 15px;
+}
+.autocomplete-invalid{
+  .mat-form-field-infix {
+     border: 1px #A70000 solid !important;
+  }
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0px !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-ripple {
+  height: 0px !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  padding-bottom: 0;
+}
+// .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
+//   transform: none;
+//   width: 100%;
+//   top: 0.43125em;
+// }
+// .mat-form-field-appearance-legacy .mat-form-field-underline {
+//   height: 0;
+// }
+// .mat-form-field.mat-focused .mat-form-field-ripple {
+//   background-color: #3f51b5;
+//   height: 0;
+// }
+// .mat-form-field-label-wrapper{
+//   top: 0;
+//   padding-top: 0;
+// }
+// .mat-form-field-appearance-legacy .mat-form-field-label {
+//   top: 0.48125em;
+// }
+.mat-chip.mat-standard-chip {
+  background: transparent linear-gradient( 
+106deg
+, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  color: #fff;
+  border-radius: 8px !important;
+  font-family: "Sofia Pro" !important;
+}
+.mat-standard-chip.mat-chip-with-trailing-icon {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 12px !important;
+  padding-left: 12px;
+  min-height: 28px;
+}
+.mat-chip.mat-standard-chip .mat-chip-remove {
+  color: rgba(0,0,0,.87);
+  opacity: 1;
+  line-height: 15px;
+  margin-left: 0;
+}
+.mat-error-msg{    
+  font-size: 10px;
+  color: #A70000;
+}
+// Search Results
+.filters{
+  .experience{
+      .mat-expansion-panel-body{
+          padding: 0 !important;
+      }
+      .mat-slider-horizontal {
+        height: 36px;
+        min-width: 100%;
+        padding-bottom: 0px;
+    }
+    .mat-accent .mat-slider-track-fill, .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label{
+      background: transparent linear-gradient(
+        106deg
+        , #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+    }
+    .min-exp{
+      font-size: 12px;
+      color: #bdbdbd;
+    }
+    .experience-label{
+      font-size: 12px;
+    margin-bottom: -8px;
+    color: #333333;
+    font-weight: 600;
+    margin-left: 4px;
+    }
+  }
+}
+
+
+
+.ml-14{
+  margin-left: 14px !important;
+}
+.pr-0{
+  padding-right: 0 !important;
+}
+.pl-0{
+  padding-left: 0 !important;
+}
+.mr-0{
+  margin-right: 0 !important;
+}
+.ml-0{
+  margin-left: 0 !important;
+}
+.ml-1{
+  margin-left: 4px;
+}
+.pl-1{
+  padding-left: 4px;
+}
+.ml-2{
+  margin-left: 8px;
+}
+.mr-2{
+  margin-right: 8px;
+}
+.pl-2{
+  padding-left: 8px;
+}
+.ml-3{
+  margin-left: 12px;
+}
+.mr-3{
+  margin-right: 12px;
+}
+.mt-n1{
+  margin-top: -4px !important;
+}
+.mt-n2{
+  margin-top: -8px !important;
+}
+.mt-n3{
+  margin-top: -12px !important;
+}
+.pl-3{
+  padding-left: 12px;
+}
+.W-100{
+  width: 100% !important;
+}
+.cursor-p{
+  cursor: pointer;
+}
+.text-jc{
+  color: #004475;
+}
+.align-i-center{
+  align-items: center;
+}
+.form-group{
+  label{
+    margin-bottom: 5px !important;
+    font-family: 'Sofia Pro'!important;
+  }
+  input::placeholder{
+    color:#BBBBBB;
+  }
+}
+.select-placeholder{
+  option{
+    color: #000;
+  }
+}
+.form-select {
+    color: rgb(151, 151, 151);
+}
+.ng-dirty{
+    color: #000 !important;
+}
+.card{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+  padding: 15px;
+  border: none;
+  .card-title{
+    color: #333333;
+    border-bottom: 1px #ddd solid;
+    padding-bottom: 10px;
+  }
+  .company-logo{
+    img{
+      width: 110px !important;
+      border-radius: 70px;
+      height: 110px !important;
+      box-shadow: 0px 1px 12px #00000040;
+    }
+  }
+}
+.advertisement-section-title{
+  font-size: 20px;
+    color: #004475;
+    font-weight: 500;
+}
+.advertisements{
+  .advertisements-body{
+    padding: 10px 15px;
+    .add-logo{
+      width: 50px;
+    }
+    .logo-title{
+      color: #0A2D50;
+    font-size: 18px;
+    font-weight: 600;
+    }
+    .add-tagline{
+      font-size: 14px;
+    }
+  }
+  .advertisements-footer{
+    margin: -15px;
+    margin-bottom: -15px !important;
+    border-top: 1px #ECECEC solid;
+    margin-top: 5px !important;
+    .footer-text{
+      padding: 5px 15px;
+      font-size: 14px;
+      align-self: center;
+    }
+  }
+  .jc-add-button{
+    background: transparent linear-gradient(
+      106deg
+       , #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+          box-shadow: 0px 3px 6px #00000029;
+          border-radius: 0 0 8px 0;
+          border: none;
+          color: #FFFFFF;
+          font-size: 14px;
+          height: 38px;
+          padding: 5px 15px;
+          width: 120px;
+  }
+}
+.tagline-text{
+  font-size: 12px !important;
+  text-align: center;
+}
+.editor {
+  .ql-toolbar{
+    border-radius: 8px 8px 0 0;
+  }
+  .ql-container{
+    border-radius: 0 0 8px 8px;
+    height: 120px;
+  }
+}
+.title-small{
+  color: #184B96;
+  font-size: 18px;
+  font-weight: 500;
+}
+.editor-error{
+  border: 1px #dc3545 solid;
+    border-radius: 8px;
+    .ql-toolbar.ql-snow{
+      border: none;
+    }
+}
+.eye-icon{
+  position: absolute;
+  right: 22px;
+  top: 32px;
+  margin-top: 4px;
+}
+
+.bg-img-none {
+  background-image: none !important;
+}
+
+// map display css
+
+.mapouter {
+  position: relative;
+  text-align: right;
+  height: 160px;
+  width: 590px!important;
+}
+.cdk-global-overlay-wrapper{
+  justify-content: center !important;
+  align-items: center !important;
+
+  .mat-snack-bar-container{
+    color: #333333;
+    max-width: 470px !important;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 9px #00000029 !important;
+    border-radius: 12px !important;
+  }
+}
+.mat-expansion-panel-header{
+  font-family: 'Sofia Pro'!important;
+}
+.mat-accordion .mat-expansion-panel:last-of-type, .mat-accordion .mat-expansion-panel:first-of-type{
+  border-bottom-right-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+.mat-chip-list-wrapper{
+padding: 0 10px;
+}
+.example-chip-list{
+  margin-bottom: 8px;
+}
+.ngx-pagination .current {
+  padding: 0.1875rem 0.825rem !important;
+  background: transparent linear-gradient( 
+106deg
+, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box !important;
+  border-radius: 5px;
+}
+.ngx-pagination{
+  font-family: "Sofia Pro" !important;
+}
+.ngx-pagination a, .ngx-pagination button{
+  color: #224696 !important;
+}
+.ngx-pagination .disabled {
+  color: #a7a7a7 !important;
+}
+
+
+
+
+@media (min-width: 1360px){
+  .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1280px;
+}
+}

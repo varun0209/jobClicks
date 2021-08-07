@@ -1,0 +1,802 @@
+
+  <!-- Nithin code -->
+
+  <div class="container" *ngIf="showControls">
+    <div class="row py-4 mt-3">
+      <a [hidden]="!updateProfile" (click)="backManageJob()"> back </a>
+
+      <div class="col-12 text-center">
+
+        <div class="title">Post Job <span class="text-danger tagline">(Need content)</span></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+
+        <mat-accordion>
+          <mat-expansion-panel class="mat-expanded" [expanded]="step === 0" (opened)="setStep(0)">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="min-title">
+                 Post New Jobs <span>
+                </span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="col">
+
+              <form class="py-3" [formGroup]="postjobForm">
+
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">
+                    Industry Type <span class="text-danger">*</span></label>
+                  <div class="col-sm-5">
+                      <select class="form-control form-select" id="industryType"  formControlName="industryType"
+                      [ngClass]="{ 'is-invalid': submitted && postjobForm.controls.industryType.invalid}">
+                      <option value="Select Industry Type" >Select Industry Type</option>
+                        <option value="IT">IT</option>
+                        <option value="Others">Others</option>
+                      </select>
+                      <div class="error_text mt-0" *ngIf="submitted && postjobForm.controls.industryType.invalid">
+                        <div class="error_text mt-0" *ngIf="postjobForm.controls.industryType.errors.required">
+                          Please Select Industry Type
+                        </div>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="form-group row" *ngIf="postjobForm.value.industryType == 'Others'">
+                  <label class="col-sm-3 col-form-label">Others<span class="text-danger">*</span></label>
+                    <div class="col-sm-5">
+                      <div class="mb-2">
+                        <input type="text" class="form-control" formControlName="industryTypeName" name="industryTypeName"
+                        [ngClass]="{ 'is-invalid': submitted && postjobForm.controls.industryTypeName.errors  }">
+                        </div>
+
+                        <div class="error_text mt-0" *ngIf="submitted && postjobForm.controls.industryTypeName.invalid">
+                          <div class="error_text mt-0" *ngIf="postjobForm.controls.industryTypeName.errors.required">
+                            Please Select Industry Type
+                          </div>
+                        </div>
+                        </div>
+                </div>
+  
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                    Job Title (Designation) <span class="text-danger">*</span></label>
+                  <div class="col-sm-5">
+                    <div class="mb-2">
+                      <!-- <select class="form-control form-select"  id="jobTitle"  formControlName="jobTitle">
+                        <option value="" disabled>Select jobTitle</option>
+                        <option *ngFor="let jobsTitle of jobTitles" [value]="jobsTitle.jobTitle">{{ jobsTitle.jobTitle }}
+                        </option>
+                      </select> -->
+                      <app-autocomplete 
+                      [id]="'jobTitle'" [text]="'jobTitle'"
+                          [invalid]="submitted && postjobForm.controls.jobTitle.invalid" 
+                          [value]="postjobForm.get('jobTitle').value"
+                          [placeholder]="'Job Title (Designation)'"  
+                          [options]="getalldropdownlistpost.jobTitles"
+                          (valueSelectedEmit)="setAutoCompleteValues('postjobForm', 'jobTitle', 'jobTitle', $event)"
+                          ></app-autocomplete>
+                      <div class="error_text mt-0" *ngIf="submitted && postjobForm.controls.jobTitle.invalid">
+                        <div class="error_text mt-0" *ngIf="postjobForm.controls.jobTitle.errors.required">
+                          Please Enter Valid JobTitle
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- [setValue]="postjobForm.get('jobTitle').value" -->
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                    Employment Type</label>
+                  <div class="col-sm-7">
+                    <select class="form-control form-select"  id="employementType"  formControlName="employementType" (change)="employmentType($event)">
+                      <option value="" disabled>Select Employment Type</option>
+                      <option *ngFor="let emloyements of getalldropdownlistpost.employementType" [value]="emloyements.employeementTypeName">{{emloyements.employeementTypeName}}
+                      </option>
+                    </select>
+                    <div class="error_text mt-0" *ngIf="submitted && postjobForm.controls.employementType.invalid">
+                      <div class="error_text mt-0" *ngIf="postjobForm.controls.employementType.errors.required">
+                        Please Enter Company Website
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">
+                    Job Description <span class="text-danger">*</span></label>
+                  <div class="col">
+                    <div class="editor"
+                      [ngClass]="{ 'is-invalid': submitted && postjobForm.controls.description.errors }">
+                      <quill-editor [modules]="editorModules" formControlName="description">
+                      </quill-editor>
+                      <div class="error_text mt-0" *ngIf="submitted && postjobForm.controls.description.invalid">
+                        <div class="error_text mt-0" *ngIf="postjobForm.controls.description.errors.required">
+                          Please Enter About Company
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">
+                    Roles and responsibilities <span class="text-danger">*</span></label>
+                  <div class="col">
+                    <div class="editor"
+                      [ngClass]="{ 'is-invalid': submitted && postjobForm.controls.description.errors }">
+                      <quill-editor [modules]="editorModules" formControlName="rolesAndResponsibilities">
+                      </quill-editor>
+                      <div class="error_text mt-0" *ngIf="submitted && postjobForm.controls.rolesAndResponsibilities.invalid">
+                        <div class="error_text mt-0" *ngIf="postjobForm.controls.rolesAndResponsibilities.errors.required">
+                          Please Enter Roles and responsibilities
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                    Key Skills <span style="color: red;">*</span></label>
+                  <div class="col-sm-9">
+                        <!-- [values]="postjobForm.get('keySkills').value" -->
+
+                        <app-autocomplete-chip
+                        [id]="'skillName'"
+                        [text]="'skillName'"
+                        [valuesData]="postjobForm.value.keySkills"
+                        [options]="getalldropdownlistpost.skills"
+                        (valueSelectedEmit)="valueSelectedEmit($event)"
+                        ></app-autocomplete-chip>
+
+                        <div class="error_text mt-0" *ngIf="submitted && postjobForm.controls.keySkills.invalid">
+                          <div class="error_text mt-0" *ngIf="postjobForm.controls.keySkills.errors.required">
+                            Key Skill is required
+                          </div>
+                        </div>
+
+                  </div>
+                </div>
+
+                <div class="form-group row mb-2 ">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">Experience</label>
+                  <div class="col-sm-2">
+                    <div class="input-group mb-2">
+                      <select class="custom-select form-control form-select" id="inputGroupSelect01" formControlName="minExperience" (change)="selectMax()">
+                        <option  value="" disabled>min</option>
+                        <option *ngFor='let in of counter(51) ;let i = index' [value]="i" selected>{{i}}</option>
+                      </select>
+                      <div class="error_text mt-0" *ngIf="postjobForm.controls.minExperience.invalid">
+                        <div class="error_text mt-0" *ngIf="postjobForm.controls.minExperience.errors.min">
+                          Please Select Min Experience
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="input-group mb-2">
+                      <select class="custom-select form-control form-select" id="inputGroupSelect01" formControlName="maxExperience" (change)="selectMax()">
+                        <option  value="" disabled>max</option>
+                        <option *ngFor='let in of counter(51) ;let i = index' [value]="i" selected>{{i}}</option>
+                      </select>
+                      <div class="error_text mt-0" *ngIf="postjobForm.controls.maxExperience.invalid">
+                        <div class="error_text mt-0" *ngIf="postjobForm.controls.maxExperience.errors.max">
+                          The minimum experience cannot be greater than the maximum experience.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label"  [hidden]="postjobForm.value.hideSalary">
+                    Salary </label>
+                  <div class="col-md-5"  [hidden]="postjobForm.value.hideSalary">
+                      <select class="form-control form-select"  id="salary"  formControlName="salaryId" (change)="salaryType($event)">
+                        <option value="" disabled>Select Salary</option>
+                        <option *ngFor="let jobsalary of getalldropdownlistpost.salaryRange" [value]="jobsalary.salaryId">{{ jobsalary.salaryRange }}
+                        </option>
+                         </select>
+                         <!-- <app-autocomplete 
+                         [invalid]="submitted && postjobForm.controls.Salary.invalid" 
+                         [placeholder]="'Salary'"  
+                         [options]="getalldropdownlistpost.salaryRange"
+                         [value]="postjobForm.get('Salary').value"
+                         (valueSelectedEmit)="setAutoCompleteValues('postjobForm', 'salaryRange', 'salaryId', $event)"
+                         [id]="'salaryId'" [text]="'salaryRange'"></app-autocomplete> -->
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <span>Pa</span> -->
+                    <span class="hidesalary">
+                      <input type="checkbox" formControlName="hideSalary" /> <span class="ml-2">Hide Salary</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                    Location </label>
+                  <div class="col-md-6">
+                    <!-- <select class="form-control form-select"  id="jobTitle"  formControlName="location">
+                      <option value="" disabled>Select Location</option>
+                      <option *ngFor="let joblocation of getalldropdownlistpost.preferedLocation" [value]="joblocation.name">{{ joblocation.name }}
+                      </option>
+                       </select> -->
+
+                         <app-autocomplete 
+                         [invalid]="submitted && postjobForm.controls.location.invalid" 
+                         [placeholder]="'Location'"  
+                         [id]="'name'" [text]="'name'"
+                         [value]="postjobForm.get('location').value"
+                         [options]="getalldropdownlistpost.preferedLocation"
+                         (valueSelectedEmit)="setAutoCompleteValues('postjobForm', 'location', 'name', $event)"
+                         ></app-autocomplete>
+
+                    <div class="error_text mt-0" *ngIf="submitted && postjobForm.controls.location.invalid">
+                      <div class="error_text mt-0" *ngIf="postjobForm.controls.location.errors.required">
+                        Please Enter Location
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                    Education </label>
+                  <div class="col-md-6">
+                      <select class="form-control form-select"  id="jobTitle"  formControlName="educationId" (change)="educationType($event)">
+                        <option value="" disabled>Select Education</option>
+                        <option *ngFor="let jobsqualification of getalldropdownlistpost.education" [value]="jobsqualification.qualificationId">{{ jobsqualification.qualificationName }}
+                        </option>
+                      </select>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                    Remote Options </label>
+                  <div class="col-md-6">
+                      <select class="form-control form-select"  id="jobTitle"  formControlName="remoteOptionId" (change)="remoteoptionType($event)">
+                        <option value="" disabled>Select Remote Options</option>
+                        <option *ngFor="let jobsTitle of getalldropdownlistpost.remoteOptionMasters" [value]="jobsTitle.remoteOptionId">{{ jobsTitle.remoteOptionName }}
+                        </option>
+                      </select>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">
+                    No.of Job Positions </label>
+                  <div class="col-md-6">
+                      <select class="form-control form-select"  id="jobTitle"  formControlName="jobVacancies">
+                        <option value="" disabled>Select No.of Job Positions</option>
+                        <option *ngFor='let in of counter(101) ;let i = index' [value]="i" selected>{{i}}</option>
+                      </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <input type="checkbox" class="col-md-1" name="travelRequirement"  formControlName="travelRequirement" >
+                    Select Travel requirements
+                </div>
+
+
+                <div class="col text-right" *ngIf="updateProfile">
+                  <button class="jc-button ml-3" (click)="updateJobDetails()">Update</button>
+                </div>
+
+              </form>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion class="mt-3">
+          <mat-expansion-panel class="mat-expanded" [expanded]="step === 1" (opened)="setStep(1)">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="min-title">
+                Contact Person Details
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form class="py-3" [formGroup]="employerRecruitersForm">
+
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">
+                  Contact Person Name </label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" placeholder="" id="contactPersonName"
+                    formControlName="contactPersonName"
+                    [ngClass]="{ 'is-invalid': submitted && employerRecruitersForm.controls.contactPersonName.errors }">
+                  <div class="error_text mt-0"
+                    *ngIf="submitted && employerRecruitersForm.controls.contactPersonName.invalid">
+                    <div class="error_text mt-0"
+                      *ngIf="employerRecruitersForm.controls.contactPersonName.errors.required">
+                      Please Enter Contact Person Name
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Email for Communication
+                </label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" placeholder="" id="email" formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && employerRecruitersForm.controls.email.errors }">
+                  <div class="error_text mt-0" *ngIf="submitted && employerRecruitersForm.controls.email.invalid">
+                    <div class="error_text mt-0" *ngIf="employerRecruitersForm.controls.email.errors.required">
+                      Please Enter Communication Email
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Contact Number</label>
+                <!-- <div class="col-1 pr-0">
+                  <select id="disabledSelect" class="form-control form-select" [disabled]="true">
+                    <option> +1 </option>
+                  </select>
+                </div> -->
+                <div class="col-md-1">
+                  <input type="text" formControlName="countryCode" class="form-control" [attr.disabled]="true">
+              </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="mobileNo" (keypress)="commonService.numberOnly($event)"
+                    [ngClass]="{ 'is-invalid': submitted && employerRecruitersForm.controls.mobileNo.errors }"
+                    placeholder="Enter mobileNo" minlength="10" maxlength="10" formControlName="mobileNo">
+                  <div class="error_text mt-0" *ngIf="submitted && employerRecruitersForm.controls.mobileNo.invalid">
+                    <div class="error_text mt-0" *ngIf="employerRecruitersForm.controls.mobileNo.errors.required">
+                      Please Enter Contact Number
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Job Title (Designation)
+                </label>
+                <div class="col-sm-7">
+                  <!-- <input type="text" class="form-control" id="jobTitle" formControlName="jobTitle"
+                    [ngClass]="{ 'is-invalid': submitted && employerRecruitersForm.controls.jobTitle.errors }"> -->
+
+                    <app-autocomplete 
+                    [id]="'jobTitle'" [text]="'jobTitle'"
+                        [invalid]="submitted && employerRecruitersForm.controls.jobTitle.invalid" 
+                        [value]="employerRecruitersForm.get('jobTitle').value"
+                        [placeholder]="'Job Title (Designation)'"  
+                        [options]="getalldropdownlistpost.jobTitles"
+                        (valueSelectedEmit)="setAutoCompleteValues('employerRecruitersForm', 'jobTitle', 'jobTitle', $event)"
+                        ></app-autocomplete>
+
+                  <div class="error_text mt-0" *ngIf="submitted && employerRecruitersForm.controls.jobTitle.invalid">
+                    <div class="error_text mt-0" *ngIf="employerRecruitersForm.controls.jobTitle.errors.required">
+                      Please Enter Job Title
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col text-right" *ngIf="updateProfile">
+                <button class="jc-button ml-3" (click)="saveAndUpdateEmployerRecruiter()">Update</button>
+              </div>
+
+            </form>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion class="mt-3">
+          <mat-expansion-panel class="mat-expanded" [expanded]="step === 2" (opened)="setStep(2)">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="min-title">
+                Company Details
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form class="py-3" [formGroup]="postjobcompanydata">
+
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 col-form-label">
+                  Company Type </label>
+                <div class="col-md-6">
+                    <select class="form-control form-select"  formControlName="companyType">
+                      <option value="" disabled>Select company type</option>
+                      <option value="Consultancy">Consultancy</option>
+                      <option value="Company">Company</option>
+                    </select>
+                  <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.companyType.invalid">
+                    <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.companyType.errors.required">
+                      Please Select company Type
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 col-form-label">
+                  Company Name </label>
+                <div class="col-md-6">
+                  <input class="form-control"  id="companyName"  formControlName="companyName" placeholder="Enter company Name">
+                  <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.companyName.invalid">
+                    <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.companyName.errors.required">
+                      Please Enter companyName
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 col-form-label">
+                  Company website </label>
+                <div class="col-md-6">
+                  <input class="form-control" formControlName="companyWebSite" placeholder="Enter company website">
+                  <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.companyWebSite.invalid">
+                    <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.companyWebSite.errors.required">
+                      Please Enter company website
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">
+                  About Company</label>
+                <div class="col">
+                  <div class="editor"
+                    [ngClass]="{ 'is-invalid': submitted && postjobcompanydata.controls.description.errors }">
+                    <quill-editor [modules]="editorModules" formControlName="description">
+                    </quill-editor>
+                    <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.description.invalid">
+                      <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.description.errors.required">
+                        Please Enter About Company
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row ">
+                <label class="col-sm-3 col-form-label">Contact Number</label>
+                <!-- <div class="col-1 pr-0">
+                  <select id="CountryCode" class="form-control form-select" [disabled]="true">
+                    <option value="+1"> +1 </option>
+                  </select>
+                </div> -->
+                <div class="col-md-1">
+                  <input type="text" formControlName="countryCode" class="form-control" [attr.disabled]="true">
+              </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" (keypress)="commonService.numberOnly($event)"
+                    [ngClass]="{ 'is-invalid': submitted && postjobcompanydata.controls.mobileNo.errors }"
+                    placeholder="Enter MobileNo" minlength="10" maxlength="10" formControlName="mobileNo">
+                  <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.mobileNo.invalid">
+                    <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.mobileNo.errors.required">
+                      Please Enter a Valid 10 digit Contact Number”.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">
+                  Email Address </label>
+                <div class="col-sm-5">
+                  <input  class="form-control" formControlName="email" placeholder="Enter Email"/>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-3 pr-0 col-form-label">
+                  Company Address 1 </label>
+                <div class="col-sm-9">
+                  <input class="form-control" placeholder="" id="address1" formControlName="address1"
+                    [ngClass]="{ 'is-invalid': submitted && postjobcompanydata.controls.address1.errors }">
+                  <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.address1.invalid">
+                    <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.address1.errors.required">
+                      Please Enter Company Address 1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 pr-0 col-form-label">
+                  Company Address 2 </label>
+                <div class="col-sm-9">
+                  <input class="form-control" placeholder="" id="address2" formControlName="address2"
+                    [ngClass]="{ 'is-invalid': submitted && postjobcompanydata.controls.address2.errors }">
+                  <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.address2.invalid">
+                    <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.address2.errors.required">
+                      Please Enter Company Address 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">
+                  Country </label>
+                <div class="col-sm-4">
+                  <div class="mb-2">
+                    <!-- <select class="form-control form-select" id="country" formControlName="country"
+                      [ngClass]="{ 'is-invalid': submitted && postjobcompanydata.controls.country.errors }"
+                      (change)="stateSelected()">
+                      <option></option>
+                      <option *ngFor="let country of countryList" [value]="country.id">{{ country.name }} </option>
+                    </select> -->
+                    <app-autocomplete 
+                    [invalid]="submitted && postjobcompanydata.controls.country.invalid" 
+                    [placeholder]="'Select Country'"  
+                    [id]="'name'" [text]="'name'"
+                    [value]="postjobcompanydata.get('country').value"
+                    [options]="getalldropdownlistpost.countrys"
+                    (valueSelectedEmit)="stateSelected($event)"></app-autocomplete>
+                    <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.country.invalid">
+                      <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.country.errors.required">
+                        Please Enter Country
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <label class="col-sm-2 col-form-label text-center">
+                  Zip Code </label>
+                <div class="col-sm-3">
+                  <div class="mb-2">
+                    <!-- (keypress)="commonService.numberOnly($event)"  maxlength="100"
+                      [ngClass]="{ 'is-invalid': submitted && postjobcompanydata.controls.zipCode.errors }" -->
+                    <input type="number" class="form-control" placeholder="Enter zipcode" id="zipCode"  formControlName="zipCode"
+                    >
+                    <!-- <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.zipCode.invalid">
+                      <div class="error_text mt-0"
+                      *ngIf="postjobcompanydata.controls.zipCode.errors.pattern">
+                      Please
+                      enter a 5 digit zipcode.</div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">State </label>
+                <div class="col-sm-5">
+                  <div class="mb-2">
+                    <!-- <select class="form-control form-select" id="state" formControlName="state" (change)="citySelected()"
+                      [ngClass]="{ 'is-invalid': submitted && postjobcompanydata.controls.state.errors }">
+
+                      <option></option>
+                      <option *ngFor="let state of stateList" [value]="state.id">{{ state.name }}</option>
+                    </select> -->
+                    <app-autocomplete 
+                    [invalid]="submitted && postjobcompanydata.controls.state.invalid" 
+                      [placeholder]="'Select State'"  
+                      [options]="stateList"
+                      [value]="postjobcompanydata.get('state').value"
+                      (valueSelectedEmit)="citySelected($event)"
+                      [id]="'name'" [text]="'name'"></app-autocomplete>
+                    <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.state.invalid">
+                      <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.state.errors.required">
+                        Please Enter state
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">City </label>
+                <div class="col-sm-5">
+                  <div class="mb-2">
+                    <!-- <select class="form-control form-select" id="city" formControlName="city"
+                      [ngClass]="{ 'is-invalid': submitted && postjobcompanydata.controls.city.errors }">
+                      <option></option>
+                      <option *ngFor="let city of cityList" [value]="city.id">{{ city.name }}</option>
+                    </select> -->
+                    <app-autocomplete 
+                    [invalid]="submitted && postjobcompanydata.controls.city.invalid" 
+                      [placeholder]="'Select City'"  
+                      [options]="cityList"
+                      [value]="postjobcompanydata.get('city').value"
+                      (valueSelectedEmit)="setAutoCompleteValues('postjobcompanydata', 'city', 'id', $event)"
+                      [id]="'name'" [text]="'name'"></app-autocomplete>
+                    <div class="error_text mt-0" *ngIf="submitted && postjobcompanydata.controls.city.invalid">
+                      <div class="error_text mt-0" *ngIf="postjobcompanydata.controls.city.errors.required">
+                        Please Enter City
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 col-form-label">
+                  Map Location Link</label>
+                <div class="col-sm-5">
+                  <input class="form-control" placeholder="" formControlName="mapLocationLink" id="mapLocationLink">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 col-form-label">
+                  Facebook Link</label>
+                <div class="col-sm-5">
+                  <input class="form-control" placeholder="" formControlName="facebookLink" id="facebookLink">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 col-form-label">
+                  Twitter Link</label>
+                <div class="col-sm-5">
+                  <input class="form-control" placeholder="" formControlName="twitterLink" id="twitterLink">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">
+                  LinkedIn Link</label>
+                <div class="col-sm-5">
+                  <input class="form-control" placeholder="" formControlName="linkedInLink" id="linkedInLink">
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 col-form-label">
+                  Receive response to Email ID </label>
+                <div class="col-md-8">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio"  formControlName="receiveResponseToEmail" value="true" (click)="changeReceiveEmail()">
+                        <label class="form-check-label" for="inlineRadio1">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio"  formControlName="receiveResponseToEmail" value="false" (click)="changeReceiveEmail()">
+                        <label class="form-check-label" for="inlineRadio2">No</label>
+                      </div>
+                </div>
+              </div>
+
+              <div class="form-group row" *ngIf="postjobcompanydata.value.receiveResponseToEmail == 'true'">
+                <label for="inputEmail3" class="col-sm-3 col-form-label"> Email ID: </label>
+                <div class="col-md-8">
+                      <input class="form-control" placeholder="" formControlName="responseEmail" id="responseEmail">
+                </div>
+              </div>
+
+              <div class="col text-right" *ngIf="updateProfile">
+                <button class="jc-button ml-3" (click)="updateJobCompanyDetails()">Update</button>
+              </div>
+
+            </form>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+        <div class="card mb-3" *ngIf="!updateProfile">
+          <div class="row">
+            <div class="col text-right">
+              <button class="jc-btn-cancel" (click)="clrearForm()">Cancel</button>
+              <button class="jc-button ml-3" (click)="submitForm()">Preview & Post Job</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-4">
+
+        <div class="card my-3">
+          <div class="card-title">
+            Quick Access
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div [ngClass]="{ 'quick-access-active ': step === 0 }"
+                  class="d-flex justify-content-between text-jc cursor-p" (click)="setStep(0)">
+                  <span class="">Post New Jobs</span>
+                  <img *ngIf="postjobForm.valid" src="assets/images/completed_quickaccess.png"
+                    class="quickaccess-icon" alt="...">
+                </div>
+                <div [ngClass]="{ 'quick-access-active ': step === 1 }" (click)="setStep(1)"
+                  class="my-3 d-flex justify-content-between text-jc cursor-p">
+                  <span>Contact Person Details</span>
+                  <img *ngIf="employerRecruitersForm.valid" src="assets/images/completed_quickaccess.png"
+                    class="quickaccess-icon" alt="...">
+                </div>
+                <div [ngClass]="{ 'quick-access-active ': step === 2 }" (click)="setStep(2)"
+                class="my-3 d-flex justify-content-between text-jc cursor-p">
+                <span>Company Details</span>
+                <img *ngIf="postjobcompanydata.valid" src="assets/images/completed_quickaccess.png"
+                  class="quickaccess-icon" alt="...">
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <!-- ..........................  -->
+          <div class="row">
+            <div class="recent-search">
+              <div class="row">
+                <div class="col">
+                  <h5 style="margin: 0px; padding-top: 1rem; font-size: 14px;">Recent Applications</h5>
+
+                </div>
+                <div class="col  pt-3" style="text-align: end !important; color: gray;">
+                  <span >05/25</span>
+                </div>
+                <hr class="mt-2">
+              </div>
+
+              <form class="search-design">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Select your designation">
+                  <div class="search-icon">
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                      <path fill="currentColor"
+                        d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                    </svg>
+                  </div>
+                </div>
+              </form>
+              <div class="row bg-change">
+                <div class="col">
+                  <h5> Sr. Digital Marketing</h5>
+                </div>
+                <div class="col">
+                  <p>23</p>
+                </div>
+              </div>
+              <div class="row bg-change">
+                <div class="col">
+                  <h5> Sr. Digital Marketing</h5>
+                </div>
+                <div class="col">
+                  <p>20</p>
+                </div>
+              </div>
+              <div class="row  bg-change">
+                <div class="col">
+                  <h5> Sr. Front UI Developer</h5>
+                </div>
+                <div class="col">
+                  <p>19</p>
+                </div>
+              </div>
+              <div class="row  bg-change">
+                <div class="col">
+                  <h5>Sr. .NET Developer</h5>
+                </div>
+                <div class="col">
+                  <p>13</p>
+                </div>
+              </div>
+              <div class="row  bg-change">
+                <div class="col">
+                  <h5> Sr. Business Analyst</h5>
+                </div>
+                <div class="col">
+                  <p>41</p>
+                </div>
+              </div>
+              <div class="row  bg-change more">
+                <div class="col">
+                  <a href="">+25 More</a>
+                  <span><svg style="width:24px;height:24px; color:#1492E6;" viewBox="0 0 24 24">
+                      <path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                    </svg></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div>
+          <app-jobclicks-adds></app-jobclicks-adds>
+        </div>
+      </div>
+
+    </div>
+  </div>

@@ -1,0 +1,12 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width warnning-outlone" [ngClass]="{ 'autocomplete-invalid': invalid }" [floatLabel]="'never'">
+      <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto"  [placeholder]="placeholder" >
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option[text]}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <span *ngIf="showNoDataFount()"> No Data Found!!  </span> 
+  </form>
+  

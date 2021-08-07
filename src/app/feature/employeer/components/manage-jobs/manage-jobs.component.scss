@@ -1,0 +1,27 @@
+.post-job-btn{
+    height: 45px;
+    line-height: 35px;
+    padding: 5px 10px;
+    width: 98px;
+    font-size: 14px;
+    background: transparent linear-gradient( 
+106deg
+ , #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+    border: none;
+    color: #FFFFFF;
+    align-items: center;
+    text-align: center;
+}
+
+.custom-dropdown{
+    background: none;
+    border: none;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: 300;
+}
+.custom-dropdown:focus{
+    box-shadow:none;
+}

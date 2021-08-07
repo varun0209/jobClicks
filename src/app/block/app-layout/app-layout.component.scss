@@ -1,0 +1,194 @@
+.landing-page-content{
+    p, ul li{
+        font-size: 14px;
+    }
+    ul{
+        padding-left: 1rem;
+        line-height: 26px;
+    }
+    .aboutus-block{
+        position: relative;
+        .about-background{
+            height: 240px;
+            position: absolute;
+            width: 80%;
+            background-color: #ddd;
+            display: block;
+            border-radius: 15px;
+            z-index: -1;
+        }
+        .about-img{
+            margin-left: 20px;
+            padding-top: 20px;
+            width: calc(100% - 20px);
+        }
+    }
+    .about-option{
+        .about-option-text{
+            font-size: 16px;
+            font-weight: 600;
+            color: #004475;
+            line-height: 20px;
+            align-self: center;
+        }
+    }
+    .way-to-use-employee{
+        background-color: #e5eef4;
+        .employee-option-content{
+            .employee-option-title{
+                font-size: 16px;
+                font-weight: 600;
+                color: #004475;
+                line-height: 20px;
+                align-self: center;
+                margin-left: 15px;
+            }
+            .employee-option-text{
+                font-size: 14px;
+            }
+        }
+        .employee-button{
+            background-color: #fff;
+            padding: 5px 15px;
+            border-radius: 10px;
+            .apply-now{
+                color: #fcac20;
+                .apply-now-bar{
+                    width: 100px;
+                    height: 2px;
+                    background-color: #fcac20;
+                    display: block;
+                    align-self: center;
+                    margin-left: 10px;
+                }
+            }
+            .employee-option-title{
+                font-size: 16px;
+                font-weight: 600;
+                color: #004475;
+                line-height: 20px;
+                align-self: center;
+                margin-left: 15px;
+            }
+        }
+    }
+    .way-to-use-employer{
+        .employee-option-content{
+            .employee-option-title{
+                font-size: 16px;
+                font-weight: 600;
+                color: #004475;
+                line-height: 20px;
+                align-self: center;
+                margin-left: 15px;
+            }
+            .employee-option-text{
+                font-size: 14px;
+            }
+        }
+        .employee-button{
+            background: transparent linear-gradient(106deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 6px #00000029;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 10px;
+            .apply-now{
+                color: #fcac20;
+                .apply-now-bar{
+                    width: 100px;
+                    height: 2px;
+                    background-color: #fcac20;
+                    display: block;
+                    align-self: center;
+                    margin-left: 10px;
+                }
+            }
+            .employee-option-title{
+                font-size: 16px;
+                font-weight: 600;
+                color: #fff;
+                line-height: 20px;
+                align-self: center;
+            }
+        }
+    }
+    .featured-jobs{
+        background-color: #e5eef4;
+        .tag-line{
+            color: #9a9d9e;
+            font-size: 14px;
+        }
+        .client-logo-block{
+            background-color: #fff;
+            border-radius: 10px;
+            height: 160px;
+            text-align: center;
+            line-height: 160px;
+        }
+        .suggested-categories{
+            p{
+                font-size: 14px;
+                color: #9a9d9e;
+                margin-bottom: 0;
+                margin-left: 8px;
+            }
+            ul{
+                list-style: none;
+                display: flex;
+                padding-left: 0;
+                li{
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: #004475;
+                }
+            }
+        }
+    }
+    .tech-news{
+        background: transparent linear-gradient(106deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+        .tech-news-blog{
+            .blog-small{
+                background: #fff;
+                border-radius: 10px;
+            }
+        }
+        .tech-news-text-blog{
+            .tech-news-title{
+                font-size: 25px;
+                color: #fff;
+                font-weight: 600;
+            }
+            p{
+                color: #fff;
+            }
+        }
+    }
+    .upload-resume{
+        background-color: #e5eef4;
+    }
+}
+.p-relative{
+    position: relative;
+}
+.title{
+    font-size: 27px;
+    font-weight: 600;
+    color: #004475;
+    line-height: 37px;
+}
+.jc-button {
+    background: transparent linear-gradient(106deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+    border: none;
+    color: #FFFFFF;
+    width: 153px;
+    height: 38px;
+  }
+  .mr-2{
+      margin-right: 8px;
+   }
+  .ml-2{    
+    margin-left: 8px;
+   }
+

@@ -1,0 +1,247 @@
+<div class="container mb-3">
+    <div class="row">
+        <div class="col-lg-3 pl-0 search-all-filters">
+            <div class="card mb-2">
+                <div class="header">
+                    <img src="assets/images/filter-results-button.png" class="location-field" alt="location">
+                    All Filters
+                </div>
+            </div>
+            <div class="filters">
+                <mat-accordion>
+                    <div class="card mb-2">
+                        <mat-expansion-panel class="mat-expanded mb-0" [expanded]="true">
+                            <mat-expansion-panel-header class="p-0">
+                                <mat-panel-title class="min-title">
+                                    Freshness
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="col filter-content mx-n4 d-flex justify-content-between"
+                                *ngFor="let fresh of searchJobsFilterData?.freshness; let i = index">
+                                <div class="form-check d-flex"
+                                    *ngIf="(defaultFreshLength == 0 || i < defaultFreshLength)">
+                                    <input type="checkbox" class="form-check-input" id="freshness{{i}}"
+                                        (click)="filterValue($event, fresh.id, 'freshness')">
+                                    <label class="form-check-label ml-3" for="freshness{{i}}">{{ fresh.name }}</label>
+                                </div>
+                                <div class="count" *ngIf="(defaultFreshLength == 0 || i < defaultFreshLength)">
+                                    ({{ getCount('freshness', 'id', fresh.id) }})
+                                </div>
+                            </div>
+                            <div class="col cursor-p"
+                                *ngIf="searchJobsFilterData?.freshness.length && searchJobsFilterData?.freshness.length > defaultFreshLength">
+                                <div class="more-controls" *ngIf="defaultFreshLength == 5"
+                                    (click)="defaultFreshLength = 0">
+                                    + {{ searchJobsFilterData?.freshness.length -
+                                    defaultFreshLength }} More <i class="fa fa-chevron-down ml-2"></i></div>
+                                <div class="more-controls" *ngIf="defaultFreshLength == 0"
+                                    (click)="defaultFreshLength = 5">
+                                    Less <i class="fa fa-chevron-up ml-2"></i></div>
+                            </div>
+                        </mat-expansion-panel>
+                    </div>
+                    <div class="card mb-2">
+                        <mat-expansion-panel class="mat-expanded  mb-0">
+                            <mat-expansion-panel-header class="p-0">
+                                <mat-panel-title class="min-title">
+                                    Employment Type
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="col filter-content mx-n4 d-flex justify-content-between"
+                                *ngFor="let type of searchJobsFilterData?.employeementTypeData; let i = index">
+                                <div class="form-check d-flex" *ngIf="(defaultEmpLength == 0 || i < defaultEmpLength)">
+                                    <input type="checkbox" class="form-check-input" id="employementType{{i}}"
+                                        (click)="filterValue($event, type.id, 'employementType')">
+                                    <label class="form-check-label ml-3" for="employementType{{i}}">{{
+                                        type.employeementTypeName }}</label>
+                                </div>
+                                <div class="count" *ngIf="(defaultEmpLength == 0 || i < defaultEmpLength)">
+                                    ({{ getCount('employeementTypeData', 'id', type.id) }})
+                                </div>
+                            </div>
+                            <div class="col"
+                                *ngIf="searchJobsFilterData?.employeementTypeData.length && searchJobsFilterData?.employeementTypeData.length > defaultEmpLength">
+                                <div class="more-controls" *ngIf="defaultEmpLength == 5" (click)="defaultEmpLength = 0">
+                                    +
+                                    {{
+                                    searchJobsFilterData?.employeementTypeData.length - defaultEmpLength }} More <i
+                                        class="fa fa-chevron-down ml-2"></i></div>
+                                <div class="more-controls" *ngIf="defaultEmpLength == 0" (click)="defaultEmpLength = 5">
+                                    Less <i class="fa fa-chevron-up ml-2"></i></div>
+                            </div>
+                        </mat-expansion-panel>
+                    </div>
+                    <div class="card mb-2">
+                        <mat-expansion-panel class="mat-expanded  mb-0">
+                            <mat-expansion-panel-header class="p-0">
+                                <mat-panel-title class="min-title">
+                                    Location
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="col filter-content mx-n4 d-flex justify-content-between"
+                                *ngFor="let loc of searchJobsFilterData?.locationData; let i = index">
+                                <div class="form-check d-flex" *ngIf="(defaultLocLength == 0 || i < defaultLocLength)">
+                                    <input type="checkbox" class="form-check-input" id="location{{i}}"
+                                        (click)="filterValue($event, loc.locationName, 'location')">
+                                    <label class="form-check-label ml-3" for="location{{i}}">{{ loc.locationName
+                                        }}</label>
+                                </div>
+                                <div class="count" *ngIf="(defaultLocLength == 0 || i < defaultLocLength)">
+                                    ({{ getCount('locationData', 'locationName', loc.locationName) }})
+                                </div>
+                            </div>
+                            <div class="col"
+                                *ngIf="searchJobsFilterData?.locationData.length && searchJobsFilterData?.locationData.length > defaultLocLength">
+                                <div class="more-controls" *ngIf="defaultLocLength == 5" (click)="defaultLocLength = 0">
+                                    +
+                                    {{ searchJobsFilterData?.locationData.length -
+                                    defaultLocLength }} More <i class="fa fa-chevron-down ml-2"></i></div>
+                                <div class="more-controls" *ngIf="defaultLocLength == 0" (click)="defaultLocLength = 5">
+                                    Less <i class="fa fa-chevron-up ml-2"></i></div>
+                            </div>
+                        </mat-expansion-panel>
+                    </div>
+                    <div class="card mb-2">
+                        <mat-expansion-panel class="mat-expanded experience mb-0">
+                            <mat-expansion-panel-header class="p-0">
+                                <mat-panel-title class="min-title">
+                                    Experience
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="d-block">
+                                <label class="form-check-label d-block experience-label" for="exampleCheck">Min</label>
+                                <mat-slider thumbLabel tickInterval="1000" step="1" min="0" max="30"
+                                    [(ngModel)]="minimumExperience"
+                                    (change)="filterValue($event, 'value', 'minimumExperience')" aria-label="units">
+                                </mat-slider>
+                                <div class="d-flex justify-content-between min-exp ml-1"> <span>0 Years </span>
+                                    <span>30 Years</span>
+                                </div>
+                            </div>
+                            <div class="d-block mt-3">
+                                <label class="form-check-label d-block experience-label" for="exampleCheck">Max</label>
+                                <mat-slider thumbLabel tickInterval="1000" step="1" min="0" max="30"
+                                    [(ngModel)]="maxiumExperience"
+                                    (change)="filterValue($event, 'value', 'maxiumExperience')" aria-label="units">
+                                </mat-slider>
+                                <div class="d-flex justify-content-between min-exp ml-1"> <span>0 Years </span>
+                                    <span>30 Years</span>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </div>
+                    <div class="card mb-2">
+                        <mat-expansion-panel class="mat-expanded  mb-0">
+                            <mat-expansion-panel-header class="p-0">
+                                <mat-panel-title class="min-title">
+                                    Education
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="col filter-content mx-n4 d-flex justify-content-between"
+                                *ngFor="let edu of searchJobsFilterData?.education; let i = index">
+                                <div class="form-check d-flex" *ngIf="(defaultEduLength == 0 || i < defaultEduLength)">
+                                    <input type="checkbox" class="form-check-input" id="education{{i}}"
+                                        (click)="filterValue($event, edu.qualificationId, 'education')">
+                                    <label class="form-check-label ml-3" for="education{{i}}">{{ edu.qualificationName
+                                        }}</label>
+                                </div>
+                                <div class="count" *ngIf="(defaultEduLength == 0 || i < defaultEduLength)">
+                                    ({{ getCount('education', 'qualificationId', edu.qualificationId) }})
+                                </div>
+                            </div>
+                            <div class="col"
+                                *ngIf="searchJobsFilterData?.education.length && searchJobsFilterData?.education.length > defaultEduLength">
+                                <div class="more-controls" *ngIf="defaultEduLength == 5" (click)="defaultEduLength = 0">
+                                    +
+                                    {{ searchJobsFilterData?.education.length -
+                                    defaultEduLength }} More <i class="fa fa-chevron-down ml-2"></i></div>
+                                <div class="more-controls" *ngIf="defaultEduLength == 0" (click)="defaultEduLength = 5">
+                                    Less <i class="fa fa-chevron-up ml-2"></i></div>
+                            </div>
+                        </mat-expansion-panel>
+                    </div>
+                    <div class="card mb-2">
+                        <mat-expansion-panel class="mat-expanded  mb-0">
+                            <mat-expansion-panel-header class="p-0">
+                                <mat-panel-title class="min-title">
+                                    Remote Options
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="col filter-content mx-n4 d-flex justify-content-between"
+                                *ngFor="let remote of searchJobsFilterData?.remoteOptionData; let i = index">
+                                <div class="form-check d-flex"
+                                    *ngIf="(defaultRemoteLength == 0 || i < defaultRemoteLength)">
+                                    <input type="checkbox" class="form-check-input" id="remoteOptions{{i}}"
+                                        (click)="filterValue($event, remote.remoteOptionId, 'remoteOptions')">
+                                    <label class="form-check-label ml-3" for="remoteOptions{{i}}">{{
+                                        remote.remoteOptionName }}</label>
+                                </div>
+                                <div class="count" *ngIf="(defaultRemoteLength == 0 || i < defaultRemoteLength)">
+                                    ({{ getCount('remoteOptionData', 'remoteOptionId', remote.remoteOptionId) }})
+                                </div>
+                            </div>
+                            <div class="col"
+                                *ngIf="searchJobsFilterData?.remoteOptionData.length && searchJobsFilterData?.remoteOptionData.length > defaultRemoteLength">
+                                <div class="more-controls" *ngIf="defaultRemoteLength == 5"
+                                    (click)="defaultRemoteLength = 0"> + {{
+                                    searchJobsFilterData?.remoteOptionData.length - defaultRemoteLength }} More <i
+                                        class="fa fa-chevron-down ml-2"></i></div>
+                                <div class="more-controls" *ngIf="defaultRemoteLength == 0"
+                                    (click)="defaultRemoteLength = 5"> Less <i class="fa fa-chevron-up ml-2"></i></div>
+                            </div>
+                        </mat-expansion-panel>
+                    </div>
+                    <div class="card mb-2">
+                        <mat-expansion-panel class="mat-expanded  mb-0">
+                            <mat-expansion-panel-header class="p-0">
+                                <mat-panel-title class="min-title">
+                                    Salary
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="col filter-content mx-n4 d-flex justify-content-between"
+                                *ngFor="let salary of searchJobsFilterData?.salaryRanges; let i = index">
+                                <div class="form-check d-flex"
+                                    *ngIf="(defaultSalaryLength == 0 || i < defaultSalaryLength)">
+                                    <input type="checkbox" class="form-check-input" id="salary{{i}}"
+                                        (click)="filterValue($event, salary.salaryId, 'salary')">
+                                    <label class="form-check-label ml-3" for="salary{{i}}">{{ salary.salaryRange
+                                        }}</label>
+                                </div>
+                                <div class="count" *ngIf="(defaultSalaryLength == 0 || i < defaultSalaryLength)">
+                                    ({{ getCount('salary', 'salaryId', salary.salaryId) }})
+                                </div>
+                            </div>
+                            <div class="col"
+                                *ngIf="searchJobsFilterData?.salaryRanges.length && searchJobsFilterData?.salaryRanges.length > defaultSalaryLength">
+                                <div class="more-controls" *ngIf="defaultSalaryLength == 5"
+                                    (click)="defaultSalaryLength = 0"> + {{ searchJobsFilterData?.salaryRanges.length
+                                    - defaultSalaryLength }} More <i class="fa fa-chevron-down ml-2"></i></div>
+                                <div class="more-controls" *ngIf="defaultSalaryLength == 0"
+                                    (click)="defaultSalaryLength = 5"> Less <i class="fa fa-chevron-up ml-2"></i></div>
+                            </div>
+                        </mat-expansion-panel>
+                    </div>
+                </mat-accordion>
+            </div>
+        </div>
+        <div class="col-lg-6" >
+            <div class="row" *ngIf="searchJobsData?.getAllGobs.length">
+                <div class="col header-filters d-flex justify-content-between mb-2">
+                    <span class="result-count">Showing results: {{ searchJob?.value?.jobTitle }} above {{
+                        searchJobsData?.getAllGobs.length }} jobs</span>
+                </div>
+            </div>
+            <app-search-job-card [list]="searchJobsData?.getAllGobs" ></app-search-job-card>
+        </div>
+        <div class="col-lg-3 search-job pr-0">
+            <div class="find-job">
+                <label class="search-label">Job Title(Designation)</label>
+                <input type="text" class="form-control mb-3 shadow-none" placeholder="Search for Jobs, Skills">
+                <label class="search-label">Name the Alert</label>
+                <input type="text" class="form-control shadow-none" placeholder="">
+                <button class="jc-button">Save as Alert</button>
+            </div>
+            <app-recommended-jobs [showApplyButton]="false"></app-recommended-jobs>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.6" height="24.725" viewBox="0 0 24.6 24.725">
+  <defs>
+    <filter id="Path_110" x="0" y="1.24" width="23.485" height="23.485" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_111" x="6.034" y="0" width="18.566" height="18.566" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="instagram" transform="translate(5.359 3.599)">
+    <path id="Path_109" data-name="Path 109" d="M9.31,0H3.455A3.46,3.46,0,0,0,0,3.456V9.312a3.46,3.46,0,0,0,3.456,3.456H9.311a3.46,3.46,0,0,0,3.456-3.456V3.456A3.46,3.46,0,0,0,9.31,0ZM6.383,9.875A3.491,3.491,0,1,1,9.874,6.384,3.495,3.495,0,0,1,6.383,9.875ZM9.957,3.716a1.032,1.032,0,1,1,1.032-1.032A1.033,1.033,0,0,1,9.957,3.716Zm0,0" transform="translate(0.001 0)" fill="#004475"/>
+    <g transform="matrix(1, 0, 0, 1, -5.36, -3.6)" filter="url(#Path_110)">
+      <path id="Path_110-2" data-name="Path 110" d="M148.763,146.02a2.743,2.743,0,1,0,2.742,2.743A2.746,2.746,0,0,0,148.763,146.02Zm0,0" transform="translate(-137.02 -138.78)" fill="#004475"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -5.36, -3.6)" filter="url(#Path_111)">
+      <path id="Path_111-2" data-name="Path 111" d="M388.276,96.3a.283.283,0,1,0,.283.283A.283.283,0,0,0,388.276,96.3Zm0,0" transform="translate(-372.96 -90.3)" fill="#004475"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+.mat-progress-spinner{
+    margin: 0px auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: fixed;
+    background: #00000038;
+    z-index: 1001;
+}
+
+ ::ng-deep .mat-progress-spinner  {
+     & circle {
+         stroke: white;
+     }
+}

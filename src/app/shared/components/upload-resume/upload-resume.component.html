@@ -1,0 +1,95 @@
+<div class="container-fluid tech-news p-relative">
+    <span class="close-button" (click)="close()"><img src="assets/images/close.png" class="close-popup"
+            alt="logo"></span>
+    <div class="row">
+        <div class="col">
+            <div class="login-page">
+                <div class="logo text-center">
+                    <img src="assets/images/logo.png" class="mb-3" alt="logo">
+                    <p class="tagline-text">It is a long established fact that a reader will be distracted by the readable
+                        content of a page when.</p>
+                </div>
+
+                <div class="title-small text-center">
+                    Attach File
+                </div>
+                <p class="tagline-text">It is a long established fact that a reader will be distracted by the readable
+                    content of a page when.</p>
+                <form [formGroup]="formUpload">
+
+                    <div class="forms mt-3">
+
+                        <input class="file-upload-input" type='file' #myFileInput1
+                        (change)="onSelectFilebase($event, 'Resume')" hidden />
+                        <div class="form-group popup-controls mb-3" (click)="myFileInput1.click()">
+                            <label class="d-block">Upload Resume<span class="text-danger">*</span></label>
+                            <div class="file-uploaded" *ngIf="formUpload.controls.Resume.value">
+                                <img src="assets/images/{{ getFileExtension(formUpload.controls.Resume.value.name) }}.png" class="mb-2 mt-2" alt="logo">
+                                <span> {{ formUpload.controls.Resume.value.name }} </span>
+                                <span class="ml-3 cursor-p" (click)="clearFile('Resume')"><img
+                                        src="assets/images/close.png" class="close-popup" alt="logo"></span>
+                            </div>
+                            <div class="file-upload cursor-p" *ngIf="!formUpload.controls.Resume.value">
+                                <div class="image-upload-wrap">
+                                    <div class="drag-text">
+                                        <img src="assets/images/upload-resume.png" class="mb-2 mt-2" alt="logo">
+                                        <h3> <span >Click here</span> to upload your
+                                            resume
+                                            now</h3>
+                                        <h3 class="format">Format: .pdf, .doc, .docx within ( 2Mb )</h3>
+                                    </div>
+                                </div>
+                                <div class="file-upload-content">
+                                    <img class="file-upload-image" src="#" alt="your image" />
+                                    <div class="image-title-wrap">
+                                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
+                                                class="image-title">Uploaded Image</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <input class="file-upload-input" type='file' #myFileInput2
+                        (change)="onSelectFilebase($event, 'CoverLater')" hidden />
+                        <div class="form-group popup-controls mb-2" (click)="myFileInput2.click()">
+                            <label>Upload Clover letter  </label>
+                            <div class="file-uploaded" *ngIf="formUpload.controls.CoverLater.value">
+                                <img src="assets/images/{{ getFileExtension(formUpload.controls.CoverLater.value.name) }}.svg" class="mb-2 mt-2" alt="logo">
+
+                                <span> {{ formUpload.controls.CoverLater.value.name }} </span>
+                                <span class="ml-3 cursor-p" (click)="clearFile('CoverLater')"><img
+                                        src="assets/images/close.png" class="close-popup" alt="logo"></span>
+                            </div>
+                            <div class="file-upload cursor-p" *ngIf="!formUpload.controls.CoverLater.value">
+                                <div class="image-upload-wrap">
+                                    <div class="drag-text">
+                                        <img src="assets/images/upload-coverletter.png" class="mb-2 mt-2" alt="logo">
+                                        <h3> <span >Click here</span> to upload your
+                                            resume
+                                            now</h3>
+                                        <h3 class="format">Format: .pdf, .doc, .docx within ( 2Mb )</h3>
+                                    </div>
+                                </div>
+                                <div class="file-upload-content">
+                                    <img class="file-upload-image" src="#" alt="your image" />
+                                    <div class="image-title-wrap">
+                                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
+                                                class="image-title">Uploaded Image</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="login-button mt-3 text-center" *ngIf="formUpload.controls.Resume.value">
+                            <button class="jc-button " (click)="submit()">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

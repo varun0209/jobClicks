@@ -1,0 +1,145 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card p-0 advanced-search mb-3">
+            <div class="card-title">Advanced Search</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <form class="py-3" [formGroup]="searchJob">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">
+                                    Job Title (Designation) <span class="text-danger">*</span></label>
+                                    <div class="col-md-6">
+                                <app-autocomplete 
+                                [invalid]="submitted && searchJob.controls.jobTitle.invalid"
+                                [id]="'jobTitleId'" [text]="'jobTitle'"
+                                [value]="searchJob.get('jobTitle').value"
+                                [placeholder]="'Search by Job Title'"  
+                                [options]="searchJobsService.getJobSearchDropdownDataList.jobTitles"
+                                (valueEmit)="clearValue('jobTitle')"
+                                (valueSelectedEmit)="setValues($event,'jobTitle', 'jobTitle')"></app-autocomplete>
+                                <div class="error_text mt-0"
+                                *ngIf="submitted && searchJob.controls.jobTitle.invalid">
+                                <div class="error_text mt-0"
+                                    *ngIf="searchJob.controls.jobTitle.errors.required">
+                                    Please Enter Job Title(Designation) 
+                                </div>
+                            </div>
+                                    </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">
+                                    Key Skills </label>
+                                <div class="col">
+                                    <app-autocomplete-chip
+                                        [id]="'skillId'" [text]="'skillName'"
+                                        [placeholder]="'Search by Skills'"  
+                                        [valuesData]="searchJob.get('keySkills').value"
+                                        [options]="searchJobsService.getJobSearchDropdownDataList.skills"
+                                        (valueSelectedEmit)="setValues($event, 'keySkills')"
+                                    ></app-autocomplete-chip>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">
+                                    Location </label>
+                                <div class="col-sm-5">
+                                    <app-autocomplete 
+                                    [id]="'name'" [text]="'name'"
+                                    [value]="searchJob.get('location').value"
+                                    [placeholder]="'Location'"  
+                                    [options]="searchJobsService.getJobSearchDropdownDataList.location"
+                                    (valueSelectedEmit)="setValues($event,'location')"></app-autocomplete>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">
+                                    Employement Type </label>
+                                <div class="col-sm-4">
+                                    <select class="form-control form-select" 
+                                        id="EmployementType" formControlName="employementType">
+                                        <option value="" disabled>Employement Type</option>
+                                        <option *ngFor="let emp of searchJobsService.getJobSearchDropdownDataList.employementType"
+                                            [value]="emp.id">{{ emp.employeementTypeName }} </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">
+                                    Freshness </label>
+                                <div class="col-sm-4">
+                                    <select class="form-control form-select" id="Freshness" 
+                                        formControlName="freshness">
+                                        <option value="" disabled>Freshness</option>
+                                        <option *ngFor="let fresh of searchJobsService.getJobSearchDropdownDataList.freshness"
+                                            [value]="fresh.id">{{ fresh.name }} </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">
+                                    Experience </label>
+                                <div class="col-sm-2">
+                                    <select class="form-control form-select"  id="MinimumExperience"
+                                        formControlName="minimumExperience" (change)="selectMax()">
+                                        <option value="" disabled>Min</option>
+                                        <option *ngFor='let in of commonService.counter(50) ;let i = index' [value]="i"
+                                            selected>{{i}}</option>
+                                    </select>
+                                    <div class="error_text mt-0" *ngIf="searchJob.controls.minimumExperience.invalid">
+                                        <div class="error_text mt-0" *ngIf="searchJob.controls.minimumExperience.errors.min">
+                                          Please Select Min Experience
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control form-select"  id="MaxiumExperience"
+                                        formControlName="maxiumExperience" (change)="selectMax()">
+                                        <option value="" disabled>Max</option>
+                                        <option *ngFor='let in of commonService.counter(50) ;let i = index' [value]="i"
+                                            selected>{{i}}</option>
+                                    </select>
+                                    <div class="error_text mt-0" *ngIf="searchJob.controls.maxiumExperience.invalid">
+                                        <div class="error_text mt-0" *ngIf="searchJob.controls.maxiumExperience.errors.max">
+                                          The minimum experience cannot be greater than the maximum experience.
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">
+                                    Salary </label>
+                                <div class="col-6">
+                                    <select class="form-control form-select"  id="salary"
+                                        formControlName="salary">
+                                        <option value="" disabled>Select salary</option>
+                                        <option *ngFor="let salary of searchJobsService.getJobSearchDropdownDataList.salaryRange"
+                                            [value]="salary.salaryId">{{ salary.salaryRange }} </option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col text-right mt-3">
+                                <button class="jc-btn-cancel ml-3" (click)="cancel()">Cancel</button>
+                                <button class="jc-button ml-3" (click)="advancedSearchJob()">Search For Job</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+
+        <app-recommended-jobs></app-recommended-jobs>
+
+    </div>
+</div>

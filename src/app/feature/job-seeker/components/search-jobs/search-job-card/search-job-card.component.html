@@ -1,0 +1,83 @@
+<div class="card d-flex justify-content-center align-items-center flex-column" *ngIf="!list.length">
+    <img class="text-bottom" width="300" height="300" src="assets/images/nodatafound.png">
+    <h5 class="no_data_found">No results on your search</h5>
+</div>
+
+<div *ngIf="list.length">
+    <div class="card search-job-details mb-3"
+        *ngFor="let job of list | paginate: { itemsPerPage: pageSize, currentPage: p }">
+        <div class="row">
+            <div class="col-auto">
+                <div class="user-photo">
+                    <img src="{{ job?.companyLogoPath ? appService.domain + job?.companyLogoPath : 'assets/images/default_comapny_icon.svg' }}"
+                        class="location-field" alt="location">
+                </div>
+            </div>
+            <div class="col">
+                <div class="search-company-details">
+                    <div class="job-title mb-2 cursor-p" (click)="showDetails(job)"> {{ job.jobTitle }} <span class="job-id">Job ID: {{ job.jobId }}
+                        </span></div>
+                    <div class="company-name mb-2">{{ job.companyName ? job.companyName : 'N/A' }}</div>
+                    <div class="d-flex mb-2">
+                        <span class="job-details"><img src="assets/images/experience_icon.svg"
+                                class="location-field" alt="location"> <span class="text ml-2"> {{
+                                job.minExperience ? job.minExperience : 'N/A' }} - {{ job.maxExperience ? job.maxExperience : 'N/A' }}
+                                Years</span></span>
+                        <span class="job-details mx-5"><img src="assets/images/employment_type.svg"
+                                class="location-field" alt="location"> <span class="text ml-2"> {{
+                                job.employeementTypeName ? job.employeementTypeName : 'N/A' }} </span></span>
+                        <span class="job-details"><img src="assets/images/location.svg" class="location-field"
+                                alt="location"> <span class="text ml-2">{{ job.location ? job.location : 'N/A' }}</span></span>
+                    </div>
+                    <div class="job-description d-flex mb-2">
+                        <img src="assets/images/job_description.svg" class="mr-2" alt="location">
+                        <span class="roles"> {{ commonService.convertHtmlToString(job.rolesAndResponsibilities) }} 
+                            <span (click)="showDetails(job)" class="show-more">
+                                Show More..
+                            </span>
+                        </span>
+                    </div>
+                    <div class="skills d-flex">
+                        <img src="assets/images/skills.svg" class="mr-2" alt="location">
+                        <span> {{ job.keySkills }} </span>
+                    </div>
+                    <div class="footer-buttons mt-2 mb-2 d-flex align-i-center justify-content-between">
+                        <div class="">
+                            <button class="last-update-btn"><img src="assets/images/postedicon.svg" class="mr-2"
+                                    alt="location"> {{ commonService.getTimeDifference(job.createdOn) }} ago</button>
+                        </div>
+                        <div class="ml-3">
+                            <button class="jc-button share-btn"><img src="assets/images/share_post.svg"
+                                    alt="location"> Share</button>
+                            <button class="jc-button apply-btn ml-3" [ngClass]="{ 'applied-btn' : job.jobApplyed }" (click)="showDetails(job)"> {{ job.jobApplyed ? 'Applied' : 'Apply' }} </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pagination d-flex justify-content-between" *ngIf="list.length">
+        <span class="count-number align-self-center">
+            <nav class="navbar navbar-expand-lg menubar d-flex p-0 cursor-p">
+                <span>Results Per Page :</span>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle p-0" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">{{ pageSize }} </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <span class="menu-active-bg"></span>
+                        <li><a class="dropdown-item cursor-p" (click)="changePagePerIndex(20)"> 20 </a></li>
+                        <li><a class="dropdown-item cursor-p" (click)="changePagePerIndex(40)"> 40 </a></li>
+                        <li><a class="dropdown-item cursor-p" (click)="changePagePerIndex(60)"> 60 </a></li>
+                        <li><a class="dropdown-item cursor-p" (click)="changePagePerIndex(80)"> 80 </a></li>
+                        <li><a class="dropdown-item cursor-p" (click)="changePagePerIndex(100)"> 100 </a></li>
+                        <li><a class="dropdown-item cursor-p" (click)="changePagePerIndex(120)"> 120 </a></li>
+                        <li><a class="dropdown-item cursor-p" (click)="changePagePerIndex(140)"> 140 </a></li>
+                        <li><a class="dropdown-item cursor-p" (click)="changePagePerIndex(160)"> 160 </a></li>
+
+                    </ul>
+                </div>
+            </nav>
+        </span>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

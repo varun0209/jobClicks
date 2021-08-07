@@ -1,0 +1,54 @@
+.footer {
+  background: transparent linear-gradient(101deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+  color: #FFFFFF;
+}
+.footer .footer-content {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.footer .footer-content .footer-logo .logo {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-weight: 600;
+  font-size: 22px;
+}
+.footer .footer-content .footer-logo .logo span {
+  color: #a58c3e;
+  font-size: 12px;
+}
+.footer .footer-content .footer-logo p {
+  font-size: 10px;
+}
+.footer .footer-content .footer-logo h5 {
+  font-size: 10px;
+}
+.footer .footer-content .footer-logo .social-icon span {
+  padding-left: 5px;
+  font-size: 10px;
+}
+.footer .footer-content .footer-logo .follow a img {
+  width: 25px;
+  height: 25px;
+}
+.footer .footer-content .footer-menu h5 {
+  font-size: 10px;
+}
+.footer .footer-content .footer-menu a {
+  display: block;
+  font-size: 11px;
+  text-decoration: none;
+  color: #F1F1F1;
+  padding-top: 10px;
+}
+.footer .footer-bar {
+  --bs-gutter-x: 0rem !important;
+  opacity: 0.3;
+  background-color: #005C97;
+}
+.footer .footer-bar p {
+  font-size: 8px;
+  padding: 8px 0px;
+  margin: 0px;
+  opacity: 100% !important;
+  color: #FFFFFF;
+}

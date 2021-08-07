@@ -1,0 +1,131 @@
+.search-job-details{
+    
+    .search-company-details{
+        .job-title{
+            font-size: 16px;
+            color: #004475;
+            font-weight:600;
+            .job-id{
+                font-size: 12px;
+                color: #333333;
+                margin-left: 10px;
+            }
+        }
+        .company-name{
+            color: #8D4524;
+            font-size: 14px;
+        }
+        .job-details{
+            font-size: 12px;
+        }
+        .job-description, .skills{
+            font-size: 12px;
+            img{
+                align-self: flex-start;
+            }
+            .roles{
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: relative;
+                text-align: justify;
+                .show-more{
+                    color: #055897;
+                    position: absolute;
+                    top: 18px;
+                    right: 0;
+                    background: #fff;
+                    padding-left: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+        .footer-buttons{
+            .last-update-btn{
+                width: 90px;
+                font-size: 10px;
+                height: 22px;
+                border-radius: 4px;
+                background: #1F7800;
+                border: none;
+                color: #fff;
+                display: flex;
+                align-items: center;
+            }
+            .apply-btn{
+                width: 145px;
+                height: 32px;
+            }
+            .share-btn{
+                background: #FFFFFF 0% 0% no-repeat padding-box;
+                box-shadow: 0px 3px 6px #00000029;
+                color: #333333;
+                width: 120px;
+                height: 32px;
+            }
+        }
+    }
+    .user-photo{
+        border-radius: 10px;
+            width: 70px;
+            height: 70px;
+            border: 1px #ddd solid;
+        display: inline-grid;
+    align-items: center;
+    padding: 5px;
+        img{
+            width: 100%;
+        }
+    }
+}
+
+
+.header-filters{
+    .result-count{
+        font-size: 10px;
+    }
+}
+
+
+.pagination{
+    .count-number{
+        color: #333333 !important;
+            font-size: 10px !important;
+        .dropdown .nav-link{
+            padding: 3px 10px !important;
+            background: #999999;
+            color: #fff;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+        .dropdown-menu{
+            min-width: 30px !important;
+            margin-left: 8px;
+            font-size: 10px !important;
+        }
+    }
+    .page-link {
+        position: relative;
+        display: block;
+        color: #004475;
+        font-weight: 200;
+        text-decoration: none;
+        background-color: #f8f8f8;
+        border: none;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        padding: 5px 14px;
+        border-radius: 5px;
+        background: transparent linear-gradient( 
+    106deg
+     , #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+        background-color: #0d6efd;
+        border-color: #055897;
+    }
+}
+

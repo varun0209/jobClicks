@@ -1,0 +1,181 @@
+  <div class="container">
+    <div class="row py-4 mt-3">
+      <div class="col-12 text-center">
+        <div class="title">{{ employeeData?.companyName }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        <div class="card p-0 company-profile-overview mb-3">
+          <div class="card-title">Company Details</div>
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="company-overview-logo-section" >
+                  <img src="{{ employeeData?.companyLogoPath ? appService.domain + employeeData?.companyLogoPath : 'assets/images/Group-42556.png' }}" class="company-overview-logo cursor-p" alt="...">
+                  <!-- <a class="cursor-p edit-logo" (click)="editLogo(fileUpload)">Edit</a> -->
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <div class="company-details-cotent my-3">
+                  <div class="title pl-0 cursor-p" (click)="editProfile()">{{ employeeData?.companyName }} </div>
+                  <div class="company-details-cotent-body">
+                    <div class="row m-0">
+                      <div class="col-lg-6 company-overview-icons-content">
+                        <img src="assets/images/website.png" class="company-overview-icons mr-3" alt="...">
+                        {{ employeeData?.companyWebSite }}
+                      </div>
+                      <div class="col-lg-6 company-overview-icons-content">
+                        <img src="assets/images/industry.png" class="company-overview-icons mr-3" alt="...">
+                        {{ employeeData?.industryType }}
+                      </div>
+                      <div class="col-lg-6 company-overview-icons-content">
+                        <img src="assets/images/contact_number.png" class="company-overview-icons mr-3" alt="...">
+                       {{ employeeData?.mobileNo }}
+                       <a class="cursor-p edit" (click)="editPhone()">Edit</a>
+
+                      </div>
+                      <div class="col-lg-6 company-overview-icons-content">
+                        <img src="assets/images/facebook-1.png" class="company-overview-icons mr-3" alt="...">
+                        {{ employeeData?.facebookLink }}
+                      </div>
+                      <div class="col-lg-6 company-overview-icons-content">
+                          <img src="assets/images/email.png" class="company-overview-icons mr-3" alt="...">
+                          {{ employeeData?.email }}
+                          <a class="cursor-p edit" (click)="editEmail()">Edit</a>
+                      </div>
+                      <div class="col-lg-6 company-overview-icons-content">
+                        <img src="assets/images/twitter-1.svg" class="company-overview-icons mr-3" alt="...">
+                        {{ employeeData?.twitterLink }}
+                      </div>
+                      <div class="col-lg-6 company-overview-icons-content">
+                        <img src="assets/images/location.svg" class="company-overview-icons mr-3" alt="...">
+                        {{ employeeData?.address1 }}, {{ employeeData?.address2 }}
+                      </div>
+                      <div class="col-lg-6 company-overview-icons-content">
+                        <img src="assets/images/instagram-1.svg" class="company-overview-icons mr-3" alt="...">
+                        {{ employeeData?.linkedInLink }}
+                      </div>
+                    </div>
+                    <div class="row m-0">
+                      <div class="col">
+                        <h6>About Company</h6>
+                        <div class="about-company"> <span [innerHTML]="employeeData?.description"></span>
+                        </div>
+                        <div class="company-location" *ngIf="employeeData?.mapLocationLink">
+                          <div class="mapouter">
+                            <div class="gmap_canvas" >
+                                <iframe id="gmap_canvas" [src]='sanitizer.bypassSecurityTrustResourceUrl(employeeData?.mapLocationLink)'  width="600"
+                                height="450"
+                                frameborder="0" style="border:0"
+                                scrolling="no" marginheight="0" marginwidth="0"
+                                allowfullscreen>
+                                  </iframe>
+                              <a href="https://soap2day-to.com">soap2day</a><br>
+                              <style>
+                                .mapouter {
+                                  position: relative;
+                                  text-align: right;
+                                  height: 160px;
+                                  width: 550px;
+                                }
+                              </style><a href="https://www.embedgooglemap.net">adding google map to wordpress</a>
+                              <style>
+                                .gmap_canvas {
+                                  overflow: hidden;
+                                  background: none !important;
+                                  height: 160px;
+                                  width: 550px;
+                                }
+                              </style>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card p-0 company-profile-overview mb-3">
+          <div class="card-title">Contact Person Details</div>
+          <div class="card-body p-0">
+            <div class="row m-0">
+              <div class="col-lg-9">
+                <div class="company-details-cotent my-3">
+                  <div class="title pl-3">                        {{ employeeData?.contactPerson[0]?.contactPersonName }}
+                  </div>
+                  <div class="company-details-cotent-body">
+                    <div class="row m-0">
+                      <!-- <div class="col-lg-6 company-overview-icons-content">
+                        <img src="assets/images/designation_icon.png" class="company-overview-icons mr-3" alt="...">
+                        {{ employeeData?.contactPerson[0]?.contactPersonName }}
+                      </div> -->
+                      <div class="col-lg-12 company-overview-icons-content">
+                        <img src="assets/images/industry.png" class="company-overview-icons mr-3" alt="..."> {{ employeeData?.contactPerson[0]?.jobTitle }}
+                      </div>
+                      <div class="col-lg-12 company-overview-icons-content">
+                        <img src="assets/images/email.png" class="company-overview-icons mr-3" alt="...">
+                        {{ employeeData?.contactPerson[0]?.email }}
+                      </div>
+                      <div class="col-lg-12 company-overview-icons-content">
+                        <img src="assets/images/contact_number.png" class="company-overview-icons mr-3" alt="...">
+                       {{ employeeData?.contactPerson[0]?.mobileNo }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div>
+          <app-jobclicks-adds></app-jobclicks-adds>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <ng-template #fileUpload>
+    <div class="container-fluid tech-news p-0 p-relative">
+      <span class="close-button" (click)="commonService.hideDialog()"><img src="assets/images/close.png" class="close-popup" alt="logo"></span>
+          <div class="row">
+              <div class="col p-0">
+                  <div class="landing-login-page">
+                      <div class="logo text-center">
+                          <img src="assets/images/logo.png" class="mb-3" alt="...">
+                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                              has
+                              been the industry's</p>
+                      </div>
+                      <div class="login-title text-center">
+                          Login/Register
+                      </div>
+
+    <app-file-upload
+    [fileExtension]="fileExtension"
+    (emitFilesList)="emitFilesList($event)"
+    [type]="'card'"
+    [oldFileList]="fileList"
+  >
+  </app-file-upload>
+
+  <div class="d-flex justify-content-center mt-2">
+
+    <button class="jc-button-small mr-2" (click)="updateEmployerLogo()">Upload</button>
+
+    <button class="jc-btn-cancel" (click)="fileList = null">Cancel</button>
+  
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+  </ng-template>

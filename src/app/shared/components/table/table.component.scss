@@ -1,0 +1,206 @@
+:host ::ng-deep table {
+  font-family: sans-serif;
+
+  &>tbody {
+
+    & td {
+      font-size: 11px;
+      vertical-align: middle;
+      border: none !important;
+    }
+
+    & th {
+      vertical-align: middle;
+      border: none !important;
+    }
+
+  }
+}
+
+.mat-header-cell,
+.mat-cell {
+  white-space: nowrap;
+  padding: 5px;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  border: none !important;
+}
+
+.mat-paginator{
+  display: block;
+  padding-top: 20px;
+  background: #f7f7f7;
+}
+::ng-deep mat-paginator {
+  & .mat-paginator-container {
+    height: 0px;
+    min-height: 35px;
+    justify-content: center !important;
+  }
+}
+
+
+.table th {
+  font-size: 11px;
+  color: lightgray;
+}
+
+.table tr {
+  height: 35px !important;
+  border-bottom: 1px solid #d3d3d375;
+}
+
+
+.hyperlink {
+  color: #004475;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.no_data_found {
+  color: #004475;
+}
+.manage-job-grid{
+  border-radius: 8px;
+  margin-top: 15px;
+  padding: 0;
+
+  .table .mat-table .mat-header-row{
+    background: transparent linear-gradient(
+      106deg
+      , #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+          color: #fff;
+          font-size: 12px;
+          font-weight: 300;
+          height: 28px !important;
+          border-radius: 8px 8px 0 0; 
+          .mat-sort-header:nth-child(1){
+            border-radius: 8px 0 0 0;
+          } 
+          .mat-sort-header:nth-last-child(1){
+            border-radius: 0 8px 0 0;
+          } 
+          .mat-sort-header:nth-child(1){
+            padding-left: 45px;
+          }
+  } 
+  .table{
+    margin-bottom: 0px;
+  }
+  .table .mat-table .mat-row{
+    padding: 5px;
+    .active-row{
+      background: #C9DEFC;
+    }
+
+    .mat-cell{
+      font-size: 14px;
+      .grid-check{
+        input{
+          margin-right: 20px;
+        }
+      }
+    }
+    .mat-cell:nth-child(1){
+      padding-left: 15px;
+    }
+    .mat-cell:nth-child(4), .mat-cell:nth-child(5), .mat-cell:nth-child(6), .mat-cell:nth-child(7){
+      text-align: center;
+      padding-right: 34px;
+    }
+    // .mat-cell:nth-child(1){
+    //   border-radius: 8px 0 0 8px;
+    // }
+    // .mat-cell:nth-last-child(1){
+    //   border-radius: 0 8px 8px 0 ;
+    // }
+  }
+  .mat-sort-header{
+    color: #fff;
+    font-size: 12px;
+    font-weight: 300;
+  }
+  .dropdown{
+    .custom-dropdown{
+      background: none;
+      border: none;
+      line-height: 30px;
+      font-size: 14px;
+      font-weight: 300;
+    }
+    .custom-dropdown:focus{
+        box-shadow:none;
+    }
+    .active{
+      color: #009723;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 0px 0;
+    }
+    .inactive{
+      color: #B90000;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .dropdown-toggle:after {
+      font-family: FontAwesome;
+       content:"\f107";
+      display: inline-block;
+      padding-right: 3px;
+      vertical-align: middle;
+      border-top: 0;
+   }
+  }
+  
+}
+.manage-job-header{
+    height: 45px;
+    width: 100%;
+    background: transparent linear-gradient( 
+106deg
+ , #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+    margin-right: 15px;
+    .form-check{
+        padding-left: 30px;
+        height: 27px;
+        margin: 11px;
+        padding-right: 10px;
+        border-right: 1px #dddddd5c solid;
+        width: 35px;
+        .form-check-input{
+            // background: #025b97;
+            // border: 1px #dbdbdbad solid;
+            width: 16px;
+            height: 16px;
+        }
+    }
+    .grid-search{
+        padding: 8px;
+        margin-right: 0px;
+        input{
+            width: 260px;
+            height: 28px;
+            border-radius: 6px !important;
+        }
+        input::placeholder{
+                color:#BBBBBB;
+            }
+            .search-img{
+                margin: -10px -8px;
+                margin-left: -20px;
+                padding-top: 4px;
+            }
+    }
+    
+    
+}
+
+
+.inActive { 
+  color: red !important;
+}

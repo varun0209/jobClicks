@@ -1,0 +1,324 @@
+<!-- Nithin code -->
+
+<div class="container" *ngIf="jobDeatils && companyDeatils && contactPersonData">
+  <div class="row py-4 mt-3">
+    <a [hidden]="!selectedjobid" (click)="backManageJob()"> back </a>
+    <div class="col-12 text-center">
+      <div class="title">Preview & Post Job <span class="text-danger tagline">(Need content)</span></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div class="card p-0 mb-3">
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-lg-2">
+              <div class="company-overview-logo-section">
+                <!-- <img src="assets/images/companyprofileimage_profilescreen.png" class="company-overview-logo" alt="..." style="width: 100%;
+                    margin: 10px;"> -->
+                <div class="company-logo">
+                  <img
+                    src="{{ companyDeatils?.companyLogoPath ? appService.domain + companyDeatils?.companyLogoPath : 'assets/images/companyprofileimage_profilescreen.png' }}"
+                    class="company-overview-logo" alt="..." style="width: 100%;
+                    margin: 10px;">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-10">
+              <div class="company-details-cotent my-3">
+                <div class="title pl-0"> </div>
+                <div class="company-details-cotent-body">
+
+                  <h5 class="ml-3">{{jobDeatils.jobTitle}} <span class="jobidview" *ngIf="selectedjobid">Job Id:
+                      {{jobDeatils.jobId}}</span></h5>
+                  <h6 class="ml-3">{{companyDeatils.companyName}}</h6>
+
+                  <div class="row m-0">
+                    <div class="col-lg-5 company-overview-icons-content">
+                      <img src="assets/images/Employment_type_icon.png" class="company-overview-icons mr-3" alt="...">
+                      <span>{{jobDeatils.employementType}}</span>
+                    </div>
+                    <div class="col-lg-6 company-overview-icons-content">
+                      <img src="assets/images/wallet-filled-money-tool (1).png" class="company-overview-icons mr-3"
+                        alt="...">
+                      <span *ngIf="!jobDeatils.hideSalary">{{jobDeatils.salary}}</span>
+                    </div>
+                    <div class="col-lg-5 company-overview-icons-content">
+                      <img src="assets/images/Experience_icon.png" class="company-overview-icons mr-3" alt="...">
+                      <span>{{jobDeatils.minExperience}} - {{jobDeatils.maxExperience}}</span>
+                    </div>
+                    <div class="col-lg-6 company-overview-icons-content">
+                      <img src="assets/images/location.png" class="company-overview-icons mr-3" alt="...">
+                      <span>{{jobDeatils.location}}</span>
+                    </div>
+                    <div class="col-lg-5 company-overview-icons-content">
+                      <img src="assets/images/graduation-cap.png" class="company-overview-icons mr-3" alt="...">
+                      <span>{{jobDeatils.education}}</span>
+                    </div>
+                    <div class="col-lg-6 company-overview-icons-content">
+                      <img src="assets/images/remote_option.png" class="company-overview-icons mr-3" alt="...">
+                      <span>{{jobDeatils.remoteOption}}</span>
+                    </div>
+
+                    <div class="col-lg-12 mt-2 company-overview-icons-content">
+                      <img src="assets/images/skills.png" class="company-overview-icons mr-3" alt="...">
+                      <span>{{jobDeatils.keySkills}}</span>
+                    </div>
+                    <br>
+                    <div class="col-lg-6 mt-2 company-overview-icons-content">
+                      <img src="assets/images/GreenDot.png" class="company-overview-icons mr-3" alt="...">
+                      <span *ngIf="selectedjobid" class="companydeatilsps">Posted Date:</span> <span>{{jobDeatils.createdOn |
+                        date:'mm-dd-yyyy'}}</span> <br>
+                      <img src="assets/images/BlueDot.png" class="company-overview-icons mr-3" alt="...">
+                      <span *ngIf="selectedjobid" class="companydeatilsps">Job Applicants:</span>
+                      <span>{{jobDeatils.jobApplicationsCount}}</span>
+                    </div>
+                    <div class="col-lg-6 mt-2 company-overview-icons-content">
+                      <div class="vacancies">
+                        <img src="assets/images/Vacancies.png" class="company-overview-icons mr-3" alt="...">
+                        {{jobDeatils.jobVacancies}} Vacancies
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Job Information</div>
+        <div class="card-body p-0">
+          <div class="row m-0">
+            <div class="col-lg-9">
+              <div class="company-details-cotent my-3">
+                <div class="title pl-3">
+                </div>
+                <div class="company-details-cotent-body">
+                  <div class="row m-0">
+                    <p>
+                      <span [innerHtml]="jobDeatils.description"></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Roles and Responsibilities</div>
+        <div class="card-body p-0">
+          <div class="row m-0">
+            <div class="col-lg-9">
+              <div class="company-details-cotent my-3">
+                <div class="title pl-3">
+                </div>
+                <div class="company-details-cotent-body">
+                  <div class="row m-0">
+                    <p>
+                      <span [innerHtml]="jobDeatils.rolesAndResponsibilities"></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Contact Person Details</div>
+        <div class="card-body p-0">
+          <div class="row m-0">
+            <div class="col-lg-12">
+              <div class="company-details-cotent my-3">
+                <div class="title pl-3">
+                </div>
+                <div class="company-details-cotent-body">
+                  <div class="row m-0 companydeatilsp">
+                    <p>Contact Person Name: <span>{{contactPersonData.contactPersonName}}</span></p> <br>
+                    <p>Job Title (Designation):<span>{{contactPersonData.jobTitle}}</span></p> <br>
+                    <p>Email ID: <span>{{contactPersonData.email}}</span></p> <br>
+                    <p>Contact Person: <span>{{contactPersonData.countryCode}} {{contactPersonData.mobileNo}}</span></p>
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-0 company-profile-overview mb-3">
+        <div class="card-title">Company Details</div>
+        <div class="card-body p-0">
+          <div class="row m-0">
+            <div class="col-lg-12">
+              <div class="company-details-cotent my-3">
+                <div class="title pl-3">
+                </div>
+                <div class="company-details-cotent-body">
+                  <div class="row m-0 companydeatilsp">
+                    <p>Company Type: <span class="ml-2">{{companyDeatils.companyType}}</span></p> <br>
+                    <p>Company Name:<span class="ml-2">{{companyDeatils.companyName}}</span></p> <br>
+                    <p>About Company: <span class="ml-2" [innerHtml]="companyDeatils.description"></span></p> <br>
+                    <br>
+                    <p>Receive response to Email ID: <span>{{jobDeatils.receiveResponseToEmail ?
+                        jobDeatils.responseEmail : 'No' }}</span></p> <br>
+                    <div class="row mb-2">
+                      <div class="col-lg-12 d-flex">
+                      <span class="align-self-center">
+                        <img src="assets/images/website.png" class="company-overview-icons mr-3" alt="...">
+                      </span>
+                      <div class="">
+                        <span>{{companyDeatils.companyWebSite}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-2">
+                    <div class="col-lg-12 d-flex">
+                    <span class="align-self-center">
+                      <img src="assets/images/contact_number.png" class="company-overview-icons mr-3" alt="...">
+                    </span>
+                    <div class="">
+                      <span>{{companyDeatils.countryCode}}{{companyDeatils.mobileNo}}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-2">
+                  <div class="col-lg-12 d-flex">
+                  <span class="align-self-center">
+                    <img src="assets/images/email.png" class="company-overview-icons mr-3" alt="...">
+                  </span>
+                  <div class="">
+                    <span>{{companyDeatils.email}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-lg-12 d-flex">
+                  <span class="">
+                    <img src="assets/images/location.png" class="company-overview-icons align-self-start mr-3 mt-1" alt="...">
+                  </span>
+                  <div class="">
+                    <span>{{companyDeatils.address1}},<br> {{companyDeatils.address2}} </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" *ngIf="previewProfile">
+  <div class="row">
+    <div class="col text-right">
+      <button class="jc-btn-cancel" (click)="clrearForm()">Cancel</button>
+      <button class="jc-btn-cancel ml-3" (click)="Backtojobpost()">Back</button>
+      <button class="jc-button ml-3" (click)="submitForm()"> Post Job</button>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" *ngIf="previewProfilebacktomj">
+  <div class="row">
+    <div class="col text-right">
+      <button class="jc-btn-cancel ml-3" (click)="Backtomanagejobs()">Back</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="col-4">
+  <!-- ..........................  -->
+  <div class="row">
+    <div class="recent-search">
+      <div class="row">
+        <div class="col">
+          <h5 style="margin: 0px; padding-top: 1rem; font-size: 14px;">Recent Applications</h5>
+
+        </div>
+        <div class="col  pt-3" style="text-align: end !important; color: gray;">
+          <span >05/25</span>
+        </div>
+        <hr class="mt-2">
+      </div>
+
+      <form class="search-design">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Select your designation">
+          <div class="search-icon">
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+            </svg>
+          </div>
+        </div>
+      </form>
+      <div class="row bg-change">
+        <div class="col">
+          <h5> Sr. Digital Marketing</h5>
+        </div>
+        <div class="col">
+          <p>23</p>
+        </div>
+      </div>
+      <div class="row bg-change">
+        <div class="col">
+          <h5> Sr. Digital Marketing</h5>
+        </div>
+        <div class="col">
+          <p>20</p>
+        </div>
+      </div>
+      <div class="row  bg-change">
+        <div class="col">
+          <h5> Sr. Front UI Developer</h5>
+        </div>
+        <div class="col">
+          <p>19</p>
+        </div>
+      </div>
+      <div class="row  bg-change">
+        <div class="col">
+          <h5>Sr. .NET Developer</h5>
+        </div>
+        <div class="col">
+          <p>13</p>
+        </div>
+      </div>
+      <div class="row  bg-change">
+        <div class="col">
+          <h5> Sr. Business Analyst</h5>
+        </div>
+        <div class="col">
+          <p>41</p>
+        </div>
+      </div>
+      <div class="row  bg-change more">
+        <div class="col">
+          <a href="">+25 More</a>
+          <span><svg style="width:24px;height:24px; color:#1492E6;" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+            </svg></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <app-jobclicks-adds></app-jobclicks-adds>
+  </div>
+</div>
+</div>
+</div>
