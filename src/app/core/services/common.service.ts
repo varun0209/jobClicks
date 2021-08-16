@@ -47,7 +47,9 @@ export class CommonService {
   }
 
   hideDialog() {
-    this.dialogRef.close()
+    if(this.dialogRef) {
+      this.dialogRef.close()
+    }
   }
  
   snackBar(message, type) {
@@ -131,6 +133,7 @@ export class CommonService {
   }
 
   clearStorage() {
+    this.hideDialog();
     localStorage.clear();
   }
 

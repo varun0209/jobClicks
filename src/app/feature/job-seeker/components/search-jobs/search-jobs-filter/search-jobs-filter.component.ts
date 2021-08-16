@@ -36,6 +36,7 @@ export class SearchJobsFilterComponent implements OnInit {
   }
 
   searchJobModel() {
+    const loginData = JSON.parse(localStorage.getItem('loginData'));
     this.searchJob = this.fb.group({
       jobTitle: ['', Validators.required],
       keySkills: [''],
@@ -45,7 +46,8 @@ export class SearchJobsFilterComponent implements OnInit {
       maxiumExperience: [''],
       minimumExperience: [''],
       remoteOptions: [''],
-      salary: ['']
+      salary: [''],
+      employeeId: [loginData.id.toString()]
     });
   }
 
@@ -80,9 +82,8 @@ export class SearchJobsFilterComponent implements OnInit {
     this.searchJob.patchValue({
       keySkills: this.searchJob.value.keySkills && this.searchJob.value.keySkills.length ? this.searchJob.value.keySkills.join(',') : ''
     })
-    this.searchJobsService.sendMessage(this.searchJob.value);
     this.searchJobsService.perviousRoute = 'auth/employee/search-jobs/advanced-search';
-    this.route.navigateByUrl('auth/employee/search-jobs/job-results')
+    this.route.navigate(['auth/employee/search-jobs/job-results'], { queryParams:  this.searchJob.value } )
   }
 
   cancel(){

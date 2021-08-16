@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AlertsComponent } from './components/alerts/alerts.component';
-import { AppliedJobsComponent } from './components/applied-jobs/applied-jobs.component';
 import { HomeComponent } from './components/home/home.component';
 import { MyprofileComponent } from './components/myprofile/myprofile.component';
 import { ProfileoverviewComponent } from './components/profileoverview/profileoverview.component';
@@ -31,10 +30,6 @@ const routes: Routes = [
       {
         path: 'alerts',
         component: AlertsComponent
-      },
-      {
-        path: 'applied-jobs',
-        component: AppliedJobsComponent
       },
       // {
       //   path: 'saved-jobs',

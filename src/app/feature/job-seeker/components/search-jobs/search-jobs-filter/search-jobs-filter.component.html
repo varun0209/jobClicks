@@ -5,7 +5,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <form class="py-3" [formGroup]="searchJob">
+                        <form class="" [formGroup]="searchJob">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">
                                     Job Title (Designation) <span class="text-danger">*</span></label>
@@ -51,7 +51,7 @@
                                     [value]="searchJob.get('location').value"
                                     [placeholder]="'Location'"  
                                     [options]="searchJobsService.getJobSearchDropdownDataList.location"
-                                    (valueSelectedEmit)="setValues($event,'location')"></app-autocomplete>
+                                    (valueSelectedEmit)="setValues($event,'location', 'name')"></app-autocomplete>
                                 </div>
                             </div>
 

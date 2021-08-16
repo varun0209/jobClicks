@@ -21,7 +21,13 @@ export class AutocompleteComponent implements OnInit {
   @Input() text: string
   @Input() placeholder: string
   @Input() invalid = false;
-
+  @Input() set disabled(value) {
+    if(value) {
+      this.myControl.disable();
+    } else {
+      this.myControl.enable();
+    }
+  }
   inputValue: any;
 
   @Input() set value(val) {

@@ -77,7 +77,7 @@ export class ManageJobsComponent implements OnInit {
         { key: 'filledPositionCount', label: 'Filled'},
         { key: 'vacanciesCount', label: 'Vacancies'},
         { key: 'isActive', label: 'Status', type: 'dropdown' , lists: [ { isActive: true, text: 'Active' }, { isActive: false, text: 'In-active'  }] , id: 'isActive', text: 'text' },
-        { key: 'edit', label: 'Edit', type: 'edit' }
+        { key: 'action', label: 'Action', type: 'action', edit: true }
       ],
       uniqueKey: 'jobId'
     }

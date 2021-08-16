@@ -26,7 +26,9 @@ export class TableComponent implements OnInit {
   @Output() onLinkClickEmit = new EventEmitter();
   @Output() onCheckboxClickEmit = new EventEmitter();
   @Output() onDropdownClickEmit = new EventEmitter();
+  @Output() onViewRowEmit = new EventEmitter();
   @Output() onEditRowEmit = new EventEmitter();
+  @Output() onDeleteRowEmit = new EventEmitter();
 
   @Input() set tableData(res) {
     if (!this.commonService.checkNullOrUndefined(res)) {
@@ -77,7 +79,7 @@ export class TableComponent implements OnInit {
           def: cols.key, 
           label: cols.label, 
           type: cols.type ? cols.type : '', 
-          hide: cols.hiide ? cols.hide : true,
+          hide: cols.hide ? cols.hide : true,
           ...cols
         }
         this.columnDefinitions.push(obj)
@@ -99,7 +101,7 @@ export class TableComponent implements OnInit {
   checkAll(event) {
     this.allChecked = true;
     const checked = event.target.checked;
-    const obj = { value: checked, element: 'all', data: this.dataSource.data };
+    const obj = { value: checked, element: 'all', data: checked ? this.dataSource.data : [] };
     this.onCheckboxClickEmit.emit(obj);
     let list = [ ...this.dataSource.data ]; 
     list.map(res =>{ 
@@ -143,8 +145,16 @@ export class TableComponent implements OnInit {
     })
   }
 
+  onViewRow(row) {
+    this.onViewRowEmit.emit(row)
+  }
+
   onEditRow(row) {
     this.onEditRowEmit.emit(row)
+  }
+
+  onDeleteRow(row) {
+    this.onDeleteRowEmit.emit(row)
   }
 
   confirmationPopup(value,callBack) {

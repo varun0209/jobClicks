@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { HttpMethod } from '../../../../core/enums/http-handlers';
@@ -24,16 +24,18 @@ export class SearchJobsComponent implements OnInit, OnDestroy {
 
   hideBack = false
  
-  subscription: Subscription;
+  showSearch = true;
 
   constructor(
     private fb: FormBuilder,
     public commonService: CommonService,
     private appService: AppService,
     private route: Router,
+    private router: ActivatedRoute,
     public searchJobsService: SearchJobsService,
     private spinnerService: SpinnerService
   ) {
+    this.searchJobsService.getJobSearchDropdownData();
     this.route.events.subscribe((event) => {
 
       if (event instanceof NavigationStart) {
@@ -43,7 +45,14 @@ export class SearchJobsComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
           // Hide loading indicator
           this.submitted = false;
+          if(event.url.includes('applied-jobs') || event.url.includes('manage-jobs-alerts')) {
+            this.showSearch = false;
+          } else {
+            this.showSearch = true;
+          }
           if(event.url.includes('advanced-search')) {
+            this.submitted = false;
+            this.searchJobModel();
             this.hideBack = true
           } else {
             this.hideBack = false
@@ -58,28 +67,23 @@ export class SearchJobsComponent implements OnInit, OnDestroy {
 
    });
    
-   this.subscription =  this.searchJobsService.getMessage().subscribe(res => {
-      if(res == 'removeJobDetails') {
-        this.submitted = false;
-        this.searchJobModel();
-      }
-    })
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
 
   ngOnInit(): void {
     this.searchJobModel();
-    this.searchJobsService.getJobSearchDropdownData();
+    this.searchJob.patchValue(this.router.queryParams['_value']);
   }
 
   searchJobModel() {
+    const loginData = JSON.parse(localStorage.getItem('loginData'));
     this.searchJob = this.fb.group({
       jobTitle: ['', Validators.required],
-      location: ['']
+      location: [''],
+      employeeId: [loginData.id.toString()]
     });
   }
 
@@ -100,14 +104,13 @@ export class SearchJobsComponent implements OnInit, OnDestroy {
     if(this.searchJob.invalid) {
       return
     }
-    this.searchJobsService.sendMessage(this.searchJob.value);
     this.searchJobsService.perviousRoute = 'auth/employee/search-jobs/advanced-search';
-    this.route.navigateByUrl('auth/employee/search-jobs/job-results')
+    this.route.navigate(['auth/employee/search-jobs/job-results'], { queryParams:  this.searchJob.value } )
   }
 
   back() {
     if(this.searchJobsService.perviousRoute) {
-      this.route.navigateByUrl(this.searchJobsService.perviousRoute);
+      this.route.navigate([this.searchJobsService.perviousRoute], { queryParams:  this.searchJob.value } );
     }
   }
 

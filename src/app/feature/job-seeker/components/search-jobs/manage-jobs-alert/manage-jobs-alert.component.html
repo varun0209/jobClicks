@@ -1,0 +1,26 @@
+
+ <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <app-table [tableData]="tableData"
+            (onLinkClickEmit)="onLinkClickEmit($event)" (onEditRowEmit)="jobAlert($event, 'edit')"
+            (onDeleteRowEmit)="onDeleteRows($event)" (onViewRowEmit)="jobAlert($event, 'view')"
+            (onCheckboxClickEmit)="onCheckboxClickEmit($event)" >
+            <div custom>
+                <button class="btn btn-secondary" type="button" (click)="onDeleteRows()">
+                <img src="assets/images/delete.svg" class="mr-2" alt="..." > 
+                 Delete </button>
+            </div>
+            
+        <div button>
+            <button class="post-job-btn d-flex" (click)="jobAlert(null, 'new')">
+                <img src="assets/images/post-job.svg" class="d-block mr-2" alt="..."> Create Job Alert
+            </button>
+        </div>
+        </app-table>
+        </div>
+    </div>
+    
+    </div>
+    
+    

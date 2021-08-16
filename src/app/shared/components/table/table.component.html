@@ -61,9 +61,17 @@
                                       </div>
                                 </span>
                             </div>
-                            <div *ngSwitchCase="'edit'">
-                                <span>
+                            <div *ngSwitchCase="'action'">
+                                <span *ngIf="displayLable(column).view">
+                                    <img src="assets/images/view.svg" class="mr-2" alt="..." (click)="onViewRow(element)"> 
+                                   {{ element[column] }} 
+                                </span>
+                                <span *ngIf="displayLable(column).edit">
                                     <img src="assets/images/edit.svg" class="mr-2" alt="..." (click)="onEditRow(element)"> 
+                                   {{ element[column] }} 
+                                </span>
+                                <span *ngIf="displayLable(column).delete">
+                                    <img src="assets/images/delete.svg" class="mr-2" alt="..." (click)="onDeleteRow(element)"> 
                                    {{ element[column] }} 
                                 </span>
                             </div>

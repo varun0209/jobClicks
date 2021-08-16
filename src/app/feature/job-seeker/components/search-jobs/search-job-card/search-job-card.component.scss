@@ -1,5 +1,4 @@
 .search-job-details{
-    
     .search-company-details{
         .job-title{
             font-size: 16px;
@@ -30,7 +29,6 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 position: relative;
-                text-align: justify;
                 .show-more{
                     color: #055897;
                     position: absolute;
@@ -87,7 +85,120 @@
         font-size: 10px;
     }
 }
+.application-process{
+    .applied-section{
+        .applied{
+            align-items: center;
+            .circle{
+                width: 11px;
+                height: 11px;
+                background-color: #C9C9C9;
+                border-radius: 50%;
+                display: block;
+            }
+            .border-plain{
+                width: 120px;
+                height: 1px;
+                border: 1px #C9C9C9 solid;
+                display: block;
+            }
+            .circle-white{
+                width: 10px;
+                height: 10px;
+                background-color: #fff;
+                border-radius: 50%;
+                display: block;
+                border: 2px #afafaf solid;
+            }
+        }
+        .applied:nth-child(1){
+            .status-bar{
+                margin-left: 20px;
+            }
+        }
+        .applied:nth-child(1){
+            .text-section{
+                margin-left: -38px;
+            }
+        }
+        .success{
+            .circle{
+                width: 13px;
+                height: 13px;
+                background-color: #07A411;
+                border-radius: 50%;
+                display: block;
+                border: 2px #6ed674 solid;
+            }
+            .border-dashed{
+                width: 120px;
+                height: 1px;
+                border: 1px #C9C9C9 dashed;
+                display: block;
+            }
+        }
+    }
+    .selected, .rejected{
+        .border-dashed{
+            display: none !important;
+        }
+    }
+    .rejected{
+        .circle{
+            background-color: #B90000 !important;
+            border: 2px #f38181 solid !important;
+        }
+        .jc-text-success{
+            color: #B90000 !important;
+        }
+    }
+    .applied-date{
+        font-size: 12px;
+        background: #ECECEC 0% 0% no-repeat padding-box;
+        border-radius: 8px;
+        display: inline-block;
+        padding: 7px 10px;
+        height: 32px;
+        color: #999999;
+    }
+    .text-section{
+        font-size: 10px;
+        width: 120px;
+        color: #999999;
+        margin-left: -55px;
+        .text-applied{
+            width: 38px;
+            margin-right: 70px;
+        }
+        .text-application-viewed, .text-recruiter-inprocess{
+            width: 90px;
+            margin-right: 40px;
+        }
+        .text-recruiter-action{
+            width: 95px;
+        }
+    }
+    
+}
 
+.posted-date{
+    display: flex;
+    font-size: 10px;
+    align-items: center;
+    font-weight: 200;
+    color: #333333;
+    .green-dot{
+        width: 10px;
+        height: 10px;
+        background-color: #008D2F;
+        border-radius: 50%;
+        display: block;
+        border: 2px #6ed674 solid;
+    }
+    .jc-text-light{
+        color: #999999;
+    }
+}
 
 .pagination{
     .count-number{

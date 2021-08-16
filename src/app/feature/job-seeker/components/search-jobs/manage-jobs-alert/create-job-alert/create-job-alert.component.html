@@ -1,0 +1,173 @@
+<div class="container-fluid tech-news p-relative">
+    <span class="close-button" (click)="dialogRef.close()"><img src="assets/images/close.png" class="close-popup"
+            alt="logo"></span>
+    <div class="row">
+        <div class="col">
+            <div class="login-page">
+                <div class="logo text-center">
+                    <img src="assets/images/logo.png" class="mb-3" alt="logo">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has
+                        been the industry's</p>
+                </div>
+                <div class="login-title text-center">
+                    {{ data.type == 'new' ? 'Create' : '' }} 
+                    {{ data.type == 'edit' ? 'Edit' : '' }} 
+                    {{ data.type == 'view' ? 'View' : '' }} Job Alert
+                </div>
+                <form [formGroup]="clearAlertForm">
+
+                    <div class="forms mt-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group popup-controls mb-3 p-0">
+                                    <label>Alert Name<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control"
+                                        formControlName="jobAlertName" [ngClass]="{ 'is-invalid': 
+                                        (clearAlertForm.controls.jobAlertName.dirty && clearAlertForm.controls.jobAlertName.touched && clearAlertForm.controls.jobAlertName.errors) ||
+                                        (submitted && clearAlertForm.controls.jobAlertName.errors) ||
+                                        (showServerErrors && showServerErrors?.jobAlertName)
+                                    }">
+                                        <div class="error_text mt-0" *ngIf="(clearAlertForm.controls.jobAlertName.dirty && clearAlertForm.controls.jobAlertName.touched && clearAlertForm.controls.jobAlertName.errors) ||
+                                        (submitted && clearAlertForm.controls.jobAlertName.errors) ||
+                                        (showServerErrors && showServerErrors?.jobAlertName)">
+                                            <div class="error_text mt-0 " *ngIf="clearAlertForm.controls.jobAlertName.errors && clearAlertForm.controls.jobAlertName.errors.required">
+                                                Alert Name is required.
+                                            </div>
+                                            <div class="error_text mt-0" *ngIf="showServerErrors && showServerErrors?.jobAlertName">{{ showServerErrors.jobAlertName }} </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group popup-controls mb-3 p-0">
+                                    <label class="col-sm-2 col-form-label">
+                                        Industry </label>
+                                      <div class="col-sm-5">
+                                        <div class="mb-2">
+                                          <select class="form-control form-select" id="industry"  formControlName="industry" (change)="changeIndustry()">
+                                            <option value="Select Industry Type" >Select Industry Type</option>
+                                            <option value="IT">IT</option>
+                                            <option value="Others">Others</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="form-group row" [hidden]="clearAlertForm.value.industry != 'Others'">
+                                <label class="col-sm-2 col-form-label">Others<span class="text-danger">*</span></label>
+                                  <div class="col-sm-5">
+                                    <div class="mb-2">
+                                      <input type="text" class="form-control" formControlName="industryName" name="industryName"
+                                      [ngClass]="{ 'is-invalid': submitted && clearAlertForm.controls.industryName.errors }" (input)="updateError()">
+                                      </div>
+                                      <div class="error_text mt-0"
+                                      *ngIf="submitted && clearAlertForm.controls.industryName.errors">
+                                      <div class="error_text mt-0" *ngIf="clearAlertForm.controls.industryName.errors.required">
+                                        Please Select Industry
+                                      </div>
+                                    </div>
+                                      </div>
+                              </div>
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label">
+                                        Keywords </label>
+                                        <app-autocomplete-chip
+                                        [id]="'skillName'" [text]="'skillName'"
+                                        [disabled]="data.type == 'view' ? true : false"
+                                        [valuesData]="clearAlertForm.get('keywords').value"
+                                        [options]="searchJobsService.getJobSearchDropdownDataList.skills"
+                                        (valueSelectedEmit)="setValues($event, 'keywords')"
+                                    ></app-autocomplete-chip>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group popup-controls mb-3 p-0">
+                                    <label>Job Title (Designation)</label>
+                                    <app-autocomplete 
+                                    [id]="'jobTitle'" [text]="'jobTitle'"
+                                    [disabled]="data.type == 'view' ? true : false"
+                                    [value]="clearAlertForm.get('jobTitle').value"
+                                    [options]="searchJobsService.getJobSearchDropdownDataList.jobTitles"
+                                    (valueEmit)="clearValue('jobTitle')"
+                                    (valueSelectedEmit)="setValues($event,'jobTitle', 'jobTitle')"></app-autocomplete>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group popup-controls mb-3 p-0">
+                                    <label>Salary </label>
+                                    <select class="form-control form-select"  id="salary"
+                                    formControlName="salaryId" placeholder="Select salary">
+                                    <option value="" disabled>Select salary</option>
+                                    <option *ngFor="let salary of searchJobsService.getJobSearchDropdownDataList.salaryRange"
+                                        [value]="salary.salaryId">{{ salary.salaryRange }} </option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group ">
+                                    <label for="inputEmail3">
+                                        Location </label>
+                                        <app-autocomplete 
+                                        [id]="'name'" [text]="'name'"
+                                        [disabled]="data.type == 'view' ? true : false"
+                                        [value]="clearAlertForm.get('location').value"
+                                        [placeholder]="'location'"  
+                                        [options]="searchJobsService.getJobSearchDropdownDataList.location"
+                                        (valueSelectedEmit)="setValues($event,'location', 'name')"></app-autocomplete>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group popup-controls row mb-3 p-0">
+                                    <label for="inputEmail3">Experience</label>
+                                    <div class="col-sm-2">
+                                        <select class="form-control form-select"  id="minExperience"
+                                            formControlName="minExperience" (change)="selectMax()">
+                                            <option value="" disabled>Min</option>
+                                            <option *ngFor='let in of commonService.counter(50) ;let i = index' [value]="i"
+                                                selected>{{i}}</option>
+                                        </select>
+                                        <div class="error_text mt-0" *ngIf="clearAlertForm.controls.minExperience.errors">
+                                            <div class="error_text mt-0" *ngIf="clearAlertForm.controls.minExperience.errors.min">
+                                              Please Select Min Experience
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control form-select"  id="maxExperience"
+                                            formControlName="maxExperience" (change)="selectMax()">
+                                            <option value="" disabled>Max</option>
+                                            <option *ngFor='let in of commonService.counter(50) ;let i = index' [value]="i"
+                                                selected>{{i}}</option>
+                                        </select>
+                                        <div class="error_text mt-0" *ngIf="clearAlertForm.controls.maxExperience.errors">
+                                            <div class="error_text mt-0" *ngIf="clearAlertForm.controls.maxExperience.errors.max">
+                                              The minimum experience cannot be greater than the maximum experience.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="login-button mt-3 text-center">
+                            <button class="jc-button " (click)="submitCreateAlert()">
+                                {{ data.type == 'new' ? 'Save' : '' }} 
+                                {{ data.type == 'edit' ? 'Update' : '' }} 
+                                {{ data.type == 'view' ? 'Edit Alert' : '' }} 
+                            </button>
+                        </div>
+                        <div class="login-button mt-3 text-center">
+                            <button class="jc-btn-cancel" (click)="dialogRef.close()">Cancel</button>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

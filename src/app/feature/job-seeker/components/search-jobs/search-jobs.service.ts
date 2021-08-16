@@ -12,8 +12,6 @@ export class SearchJobsService {
 
   getJobSearchDropdownDataList: any;
 
-  public searchDataSubject = new BehaviorSubject<any>(null);
-  
   perviousRoute: string;
   
   constructor(
@@ -24,6 +22,9 @@ export class SearchJobsService {
   ) { }
 
   getJobSearchDropdownData() {
+    if(this.getJobSearchDropdownDataList) {
+      return
+    }
     const url = `${this.appService.getJobSearchDropdownData}`;
     const apiObj = {
       url: url,
@@ -38,14 +39,6 @@ export class SearchJobsService {
         this.getJobSearchDropdownDataList.jobtitlesandskills = res.data.skills.concat(res.data.jobTitles)
       }
     });
-  }
-
-  sendMessage(message) {
-    this.searchDataSubject.next(message);
-  }
-
-  getMessage(): Observable<any> {
-    return this.searchDataSubject.asObservable();
   }
 
 }

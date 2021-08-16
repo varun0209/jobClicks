@@ -22,7 +22,8 @@ export class AutocompleteChipComponent  {
   filteredChip: Observable<any[]>;
   @Input() placeholder: string
   @Input() values: string[] = [];
-
+  @Input() disabled = false;
+  
   @Input() set valuesData(val) {
     if(val && Array.isArray(val) && val.length) {
       this.values = val;

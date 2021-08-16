@@ -13,25 +13,36 @@
                         class="location-field" alt="location">
                 </div>
             </div>
-            <div class="col">
+            <div class="col pl-0">
                 <div class="search-company-details">
-                    <div class="job-title mb-2 cursor-p" (click)="showDetails(job)"> {{ job.jobTitle }} <span class="job-id">Job ID: {{ job.jobId }}
-                        </span></div>
+                    <div class="job-title mb-2 cursor-p d-flex justify-content-between" (click)="showDetails(job)">
+                        <div class="">{{ job.jobTitle }}
+                            <span class="job-id">Job ID: {{ job.jobId }}
+                            </span>
+                        </div>
+                        <div class="posted-date" *ngIf="showApplied">
+                                <span class="green-dot mr-1"></span>
+                                <span class="p-label jc-text-light ml-1 mr-1">Posted Date:</span>
+                                {{ job?.createdOn ? (job?.createdOn | date: 'MM/dd/YYYY') : 'N/A'}}
+                        </div>
+                    </div>
                     <div class="company-name mb-2">{{ job.companyName ? job.companyName : 'N/A' }}</div>
                     <div class="d-flex mb-2">
-                        <span class="job-details"><img src="assets/images/experience_icon.svg"
-                                class="location-field" alt="location"> <span class="text ml-2"> {{
-                                job.minExperience ? job.minExperience : 'N/A' }} - {{ job.maxExperience ? job.maxExperience : 'N/A' }}
+                        <span class="job-details"><img src="assets/images/experience_icon.svg" class="location-field"
+                                alt="location"> <span class="text ml-2"> {{
+                                job.minExperience ? job.minExperience : 'N/A' }} - {{ job.maxExperience ?
+                                job.maxExperience : 'N/A' }}
                                 Years</span></span>
                         <span class="job-details mx-5"><img src="assets/images/employment_type.svg"
                                 class="location-field" alt="location"> <span class="text ml-2"> {{
                                 job.employeementTypeName ? job.employeementTypeName : 'N/A' }} </span></span>
                         <span class="job-details"><img src="assets/images/location.svg" class="location-field"
-                                alt="location"> <span class="text ml-2">{{ job.location ? job.location : 'N/A' }}</span></span>
+                                alt="location"> <span class="text ml-2">{{ job.location ? job.location : 'N/A'
+                                }}</span></span>
                     </div>
                     <div class="job-description d-flex mb-2">
                         <img src="assets/images/job_description.svg" class="mr-2" alt="location">
-                        <span class="roles"> {{ commonService.convertHtmlToString(job.rolesAndResponsibilities) }} 
+                        <span class="roles"> {{ commonService.convertHtmlToString(job.rolesAndResponsibilities) }}
                             <span (click)="showDetails(job)" class="show-more">
                                 Show More..
                             </span>
@@ -41,16 +52,72 @@
                         <img src="assets/images/skills.svg" class="mr-2" alt="location">
                         <span> {{ job.keySkills }} </span>
                     </div>
-                    <div class="footer-buttons mt-2 mb-2 d-flex align-i-center justify-content-between">
+                    <div class="footer-buttons mt-2 mb-2 d-flex align-i-center justify-content-between"
+                        *ngIf="showApply">
                         <div class="">
                             <button class="last-update-btn"><img src="assets/images/postedicon.svg" class="mr-2"
                                     alt="location"> {{ commonService.getTimeDifference(job.createdOn) }} ago</button>
                         </div>
                         <div class="ml-3">
-                            <button class="jc-button share-btn"><img src="assets/images/share_post.svg"
-                                    alt="location"> Share</button>
-                            <button class="jc-button apply-btn ml-3" [ngClass]="{ 'applied-btn' : job.jobApplyed }" (click)="showDetails(job)"> {{ job.jobApplyed ? 'Applied' : 'Apply' }} </button>
+                            <button class="jc-button share-btn"><img src="assets/images/share_post.svg" alt="location">
+                                Share</button>
+                            <button class="jc-button apply-btn ml-3"
+                                [ngClass]="{ 'apply-btn-success' : job.jobApplyed }" (click)="showAppliedDetails(job)">
+                                {{ job.jobApplyed ? 'Applied' : 'Apply' }} </button>
                         </div>
+                    </div>
+                    <div class="application-process mt-3 d-flex justify-content-between" *ngIf="showApplied">
+                        <div class="applied-section d-flex">
+                            <div class="applied" *ngFor="let status of job.employeeJobStatusdata; let i = index"
+                                [ngClass]="{ 'success': status.status == 2, 'rejected': (status.status == 2 && status.jobStatusId == 11), 'selected': (status.status == 2 && status.jobStatusId == 10) }">
+                                <div class="d-flex align-items-center status-bar">
+                                    <span [ngClass]="status.status == 3 ? 'circle-white' : 'circle'"></span>
+                                    <span
+                                        [ngClass]="{ 'border-plain': status.status == 1 , 'border-dashed': status.status == 2 }"></span>
+                                </div>
+                                <div class="text-section text-center" [ngClass]="{ 'jc-text-success': status.status == 2 }">
+                                    <span class="d-block">{{ status.jobStatusName }}</span> <span class="d-block">{{
+                                        status.createdOn | date: 'dd MMMM' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="text-section">
+                                
+                            </div> -->
+                        <div class="applied-date">
+                            {{ job.jobApplyedDate }}
+                        </div>
+                        <!-- <div class="applied-section d-flex">
+                            <div class="applied ml-3" >
+                                <span class="circle"></span>
+                                <span class="border-plain" ></span>
+                        </div>
+                            <div class="applied">
+                                <span class="circle"></span>
+                                <span class="border-plain"></span>
+                            </div>
+                            <div class="applied success">
+                                    <span class="circle"></span>
+                                    <span class="border-dashed"></span>
+                            </div>
+                            <div class="recruiter-action">
+                                    <span class="circle-white"></span>
+                            </div>
+                        </div>
+                        <div class="text-section">
+                            <div class="text-applied text-center" >
+                                <span class="d-block">Applied 19 July</span>
+                            </div>
+                            <div class="text-application-viewed text-center">
+                                <span class="d-block">Application Viewed 19 July</span>
+                            </div>
+                            <div class="text-recruiter-inprocess text-center jc-text-success">
+                                <span class="d-block">Interview Inprocess 14 July</span>
+                            </div>
+                            <div class="text-recruiter-action text-center">
+                                <span class="d-block">Awaiting Recruiter Action</span>
+                            </div>
+                        </div>  -->
                     </div>
                 </div>
             </div>

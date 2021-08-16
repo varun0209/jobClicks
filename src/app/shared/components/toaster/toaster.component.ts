@@ -15,7 +15,7 @@ export class ToasterComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.data.type === AlertInfo.SUCCESS) {
-      this.image = 'assets/images/successful_icon.svg';
+      this.image = 'assets/images/success_icon.svg';
     } else if(this.data.type === AlertInfo.ERROR) {
       this.image = 'assets/images/error_icon.svg';
     }

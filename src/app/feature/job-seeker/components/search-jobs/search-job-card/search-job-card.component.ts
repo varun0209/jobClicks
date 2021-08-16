@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../../../../core/services/app.service';
 import { CommonService } from '../../../../../core/services/common.service';
 import { SearchJobsService } from '../search-jobs.service';
@@ -16,11 +16,17 @@ export class SearchJobCardComponent implements OnInit {
   p: number = 1;
   pageSize = 20;
 
+  @Input() showApply = false;
+  @Input() showApplied = false;
+
+  @Output() updateRoute = new EventEmitter()
+
   constructor(
     public appService: AppService,
     public commonService: CommonService,
     public searchJobsService: SearchJobsService,
-    private router: Router
+    private route: Router,
+    private router: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -30,12 +36,16 @@ export class SearchJobCardComponent implements OnInit {
     this.pageSize = i
   }
 
-  showDetails(job) {
+  showAppliedDetails(job) {
     if(job.jobApplyed) {
       return;
     }
-    this.searchJobsService.perviousRoute = 'auth/employee/search-jobs/job-results';
-    this.router.navigate(['auth/employee/search-jobs/job-details', job.jobId]);
+    this.showDetails(job);
+  }
+  
+  showDetails(job) {
+    this.updateRoute.emit();
+    this.route.navigate(['auth/employee/search-jobs/job-details', job.jobId], { queryParams:  this.router.queryParams['_value'] });
   }
 
 }

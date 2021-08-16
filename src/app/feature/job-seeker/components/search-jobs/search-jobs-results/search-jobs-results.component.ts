@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpMethod } from '../../../../../core/enums/http-handlers';
 import { AppService } from '../../../../../core/services/app.service';
@@ -29,14 +29,12 @@ export class SearchJobsResultsComponent implements OnInit, OnDestroy {
    defaultLocLength = 5;
    defaultEduLength = 5;
    defaultRemoteLength = 5;
-   defaultSalaryLength = 5;
+  //  defaultSalaryLength = 5;
 
    defaultCount = true;
 
    maxiumExperience = 0
    minimumExperience = 0
-
-  subscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -44,33 +42,34 @@ export class SearchJobsResultsComponent implements OnInit, OnDestroy {
     public appService: AppService,
     private spinnerService: SpinnerService,
     public searchJobsService: SearchJobsService,
-    private router: Router
+    private router: ActivatedRoute,
+    private route: Router
   ) {
-    this.subscription = this.searchJobsService.getMessage().subscribe(res => {
-      if(res && typeof res == 'object') {
-        this.defaultCount = true;
-        this.searchJobModel()
-        this.searchJob.patchValue(res);
-        this.searchJobsData = {
-          getAllGobs: [],
-          filtercount: null
-         }
-        this.searchJobs();
-      }
-    })
+   
+          // this.defaultCount = true;
+          
+          // this.router.queryParams['_value']
+          this.router.queryParams.subscribe(res => {
+            this.searchJobModel()
+            this.searchJob.patchValue(res);
+            this.searchJobsData = {
+              getAllGobs: [],
+              filtercount: null
+            }
+            this.searchJobs();
+          })
+
   }
 
   ngOnInit(): void {
   }
 
   ngOnDestroy() {
-    this.searchJobsService.sendMessage('removeJobDetails');
-    this.subscription.unsubscribe();
   }
 
 
   searchJobModel() {
-
+    const loginData = JSON.parse(localStorage.getItem('loginData'));
     this.searchJob = this.fb.group({
       jobTitle: ['', Validators.required],
       keySkills: [''],
@@ -81,7 +80,8 @@ export class SearchJobsResultsComponent implements OnInit, OnDestroy {
       maxiumExperience: [''],
       minimumExperience: [''],
       remoteOptions: [''],
-      salary: ['']
+      salary: [''],
+      employeeId: [loginData.id.toString()]
     });
 
   }
@@ -93,14 +93,36 @@ export class SearchJobsResultsComponent implements OnInit, OnDestroy {
       methodType: HttpMethod.GETWITHOUTHEADERS,
       requestObj: this.searchJob.value
     }
-    this.commonService.commonApiCall(apiObj,(res, statusFlag) => {
+    this.commonService.commonApiCall(apiObj,(resp, statusFlag) => {
       this.spinnerService.hide();
-      if (statusFlag && res.data) {
+      if (statusFlag && resp.data) {
         if(this.defaultCount) {
-          this.searchJobsData = { ...res.data };
-          this.searchJobsFilterData = res.data.filtercount;
+          this.searchJobsData = { ...resp.data };
+          this.searchJobsFilterData = resp.data.filtercount;
         } else {
-          this.searchJobsData = res.data;
+          this.searchJobsData = resp.data;
+        }
+        Object.keys(this.searchJobsFilterData).forEach(key => {
+          this.searchJobsFilterData[key].map(el => {
+            el.checked = false
+            if(key === 'employeementTypeData' && this.searchJob.value.employementType) {
+              el.checked = this.searchJob.value.employementType.split(',').some(res => res == el.id) ? true : false
+            } else if(key === 'remoteOptionData' && this.searchJob.value.remoteOptions) {
+              el.checked = this.searchJob.value.remoteOptions.split(',').some(res => res == el.remoteOptionId) ? true : false
+            // } else if(key === 'salaryRanges' && this.searchJob.value.salary) {
+            //   el.checked = this.searchJob.value.salary.split(',').some(res => res == el.salaryId) ? true : false
+            } else if(key === 'freshness' && this.searchJob.value.freshness) {
+              el.checked = this.searchJob.value.freshness.split(',').some(res => res == el.id) ? true : false
+            } else if(key === 'education' && this.searchJob.value.education) {
+              el.checked = this.searchJob.value.education.split(',').some(res => res == el.qualificationId) ? true : false
+            }
+          });
+        })
+        if(this.searchJob.value.maxiumExperience) {
+          this.maxiumExperience = this.searchJob.value.maxiumExperience;
+        }
+        if(this.searchJob.value.minimumExperience) {
+          this.minimumExperience = this.searchJob.value.minimumExperience
         }
         // this.showPagePerIndex = [];
         // for(let i = 0; i < this.searchJobsData?.getAllGobs.length; i+20 ) {
@@ -127,19 +149,22 @@ export class SearchJobsResultsComponent implements OnInit, OnDestroy {
       // val = event.target.value;
     } else {
       if(event.target.checked) {
-        val = val ? (val + ',' + value) : value.toString();
+        val =  (key == 'location') ? (val ? (val + '-' + value) : value.toString()) : (val ? (val + ',' + value) : value.toString());
       } else {
-        val = val.split(',').filter(res => res != value).join(',');
+        val = (key == 'location') ? (val.split('-').filter(res => res != value).join('-')) : (val.split(',').filter(res => res != value).join(','));
       }
     }
     this.searchJob.patchValue({
       [key]: val
     })
     this.defaultCount = false;
+    this.route.navigate(['auth/employee/search-jobs/job-results'], { queryParams: this.searchJob.value })
     this.searchJobs();
   }
 
-
+  updateRoute() {
+    this.searchJobsService.perviousRoute = 'auth/employee/search-jobs/job-results';
+    }
 
   
 }

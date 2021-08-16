@@ -1,7 +1,6 @@
 <div class="example-container ">
-
     <mat-form-field class="example-chip-list W-100" [floatLabel]="'never'">
-     <mat-chip-list #chipList aria-label="selection">
+     <mat-chip-list #chipList aria-label="selection" [disabled]="disabled">
        <mat-chip
          *ngFor="let value of values"
          [selectable]="selectable"
@@ -30,6 +29,6 @@
    </mat-form-field>
 
    </div>
-   <span *ngIf="showNoDataFount()"> No Data Found!!  </span> 
+   <span *ngIf="showNoDataFount()" class="error_text"> No Data Found!!  </span> 
 
    

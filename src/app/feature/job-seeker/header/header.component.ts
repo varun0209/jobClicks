@@ -54,8 +54,8 @@ export class HeaderComponent implements OnInit {
     switch (true) {
       case e.includes('home'):
           return 'home'
-      case e.includes('alerts'):
-        return 'alerts'
+      case e.includes('manage-jobs-alerts'):
+        return 'manage-jobs-alerts'
       case e.includes('applied-jobs'):
         return 'applied-jobs'
         case e.includes('saved-jobs'):

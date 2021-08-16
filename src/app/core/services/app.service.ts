@@ -85,9 +85,13 @@ export class AppService {
   getJobDetailsbyJobId = `${this.domain}api/employee/GetJobDetailsbyJobId`;
   skipAndApplyPosition = `${this.domain}api/employee/SkipAndApplyPosition`;
   applyJobsinEmployee = `${this.domain}api/employee/ApplyJobsinEmployee`;
+  getAllApplyedJobDetails = `${this.domain}api/employee/GetAllApplyedJobDetails`;
 
-
-
+  // manage jobs
+  getAllEmployeeJobAlerts = `${this.domain}api/employee/GetAllEmployeeJobAlerts`;
+  createEmployeeJobAlert = `${this.domain}api/employee/CreateEmployeeJobAlert`;
+  updateEmployeeJobAlert = `${this.domain}api/employee/UpdateEmployeeJobAlert`;
+  deleteSelectedEmployeeJobAlert = `${this.domain}api/employee/DeleteSelectedEmployeeJobAlert`;  
 
   // ***************************************** employer ************************************//
 

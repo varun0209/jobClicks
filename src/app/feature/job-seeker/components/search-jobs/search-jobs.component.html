@@ -1,11 +1,11 @@
 <div class="container" *ngIf="searchJobsService?.getJobSearchDropdownDataList">
     
-    <div class="row pt-4 mt-3">
+    <div class="row pt-4 mt-3" *ngIf="showSearch">
         <div class="col-12 text-center">
             <div class="title d-flex"><span class="text-jc back-button cursor-p" [hidden]="hideBack" (click)="back()"><img class="text-bottom mt-n1"  width="10" height="10" src="assets/images/back.svg" > Back</span> <span class="w-100">Search For Jobs</span></div>
         </div>
     </div>
-    <form class="py-3" [formGroup]="searchJob">
+    <form class="py-3" [formGroup]="searchJob" *ngIf="showSearch">
     <div class="row mb-3">
         <div class="col-lg-12">
             <div class="card search-job-filter-panel">
@@ -33,6 +33,7 @@
                         [placeholder]="'Location'"
                         [value]="searchJob.value.location"
                         [options]="searchJobsService.getJobSearchDropdownDataList.location"
+                        (valueEmit)="clearValue('location')"
                         (valueSelectedEmit)="setValues($event,'location', 'name')"
                         ></app-autocomplete>
                         <img src="assets/images/location_field.svg" class="location-field" alt="location">

@@ -1,0 +1,24 @@
+<div class="container mb-3">
+    <div class="row pt-4 mt-3">
+        <div class="col-12 text-center">
+            <div class="title d-flex">
+                <span class="w-100">Applied Jobs</span>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-8" >
+            <app-search-job-card [list]="searchJobsData" [showApplied]="true" (updateRoute)="updateRoute()"></app-search-job-card>
+        </div>
+        <div class="col-lg-4 search-job pr-0">
+            <div class="find-job">
+                <label class="search-label">Job Title(Designation)</label>
+                <input type="text" class="form-control mb-3 shadow-none" placeholder="Search for Jobs, Skills">
+                <label class="search-label">Name the Alert</label>
+                <input type="text" class="form-control shadow-none" placeholder="">
+                <button class="jc-button">Save as Alert</button>
+            </div>
+            <app-recommended-jobs [showApplyButton]="false"></app-recommended-jobs>
+        </div>
+    </div>
+</div>

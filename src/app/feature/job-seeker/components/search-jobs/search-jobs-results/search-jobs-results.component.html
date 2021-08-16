@@ -20,7 +20,7 @@
                                 *ngFor="let fresh of searchJobsFilterData?.freshness; let i = index">
                                 <div class="form-check d-flex"
                                     *ngIf="(defaultFreshLength == 0 || i < defaultFreshLength)">
-                                    <input type="checkbox" class="form-check-input" id="freshness{{i}}"
+                                    <input type="checkbox" [checked]="fresh.checked" class="form-check-input" id="freshness{{i}}"
                                         (click)="filterValue($event, fresh.id, 'freshness')">
                                     <label class="form-check-label ml-3" for="freshness{{i}}">{{ fresh.name }}</label>
                                 </div>
@@ -50,7 +50,7 @@
                             <div class="col filter-content mx-n4 d-flex justify-content-between"
                                 *ngFor="let type of searchJobsFilterData?.employeementTypeData; let i = index">
                                 <div class="form-check d-flex" *ngIf="(defaultEmpLength == 0 || i < defaultEmpLength)">
-                                    <input type="checkbox" class="form-check-input" id="employementType{{i}}"
+                                    <input type="checkbox" [checked]="type.checked"  class="form-check-input" id="employementType{{i}}"
                                         (click)="filterValue($event, type.id, 'employementType')">
                                     <label class="form-check-label ml-3" for="employementType{{i}}">{{
                                         type.employeementTypeName }}</label>
@@ -81,7 +81,7 @@
                             <div class="col filter-content mx-n4 d-flex justify-content-between"
                                 *ngFor="let loc of searchJobsFilterData?.locationData; let i = index">
                                 <div class="form-check d-flex" *ngIf="(defaultLocLength == 0 || i < defaultLocLength)">
-                                    <input type="checkbox" class="form-check-input" id="location{{i}}"
+                                    <input type="checkbox" [checked]="loc.checked" class="form-check-input" id="location{{i}}"
                                         (click)="filterValue($event, loc.locationName, 'location')">
                                     <label class="form-check-label ml-3" for="location{{i}}">{{ loc.locationName
                                         }}</label>
@@ -140,7 +140,7 @@
                             <div class="col filter-content mx-n4 d-flex justify-content-between"
                                 *ngFor="let edu of searchJobsFilterData?.education; let i = index">
                                 <div class="form-check d-flex" *ngIf="(defaultEduLength == 0 || i < defaultEduLength)">
-                                    <input type="checkbox" class="form-check-input" id="education{{i}}"
+                                    <input type="checkbox" [checked]="edu.checked" class="form-check-input" id="education{{i}}"
                                         (click)="filterValue($event, edu.qualificationId, 'education')">
                                     <label class="form-check-label ml-3" for="education{{i}}">{{ edu.qualificationName
                                         }}</label>
@@ -171,7 +171,7 @@
                                 *ngFor="let remote of searchJobsFilterData?.remoteOptionData; let i = index">
                                 <div class="form-check d-flex"
                                     *ngIf="(defaultRemoteLength == 0 || i < defaultRemoteLength)">
-                                    <input type="checkbox" class="form-check-input" id="remoteOptions{{i}}"
+                                    <input type="checkbox" [checked]="remote.checked" class="form-check-input" id="remoteOptions{{i}}"
                                         (click)="filterValue($event, remote.remoteOptionId, 'remoteOptions')">
                                     <label class="form-check-label ml-3" for="remoteOptions{{i}}">{{
                                         remote.remoteOptionName }}</label>
@@ -191,7 +191,7 @@
                             </div>
                         </mat-expansion-panel>
                     </div>
-                    <div class="card mb-2">
+                    <!-- <div class="card mb-2">
                         <mat-expansion-panel class="mat-expanded  mb-0">
                             <mat-expansion-panel-header class="p-0">
                                 <mat-panel-title class="min-title">
@@ -202,7 +202,7 @@
                                 *ngFor="let salary of searchJobsFilterData?.salaryRanges; let i = index">
                                 <div class="form-check d-flex"
                                     *ngIf="(defaultSalaryLength == 0 || i < defaultSalaryLength)">
-                                    <input type="checkbox" class="form-check-input" id="salary{{i}}"
+                                    <input type="checkbox" [checked]="salary.checked" class="form-check-input" id="salary{{i}}"
                                         (click)="filterValue($event, salary.salaryId, 'salary')">
                                     <label class="form-check-label ml-3" for="salary{{i}}">{{ salary.salaryRange
                                         }}</label>
@@ -220,7 +220,7 @@
                                     (click)="defaultSalaryLength = 5"> Less <i class="fa fa-chevron-up ml-2"></i></div>
                             </div>
                         </mat-expansion-panel>
-                    </div>
+                    </div> -->
                 </mat-accordion>
             </div>
         </div>
@@ -231,7 +231,7 @@
                         searchJobsData?.getAllGobs.length }} jobs</span>
                 </div>
             </div>
-            <app-search-job-card [list]="searchJobsData?.getAllGobs" ></app-search-job-card>
+            <app-search-job-card [list]="searchJobsData?.getAllGobs" [showApply]="true" (updateRoute)="updateRoute()"></app-search-job-card>
         </div>
         <div class="col-lg-3 search-job pr-0">
             <div class="find-job">

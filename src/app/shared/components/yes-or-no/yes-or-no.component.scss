@@ -10,13 +10,14 @@
             height: 38px;
 }
 .actie-btn{
-    background: transparent linear-gradient(100deg, #004A19 0%, #00B235 100%) 0% 0% no-repeat padding-box;
-border-radius: 8px;
-box-shadow: 1px 3px 6px #00000029;
-color: #fff;
-            border: none;
-            width: 240px;
-            height: 38px;
+    // background: transparent linear-gradient(100deg, #004A19 0%, #00B235 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(100deg, #005C97 0%, #363795 100%) 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    box-shadow: 1px 3px 6px #00000029;
+    color: #fff;
+    border: none;
+    width: 240px;
+    height: 38px;
 }
 .confirm-title{
     font-size: 18px;
@@ -36,4 +37,7 @@ font-weight: 600 !important;
         color: #009723;
         font-weight: 500;
     }
+}
+.jc-btn-cancel{
+    width: 120px;
 }
