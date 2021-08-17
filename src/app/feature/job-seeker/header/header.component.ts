@@ -60,8 +60,8 @@ export class HeaderComponent implements OnInit {
         return 'applied-jobs'
         case e.includes('saved-jobs'):
           return 'saved-jobs'
-          case e.includes('search-jobs'):
-            return 'search-jobs'
+          // case e.includes('search-jobs'):
+          //   return 'search-jobs'
       default:
         return ''
    }

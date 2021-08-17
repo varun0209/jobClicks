@@ -63,15 +63,15 @@
                             </div>
                             <div *ngSwitchCase="'action'">
                                 <span *ngIf="displayLable(column).view">
-                                    <img src="assets/images/view.svg" class="mr-2" alt="..." (click)="onViewRow(element)"> 
+                                    <img src="assets/images/blue-view.svg" class="mr-2 cursor-p" alt="..." (click)="onViewRow(element)"> 
                                    {{ element[column] }} 
                                 </span>
                                 <span *ngIf="displayLable(column).edit">
-                                    <img src="assets/images/edit.svg" class="mr-2" alt="..." (click)="onEditRow(element)"> 
+                                    <img src="assets/images/edit.svg" class="mr-2 cursor-p" alt="..." (click)="onEditRow(element)"> 
                                    {{ element[column] }} 
                                 </span>
                                 <span *ngIf="displayLable(column).delete">
-                                    <img src="assets/images/delete.svg" class="mr-2" alt="..." (click)="onDeleteRow(element)"> 
+                                    <img src="assets/images/delete-red.svg" class="mr-2 cursor-p" alt="..." (click)="onDeleteRow(element)"> 
                                    {{ element[column] }} 
                                 </span>
                             </div>

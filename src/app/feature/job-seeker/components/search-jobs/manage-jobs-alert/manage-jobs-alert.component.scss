@@ -2,7 +2,7 @@
     height: 45px;
     line-height: 35px;
     padding: 5px 10px;
-    width: 98px;
+    width: 150px;
     font-size: 14px;
     background: transparent linear-gradient( 
 106deg
@@ -24,4 +24,16 @@
 }
 .custom-dropdown:focus{
     box-shadow:none;
+}
+.custom-delete{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    .btn{
+        background: none;
+        border: none;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
 }

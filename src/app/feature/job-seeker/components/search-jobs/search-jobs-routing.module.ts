@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
+import { JobAlertsComponent } from './job-alerts/job-alerts.component';
 import { ManageJobsAlertComponent } from './manage-jobs-alert/manage-jobs-alert.component';
 import { SearchJobDetailsComponent } from './search-job-details/search-job-details.component';
 import { SearchJobsFilterComponent } from './search-jobs-filter/search-jobs-filter.component';
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'manage-jobs-alerts',
     component: ManageJobsAlertComponent
+  },
+  {
+    path: 'jobs-alerts/:id',
+    component: JobAlertsComponent
   },
       ]
   },

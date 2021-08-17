@@ -45,7 +45,7 @@ export class SearchJobsComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
           // Hide loading indicator
           this.submitted = false;
-          if(event.url.includes('applied-jobs') || event.url.includes('manage-jobs-alerts')) {
+          if(event.url.includes('applied-jobs') || event.url.includes('manage-jobs-alerts') || event.url.includes('jobs-alerts')) {
             this.showSearch = false;
           } else {
             this.showSearch = true;

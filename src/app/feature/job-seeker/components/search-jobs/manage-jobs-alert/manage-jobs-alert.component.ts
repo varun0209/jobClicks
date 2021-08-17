@@ -93,7 +93,7 @@ onDeleteRows(value?) {
   if(value) {
     jobAlertIds = value.jobAlertId;
   } else {
-    this.selectedAll.forEach(res => jobAlertIds = (jobAlertIds ? (jobAlertIds + ',' + res.jobAlertId) : res.jobAlertId));
+    this.selectedAll.forEach(res => jobAlertIds = res.checked ? (jobAlertIds ? (jobAlertIds + ',' + res.jobAlertId) : res.jobAlertId) : jobAlertIds);
     if(!jobAlertIds) {
       this.commonService.snackBar('Please Select Jobs', AlertInfo.ERROR)
       return
@@ -181,8 +181,7 @@ getJobDetailsByJobId(jobID) {
 
 
 onLinkClickEmit(event) {
-  this.router.navigate(['/auth/employeer/post-job-preview', event.jobId]);
-  // this.router.navigateByUrl('/auth/employeer/update-post-job')
+  this.router.navigate(['/auth/employee/search-jobs/jobs-alerts', event.jobAlertId]);
 }
 
 

@@ -1,0 +1,14 @@
+<div class="container mb-3">
+    <div class="row pt-4 mt-3">
+        <div class="col-12 text-center">
+            <div class="title d-flex"><span class="text-jc back-button cursor-p" (click)="back()">
+                <img class="text-bottom mt-n1"  width="10" height="10" src="assets/images/back.svg" > Back</span> 
+                <span class="w-100">Job Alerts</span></div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-8" >
+            <app-search-job-card [list]="jobAlertsData" [showApply]="true" (updateRoute)="updateRoute()"></app-search-job-card>
+        </div>
+    </div>
+</div>

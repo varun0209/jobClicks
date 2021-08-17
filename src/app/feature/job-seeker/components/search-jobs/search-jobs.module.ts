@@ -14,6 +14,7 @@ import { SearchJobCardComponent } from './search-job-card/search-job-card.compon
 import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 import { ManageJobsAlertComponent } from './manage-jobs-alert/manage-jobs-alert.component';
 import { CreateJobAlertComponent } from './manage-jobs-alert/create-job-alert/create-job-alert.component';
+import { JobAlertsComponent } from './job-alerts/job-alerts.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CreateJobAlertComponent } from './manage-jobs-alert/create-job-alert/cr
     RecommendedJobsComponent, SearchJobDetailsComponent, SearchJobCardComponent,
     AppliedJobsComponent,
     ManageJobsAlertComponent,
-    CreateJobAlertComponent
+    CreateJobAlertComponent,
+    JobAlertsComponent
   ],
   imports: [
     CommonModule,

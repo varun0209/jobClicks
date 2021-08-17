@@ -93,6 +93,9 @@ export class AppService {
   updateEmployeeJobAlert = `${this.domain}api/employee/UpdateEmployeeJobAlert`;
   deleteSelectedEmployeeJobAlert = `${this.domain}api/employee/DeleteSelectedEmployeeJobAlert`;  
 
+  // job alerts
+  getJobsBasedonJobAlertbyEmployeeID = `${this.domain}api/employee/GetJobsBasedonJobAlertbyEmployeeID`;  
+  
   // ***************************************** employer ************************************//
 
   // manage jobs

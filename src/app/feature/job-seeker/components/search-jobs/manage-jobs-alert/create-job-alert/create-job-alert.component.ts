@@ -20,7 +20,7 @@ export class CreateJobAlertComponent implements OnInit {
 
   // show server error
   showServerErrors =  {
-    jobAlertName: ''
+    jobtitle: ''
   }
 
   constructor(
@@ -31,7 +31,8 @@ export class CreateJobAlertComponent implements OnInit {
     public searchJobsService: SearchJobsService,
     public dialogRef: MatDialogRef<CreateJobAlertComponent>,
     @Inject(MAT_DIALOG_DATA) public data
-  ) { }
+  ) { 
+  }
 
   ngOnInit(): void {
     const loginData = JSON.parse(localStorage.getItem('loginData'));
@@ -43,7 +44,7 @@ export class CreateJobAlertComponent implements OnInit {
       industry: [''],
       industryName: [''],
       keywords: [''],
-      jobTitle: [''],
+      jobTitle: ['', Validators.required],
       salaryId: [''],
       location: [''],
       minExperience: [0],
@@ -59,11 +60,13 @@ export class CreateJobAlertComponent implements OnInit {
         })
       }
       this.setKeywords();
-      this.clearAlertForm.get('jobAlertName').disable();
       if(this.data.type == 'view') {
         this.clearAlertForm.disable()
       }
     }
+    this.clearAlertForm.get('jobAlertName').valueChanges.subscribe(res => {
+      this.showServerErrors ? this.showServerErrors.jobtitle = '': null
+    })
   }
 
   setKeywords() {
@@ -77,7 +80,6 @@ changeIndustry() {
   this.clearAlertForm.controls['industryName'].setErrors(null);
   if(this.clearAlertForm.value.industry == 'Others') {
     this.clearAlertForm.controls['industryName'].setErrors({ required: true });
-   
   }
 }
 
@@ -119,7 +121,6 @@ submitCreateAlert() {
   if(this.data.type == 'view') {
     this.data.type = 'edit';
     this.clearAlertForm.enable();
-    this.clearAlertForm.get('jobAlertName').disable();
     return;
   }
   this.submitted = true;
@@ -134,7 +135,6 @@ submitCreateAlert() {
     this.clearAlertForm.patchValue({
       keywords: this.clearAlertForm.value.keywords && this.clearAlertForm.value.keywords.length ? this.clearAlertForm.value.keywords.join(',') : ''
     })
-    this.clearAlertForm.get('jobAlertName').enable()
     this.createEmployeeJobAlert();
 }
 
@@ -148,12 +148,11 @@ createEmployeeJobAlert() {
   }
   this.commonService.commonApiCall(apiObj,(res, statusFlag) => {
     this.spinnerService.hide();
-    if(statusFlag) {
+    if(statusFlag === 'showControlError') {
+      this.showServerErrors = res.data;
+    } else if(statusFlag) {
       this.dialogRef.close(true)
     } else {
-      if(this.data.type == 'edit') {
-        this.clearAlertForm.get('jobAlertName').disable()
-      }
       this.setKeywords()
     }
   });

@@ -6,15 +6,16 @@
             (onLinkClickEmit)="onLinkClickEmit($event)" (onEditRowEmit)="jobAlert($event, 'edit')"
             (onDeleteRowEmit)="onDeleteRows($event)" (onViewRowEmit)="jobAlert($event, 'view')"
             (onCheckboxClickEmit)="onCheckboxClickEmit($event)" >
-            <div custom>
+            <div custom class="custom-delete">
                 <button class="btn btn-secondary" type="button" (click)="onDeleteRows()">
-                <img src="assets/images/delete.svg" class="mr-2" alt="..." > 
+                <img src="assets/images/delete-white.svg" class="mr-2" alt="..." > 
                  Delete </button>
             </div>
             
         <div button>
             <button class="post-job-btn d-flex" (click)="jobAlert(null, 'new')">
-                <img src="assets/images/post-job.svg" class="d-block mr-2" alt="..."> Create Job Alert
+                <!-- <img src="assets/images/post-job.svg" class="d-block mr-2" alt="...">  -->
+                <img src="assets/images/create-job-alert.svg" class="d-block mr-2" alt="...">Create Job Alert
             </button>
         </div>
         </app-table>

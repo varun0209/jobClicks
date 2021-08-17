@@ -101,22 +101,22 @@ export class TableComponent implements OnInit {
   checkAll(event) {
     this.allChecked = true;
     const checked = event.target.checked;
-    const obj = { value: checked, element: 'all', data: checked ? this.dataSource.data : [] };
-    this.onCheckboxClickEmit.emit(obj);
     let list = [ ...this.dataSource.data ]; 
     list.map(res =>{ 
        if(this.dataSource.filteredData.some(resp => resp[this.tableObj.uniqueKey] === res[this.tableObj.uniqueKey])) {
             res.checked = checked  ? true : false 
        }})
+    const obj = { value: checked, element: 'all', data: checked ? list : [] };
+    this.onCheckboxClickEmit.emit(obj);
     // this.tableDataUpdate(list);
   }
 
   checkboxClick(event,element) {
     const checked = event.target.checked;
-    const obj = { value: checked, element: element, data: this.dataSource.data };
-    this.onCheckboxClickEmit.emit(obj);
     let list = [ ...this.dataSource.data ];
     list.map(res =>  res.checked = res[this.tableObj.uniqueKey] === element[this.tableObj.uniqueKey] ? checked ? true : false  : res.checked )
+    const obj = { value: checked, element: element, data: list };
+    this.onCheckboxClickEmit.emit(obj);
     // this.tableDataUpdate(list);
   }
 
